@@ -8,23 +8,23 @@ public class Evento {
 	private String nombre;
 	private String tema;
 	private String fecha;
-	private Participante ganador;
+	//private Participante ganador;
 	private String local;
 	private ArrayList<Persona> integrantes;
-	private ArrayList<Proyecto> proyectos;
+	//private ArrayList<Proyecto> proyectos;
 	
 	
 	
-	public Evento(String codigo, String nombre, String tema, String fecha, Participante ganador, String local) {
+	public Evento(String codigo, String nombre, String tema, String fecha, /*Participante ganador, */String local) {
 		super();
 		this.codigo = codigo;
 		this.nombre = nombre;
 		this.tema = tema;
 		this.fecha = fecha;
-		this.ganador = ganador;
+	//	this.ganador = ganador;
 		this.local = local;
 		integrantes = new ArrayList<>();
-		proyectos = new ArrayList<>();
+	//	proyectos = new ArrayList<>();
 	}
 	
 	
@@ -54,12 +54,12 @@ public class Evento {
 	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
-	public Participante getGanador() {
+	/*public Participante getGanador() {
 		return ganador;
 	}
 	public void setGanador(Participante ganador) {
 		this.ganador = ganador;
-	}
+	}*/
 	public String getLocal() {
 		return local;
 	}
@@ -72,12 +72,12 @@ public class Evento {
 	public void setIntegrantes(ArrayList<Persona> integrantes) {
 		this.integrantes = integrantes;
 	}
-	public ArrayList<Proyecto> getProyectos() {
+	/*public ArrayList<Proyecto> getProyectos() {
 		return proyectos;
 	}
 	public void setProyectos(ArrayList<Proyecto> proyectos) {
 		this.proyectos = proyectos;
-	}
+	}*/
 
 	
 	
