@@ -14,6 +14,7 @@ public class Participante extends Persona {
 		super(nombre, cedula, numero, email);
 		this.matricula = matricula;
 		this.escuela = escuela;
+		trabajos = new ArrayList<>();
 		
 		Trabajo trabajo = new Trabajo(codigo, nombreTrabajo, tema);
 		
