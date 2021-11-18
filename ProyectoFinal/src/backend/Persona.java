@@ -1,5 +1,7 @@
 package backend;
 
-public class Persona {
+public class Persona { 
+	
+	private String nombre;
 
 }
