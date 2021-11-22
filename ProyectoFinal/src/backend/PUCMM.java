@@ -31,12 +31,58 @@ public class PUCMM {
 	}
 	
 	public void crearEvento(Evento evento) {
-		/*Chequear si hay recursos
-		 * Tambien si hay jurados disponibles para la comision*/
+		//Chequear si hay recursos
+
 		 
 		
 		
 	}
+	
+	//Metodo verificar si hay recursos
+	private boolean RecursosDisponibles(Recursos recurso, int cantidad) {
+		
+		
+		
+		return true;
+	}
+	
+	
+	public void buscarRecurso() {
+		
+	}
+	
+	
+	
+	public void crearComision(Comision comision) {
+		//Verificar si hay jurados disponibles para la comision
+		
+		
+	}
+	
+	
+	//Metodo verificar si hay jurados disponibles para la comision
+	
+	
+	public void CrearActividad() {
+		
+	}
+	
+	public void RegistrarPersona() {
+		
+	}
+	
+	public void registrarTrabajo() {
+		
+	}
+	
+	public void Calificar() {
+		
+	}
+	
+	public void Ganador() {
+		
+	}
+	
 	
 	
 	

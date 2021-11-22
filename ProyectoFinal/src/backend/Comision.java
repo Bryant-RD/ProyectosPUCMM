@@ -6,7 +6,7 @@ public class Comision {
 
 	private String nombre;
 //	private Jurado presidente;
-//	private ArrayList<Jurado> jurados;
+	private ArrayList<Jurado> jurados;
 	private ArrayList<Trabajo> trabajos;
 	private String areaConocimiento;
 	

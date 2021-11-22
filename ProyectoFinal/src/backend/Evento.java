@@ -10,8 +10,10 @@ public class Evento {
 	private String fecha;
 	private Participante ganador;
 	private String local;
+	private Comision comision;
 	private ArrayList<Persona> integrantes;
 	private ArrayList<Trabajo> proyectos;
+	private ArrayList<Recursos> recursosUtilizados;
 	
 	
 	
@@ -25,6 +27,7 @@ public class Evento {
 		this.local = local;
 		integrantes = new ArrayList<>();
 		proyectos = new ArrayList<>();
+		recursosUtilizados = new ArrayList<>();
 	}
 	
 	
@@ -77,6 +80,34 @@ public class Evento {
 	}
 	public void setProyectos(ArrayList<Trabajo> proyectos) {
 		this.proyectos = proyectos;
+	}
+
+
+
+
+	public ArrayList<Recursos> getRecursosUtilizados() {
+		return recursosUtilizados;
+	}
+
+
+
+
+	public void setRecursosUtilizados(ArrayList<Recursos> recursosUtilizados) {
+		this.recursosUtilizados = recursosUtilizados;
+	}
+
+
+
+
+	public Comision getComision() {
+		return comision;
+	}
+
+
+
+
+	public void setComision(Comision comision) {
+		this.comision = comision;
 	}
 
 	
