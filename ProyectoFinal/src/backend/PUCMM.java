@@ -33,7 +33,7 @@ public class PUCMM {
 	public void crearEvento(Evento evento) {
 		/*Chequear si hay recursos
 		 * Tambien si hay jurados disponibles para la comision*/
-		
+		 
 		
 		
 	}
