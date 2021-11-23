@@ -11,7 +11,6 @@ public class PUCMM {
 	private ArrayList<Comision> comisiones;
 	private ArrayList<Evento> eventos;
 	private ArrayList<Recursos> recursos;
-	private ArrayList <Actividad> actividades;
 	public static PUCMM pucmm = null;
 	
 	public PUCMM() {
@@ -20,7 +19,6 @@ public class PUCMM {
 		comisiones = new ArrayList<>();
 		eventos = new ArrayList<>();
 		recursos = new ArrayList<>();
-		actividades = new ArrayList<>();
 		
 	}
 	
@@ -34,24 +32,26 @@ public class PUCMM {
 	
 	public void crearEvento(Evento evento) {
 		
-
+		
 		 
 		
 		
 	}
+	
 	public void agregarRecurso(Recursos recurso) {
 		recursos.add(recurso);
 	}
 	
-	public void agregarRecursoEvento(Recursos recurso, int cantidad) { //Funciona
+	public Recursos agregarRecursoEvento(Recursos recurso, int cantidad) { //Funciona
 		//Chequear si hay recursos
 		
 		if(recurso.getDisponibilidad() > cantidad) {
 			
-//			Recursos recursos = buscarRecurso(recurso.getNombreEquipo());
 			recurso.setDisponibilidad(recurso.getDisponibilidad()-cantidad);
+			return recurso;
 		} else {
 			JOptionPane.showMessageDialog(null, "No hay disponibilidad para este equipo: " + recurso.getNombreEquipo());
+			return null;
 		}
 	}
 	
