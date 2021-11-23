@@ -4,14 +4,16 @@ import java.util.ArrayList;
 
 public class Participante extends Persona {
 	
+	private String codEvento;
 	private String matricula;
 	private String escuela;
 	private ArrayList <Trabajo> trabajos; 
 	private Trabajo trabajo;
 	
 	
-	public Participante(String nombre, String cedula, String numero, String email, String matricula, String escuela, String codigo, String nombreTrabajo, String tema) {
+	public Participante(String nombre, String cedula, String numero, String email, String matricula, String escuela, String codEvento , String codigo, String nombreTrabajo, String tema) {
 		super(nombre, cedula, numero, email);
+		this.codEvento = codEvento;
 		this.matricula = matricula;
 		this.escuela = escuela;
 		trabajos = new ArrayList<>();

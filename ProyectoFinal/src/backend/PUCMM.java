@@ -107,8 +107,8 @@ public class PUCMM {
 		personas.add(persona);
 	}
 	
-	public void registrarTrabajo() {
-		
+	public void registrarTrabajo(Trabajo trabajo) {
+		trabajos.add(trabajo);
 	}
 	
 	public void Calificar() {
