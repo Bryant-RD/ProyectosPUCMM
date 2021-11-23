@@ -2,6 +2,8 @@ package backend;
 
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 public class PUCMM {
 
 	private ArrayList<Persona> personas;
@@ -31,44 +33,78 @@ public class PUCMM {
 	}
 	
 	public void crearEvento(Evento evento) {
-		//Chequear si hay recursos
+		
 
 		 
 		
 		
 	}
+	public void agregarRecurso(Recursos recurso) {
+		recursos.add(recurso);
+	}
 	
-	//Metodo verificar si hay recursos
-	private boolean RecursosDisponibles(Recursos recurso, int cantidad) {
+	public void agregarRecursoEvento(Recursos recurso, int cantidad) { //Funciona
+		//Chequear si hay recursos
 		
-		
-		
-		return true;
+		if(recurso.getDisponibilidad() > cantidad) {
+			
+//			Recursos recursos = buscarRecurso(recurso.getNombreEquipo());
+			recurso.setDisponibilidad(recurso.getDisponibilidad()-cantidad);
+		} else {
+			JOptionPane.showMessageDialog(null, "No hay disponibilidad para este equipo: " + recurso.getNombreEquipo());
+		}
 	}
 	
 	
-	public void buscarRecurso() {
+	public Recursos buscarRecurso(String nomRecurso) {
+		Recursos recurso = null;
+		boolean encontrado = false;
+		int i = 0;
+		while(!encontrado && i< recursos.size() ){
+		  if(recursos.get(i).getNombreEquipo().equalsIgnoreCase(nomRecurso)){
+			  encontrado = true;
+			  recurso = recursos.get(i);
+		  }	
+		  i++;
+		}
+		return recurso;
+	}
+	
+	
+	public Comision crearComision(String codigo, String nombre, Jurado presidente, String areaConocimiento ,ArrayList<Jurado> jurados) {
+		
+		Comision comision = new Comision(codigo, nombre, presidente, areaConocimiento, jurados);
+		comisiones.add(comision);
+		
+		return comision;
+		
+	}
+	
+	private ArrayList<Jurado> agregarJuradoComision(Jurado jurado, ArrayList<Jurado> jurados) {
+		//Metodo verificar si hay jurados disponibles para la comision
+		
+		if(jurado.isDisponible()) {
+			jurado.setDisponible(false);
+			jurados.add(jurado);
+			return jurados;	
+		} else {
+			
+			JOptionPane.showMessageDialog(null, "Este jurado no esta disponible: " + jurado.getNombre());
+			return null;
+		}
 		
 	}
 	
 	
-	
-	public void crearComision(Comision comision) {
-		//Verificar si hay jurados disponibles para la comision
-		
-		
-	}
-	
-	
-	//Metodo verificar si hay jurados disponibles para la comision
+
 	
 	
 	public void CrearActividad() {
 		
 	}
 	
-	public void RegistrarPersona() {
-		
+	public void RegistrarPersona(Persona persona) {
+		personas.add(persona);
 	}
 	
 	public void registrarTrabajo() {

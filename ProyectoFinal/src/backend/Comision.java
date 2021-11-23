@@ -4,11 +4,43 @@ import java.util.ArrayList;
 
 public class Comision {
 
+	private String codigo;
 	private String nombre;
-//	private Jurado presidente;
-	private ArrayList<Jurado> jurados;
+	private Jurado presidente;
+	private ArrayList<Jurado> jurados = new ArrayList<>();
 	private ArrayList<Trabajo> trabajos;
 	private String areaConocimiento;
+	
+	
+	
+	public Comision(String codigo, String nombre, Jurado presidente ,String areaConocimiento, ArrayList<Jurado> jurados) {
+		
+		this.setCodigo(codigo);
+		this.nombre = nombre;
+		this.presidente = presidente;
+		this.areaConocimiento = areaConocimiento;
+		this.jurados = jurados;
+		trabajos = new ArrayList<>();
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	public String getNombre() {
@@ -17,18 +49,18 @@ public class Comision {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-//	public Jurado getPresidente() {
-//		return presidente;
-//	}
-//	public void setPresidente(Jurado presidente) {
-//		this.presidente = presidente;
-//	}
-//	public ArrayList<Jurado> getJurados() {
-//		return jurados;
-//	}
-//	public void setJurados(ArrayList<Jurado> jurados) {
-//		this.jurados = jurados;
-//	}
+	public Jurado getPresidente() {
+		return presidente;
+	}
+	public void setPresidente(Jurado presidente) {
+		this.presidente = presidente;
+	}
+	public ArrayList<Jurado> getJurados() {
+		return jurados;
+	}
+	public void setJurados(ArrayList<Jurado> jurados) {
+		this.jurados = jurados;
+	}
 	public ArrayList<Trabajo> getTrabajos() {
 		return trabajos;
 	}
@@ -40,6 +72,14 @@ public class Comision {
 	}
 	public void setAreaConocimiento(String areaConocimiento) {
 		this.areaConocimiento = areaConocimiento;
+	}
+
+	public String getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
 	}
 	
 }

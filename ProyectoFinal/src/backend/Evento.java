@@ -17,13 +17,13 @@ public class Evento {
 	
 	
 	
-	public Evento(String codigo, String nombre, String tema, String fecha, Participante ganador, String local) {
+	public Evento(String codigo, String nombre, String tema, String fecha, String local) {
 		super();
 		this.codigo = codigo;
 		this.nombre = nombre;
 		this.tema = tema;
 		this.fecha = fecha;
-		this.ganador = ganador;
+		this.ganador = null;
 		this.local = local;
 		integrantes = new ArrayList<>();
 		proyectos = new ArrayList<>();
