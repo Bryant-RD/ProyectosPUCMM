@@ -17,7 +17,7 @@ public class PUCMM {
 		personas = new ArrayList<>();
 		trabajos = new ArrayList<>();
 		comisiones = new ArrayList<>();
-		eventos = new ArrayList<>();
+		setEventos(new ArrayList<>());
 		recursos = new ArrayList<>();
 		
 	}
@@ -94,14 +94,7 @@ public class PUCMM {
 		}
 		
 	}
-	
-	
-
-	
-	
-	public void CrearActividad() {
 		
-	}
 	
 	public void RegistrarPersona(Persona persona) {
 		personas.add(persona);
@@ -117,6 +110,14 @@ public class PUCMM {
 	
 	public void Ganador() {
 		
+	}
+
+	public ArrayList<Evento> getEventos() {
+		return eventos;
+	}
+
+	public void setEventos(ArrayList<Evento> eventos) {
+		this.eventos = eventos;
 	}
 	
 	
