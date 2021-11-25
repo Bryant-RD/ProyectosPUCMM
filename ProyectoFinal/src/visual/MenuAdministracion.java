@@ -14,15 +14,20 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JSpinner;
+import javax.swing.border.TitledBorder;
+import javax.swing.JList;
 
 public class MenuAdministracion extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JComboBox comboBox;
-	private JTextField textField_3;
+	private JTextField txtCodigo;
+	private JTextField txtNombre;
+	private JTextField txtLocal;
+	private JComboBox cbxTipo;
+	private JTextField txtTema;
+	private JList lstRecursos;
+	private JComboBox cbxComision;
+	private JComboBox cbxFecha;
 
 	/**
 	 * Launch the application.
@@ -42,7 +47,7 @@ public class MenuAdministracion extends JDialog {
 	 */
 	public MenuAdministracion() {
 		setTitle("Administracion");
-		setBounds(100, 100, 592, 574);
+		setBounds(100, 100, 682, 525);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -58,7 +63,7 @@ public class MenuAdministracion extends JDialog {
 			}
 			{
 				JLabel lblNewLabel_1 = new JLabel("Nombre:");
-				lblNewLabel_1.setBounds(199, 54, 55, 14);
+				lblNewLabel_1.setBounds(231, 54, 55, 14);
 				panel.add(lblNewLabel_1);
 			}
 			{
@@ -68,105 +73,117 @@ public class MenuAdministracion extends JDialog {
 			}
 			{
 				JLabel lblNewLabel_3 = new JLabel("Tema:");
-				lblNewLabel_3.setBounds(199, 98, 46, 14);
+				lblNewLabel_3.setBounds(20, 98, 46, 14);
 				panel.add(lblNewLabel_3);
 			}
 			{
 				JLabel lblNewLabel_4 = new JLabel("Tipo:");
-				lblNewLabel_4.setBounds(379, 98, 46, 14);
+				lblNewLabel_4.setBounds(446, 98, 46, 14);
 				panel.add(lblNewLabel_4);
 			}
 			{
 				JLabel lblNewLabel_5 = new JLabel("Fecha:");
-				lblNewLabel_5.setBounds(20, 98, 46, 14);
+				lblNewLabel_5.setBounds(231, 98, 46, 14);
 				panel.add(lblNewLabel_5);
 			}
 			{
 				JLabel lblNewLabel_6 = new JLabel("Local:");
-				lblNewLabel_6.setBounds(379, 54, 46, 14);
+				lblNewLabel_6.setBounds(446, 54, 46, 14);
 				panel.add(lblNewLabel_6);
 			}
 			{
 				JLabel lblNewLabel_7 = new JLabel("Comision:");
-				lblNewLabel_7.setBounds(10, 147, 65, 14);
+				lblNewLabel_7.setBounds(10, 141, 65, 14);
 				panel.add(lblNewLabel_7);
 			}
 			{
-				JLabel lblNewLabel_8 = new JLabel("Recursos:");
-				lblNewLabel_8.setBounds(199, 167, 67, 14);
-				panel.add(lblNewLabel_8);
+				txtCodigo = new JTextField();
+				txtCodigo.setBounds(76, 51, 145, 20);
+				panel.add(txtCodigo);
+				txtCodigo.setColumns(10);
 			}
 			{
-				textField = new JTextField();
-				textField.setBounds(76, 51, 86, 20);
-				panel.add(textField);
-				textField.setColumns(10);
+				txtNombre = new JTextField();
+				txtNombre.setBounds(278, 51, 145, 20);
+				panel.add(txtNombre);
+				txtNombre.setColumns(10);
 			}
 			{
-				textField_1 = new JTextField();
-				textField_1.setBounds(257, 51, 86, 20);
-				panel.add(textField_1);
-				textField_1.setColumns(10);
+				txtLocal = new JTextField();
+				txtLocal.setBounds(488, 51, 145, 20);
+				panel.add(txtLocal);
+				txtLocal.setColumns(10);
 			}
 			{
-				textField_2 = new JTextField();
-				textField_2.setBounds(422, 51, 86, 20);
-				panel.add(textField_2);
-				textField_2.setColumns(10);
+				cbxTipo = new JComboBox();
+				cbxTipo.setBounds(488, 95, 145, 20);
+				panel.add(cbxTipo);
 			}
 			{
-				comboBox = new JComboBox();
-				comboBox.setBounds(422, 95, 86, 20);
-				panel.add(comboBox);
+				txtTema = new JTextField();
+				txtTema.setBounds(76, 95, 145, 20);
+				panel.add(txtTema);
+				txtTema.setColumns(10);
 			}
 			{
-				textField_3 = new JTextField();
-				textField_3.setBounds(257, 95, 86, 20);
-				panel.add(textField_3);
-				textField_3.setColumns(10);
-			}
-			{
-				JComboBox comboBox_1 = new JComboBox();
-				comboBox_1.setBounds(78, 95, 86, 20);
-				panel.add(comboBox_1);
-			}
-			{
-				JComboBox comboBox_1 = new JComboBox();
-				comboBox_1.setBounds(278, 164, 65, 20);
-				panel.add(comboBox_1);
-			}
-			{
-				JLabel lblNewLabel_9 = new JLabel("Cantidad:");
-				lblNewLabel_9.setBounds(379, 167, 55, 14);
-				panel.add(lblNewLabel_9);
-			}
-			{
-				JSpinner spinner = new JSpinner();
-				spinner.setBounds(446, 164, 46, 20);
-				panel.add(spinner);
-			}
-			{
-				JButton btnNewButton = new JButton("Agregar");
-				btnNewButton.setBounds(403, 217, 89, 23);
-				panel.add(btnNewButton);
+				cbxFecha = new JComboBox();
+				cbxFecha.setBounds(278, 95, 145, 20);
+				panel.add(cbxFecha);
 			}
 			
-			JComboBox comboBox_1 = new JComboBox();
-			comboBox_1.setBounds(76, 144, 86, 20);
-			panel.add(comboBox_1);
+			cbxComision = new JComboBox();
+			cbxComision.setBounds(76, 138, 145, 20);
+			panel.add(cbxComision);
+			{
+				JPanel panel_1 = new JPanel();
+				panel_1.setBorder(new TitledBorder(null, "Lista de recursos", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+				panel_1.setBounds(10, 189, 636, 227);
+				panel.add(panel_1);
+				panel_1.setLayout(null);
+				{
+					JLabel label = new JLabel("Recursos:");
+					label.setBounds(10, 26, 67, 14);
+					panel_1.add(label);
+				}
+				{
+					JComboBox cbxRecurso = new JComboBox();
+					cbxRecurso.setBounds(76, 23, 145, 20);
+					panel_1.add(cbxRecurso);
+				}
+				{
+					JLabel label = new JLabel("Cantidad:");
+					label.setBounds(231, 26, 55, 14);
+					panel_1.add(label);
+				}
+				{
+					JSpinner spnCantidadRecurso = new JSpinner();
+					spnCantidadRecurso.setBounds(296, 23, 65, 20);
+					panel_1.add(spnCantidadRecurso);
+				}
+				{
+					JButton btnAgregar = new JButton("Agregar");
+					btnAgregar.setBounds(371, 22, 89, 23);
+					panel_1.add(btnAgregar);
+				}
+				{
+					lstRecursos = new JList();
+					lstRecursos.setBounds(10, 62, 450, 154);
+					panel_1.add(lstRecursos);
+				}
+			}
 		}
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("OK");
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
+				JButton btnCrear = new JButton("Crear");
+				btnCrear.setActionCommand("OK");
+				buttonPane.add(btnCrear);
+				getRootPane().setDefaultButton(btnCrear);
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
+				JButton cancelButton = new JButton("Cancelar");
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}

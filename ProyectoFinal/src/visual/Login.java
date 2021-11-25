@@ -9,12 +9,15 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Login extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txtUsuario;
 	private JTextField txtPassword;
+	private JButton btnLoggin;
 
 	/**
 	 * Launch the application.
@@ -65,9 +68,14 @@ public class Login extends JDialog {
 			panel.add(txtPassword);
 			txtPassword.setColumns(10);
 			
-			JButton btnNewButton = new JButton("Iniciar sesion");
-			btnNewButton.setBounds(124, 229, 117, 29);
-			panel.add(btnNewButton);
+			btnLoggin = new JButton("Iniciar sesion");
+			btnLoggin.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+				}
+			});
+			btnLoggin.setBounds(124, 229, 117, 29);
+			panel.add(btnLoggin);
 		}
 	}
 }

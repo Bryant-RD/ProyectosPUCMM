@@ -24,6 +24,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.ListSelectionModel;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class ListPersona extends JDialog {
 
@@ -34,6 +38,9 @@ public class ListPersona extends JDialog {
 	private Persona selected = null;
 	private static JButton btnModificar;
 	private static JButton btnEliminar;
+	private JTextField txtBuscar;
+	private JButton btnBuscar;
+	private JComboBox comboBox;
 
 	/**
 	 * Launch the application.
@@ -62,35 +69,64 @@ public class ListPersona extends JDialog {
 		{
 			JPanel panel = new JPanel();
 			panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-			contentPanel.add(panel, BorderLayout.CENTER);
-			panel.setLayout(new BorderLayout(0, 0));
+			contentPanel.add(panel);
+			panel.setLayout(null);
 			{
-				JScrollPane scrollPane = new JScrollPane();
-				scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-				panel.add(scrollPane, BorderLayout.CENTER);
 				{
 					String headers[] = {"Cedula","Nombre","Telefono","Email"};
 					model = new DefaultTableModel();
 					model.setColumnIdentifiers(headers);
-					table = new JTable();
-					table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-					table.addMouseListener(new MouseAdapter() {
-						@Override
-						public void mouseClicked(MouseEvent e) {
-							int index = -1;
-							index = table.getSelectedRow();
-							if (index != -1) {
-								btnEliminar.setEnabled(true);
-								btnModificar.setEnabled(true);
-								String cedula = (String)(model.getValueAt(index, 0));
-								selected = PUCMM.getInstance().buscarPersonaByCedula(cedula);
-								System.out.println(selected.getCedula()+" "+selected.getNombre());
-							}
-						}
-					});
-					table.setModel(model);
-					scrollPane.setViewportView(table);
 				}
+			}
+			{
+				JPanel panel_1 = new JPanel();
+				panel_1.setBounds(10, 40, 470, 229);
+				panel.add(panel_1);
+				panel_1.setLayout(null);
+				JScrollPane scrollPane = new JScrollPane();
+				scrollPane.setBounds(0, 0, 470, 229);
+				panel_1.add(scrollPane);
+				scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+				table = new JTable();
+				table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+				table.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						int index = -1;
+						index = table.getSelectedRow();
+						if (index != -1) {
+							btnEliminar.setEnabled(true);
+							btnModificar.setEnabled(true);
+							String cedula = (String)(model.getValueAt(index, 0));
+							selected = PUCMM.getInstance().buscarPersonaByCedula(cedula);
+							System.out.println(selected.getCedula()+" "+selected.getNombre());
+						}
+					}
+				});
+				table.setModel(model);
+				scrollPane.setViewportView(table);
+			}
+			{
+				JLabel lblNewLabel = new JLabel("Cedula");
+				lblNewLabel.setBounds(10, 15, 46, 14);
+				panel.add(lblNewLabel);
+			}
+			{
+				txtBuscar = new JTextField();
+				txtBuscar.setBounds(66, 12, 200, 20);
+				panel.add(txtBuscar);
+				txtBuscar.setColumns(10);
+			}
+			{
+				btnBuscar = new JButton("Buscar");
+				btnBuscar.setBounds(276, 11, 89, 23);
+				panel.add(btnBuscar);
+			}
+			{
+				comboBox = new JComboBox();
+				comboBox.setModel(new DefaultComboBoxModel(new String[] {"<< Todos >>", "Participantes", "Jurados"}));
+				comboBox.setBounds(375, 12, 105, 20);
+				panel.add(comboBox);
 			}
 		}
 		{

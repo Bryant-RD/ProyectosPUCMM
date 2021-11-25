@@ -1,17 +1,17 @@
 package backend;
 
-public class Jurado extends Persona{
+public class Jurado extends Administrador{
 	
 	private String area;
 	private int anioExp;
 	private boolean disponible;
 
-	public Jurado(String nombre, String cedula, String numero, String email, String area, int anioExp, boolean disponible) {
-		super(nombre, cedula, numero, email);
+	public Jurado(String nombre, String cedula, String numero, String email, String area, int anioExp, String usuario, String password) {
+		super(nombre, cedula, numero, email, usuario, password);
 		
 		this.area = area;
 		this.anioExp = anioExp;
-		this.disponible = disponible; //true es disponible y false no disponible
+		this.disponible = true; //true es disponible y false no disponible
 	}
 	
 	
@@ -55,9 +55,5 @@ public class Jurado extends Persona{
 	public void setAnioExp(int anioExp) {
 		this.anioExp = anioExp;
 	}
-	
-	
-	
-	
 
 }

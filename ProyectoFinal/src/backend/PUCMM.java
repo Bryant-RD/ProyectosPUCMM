@@ -14,12 +14,13 @@ public class PUCMM {
 	private ArrayList<Evento> eventos;
 	private ArrayList<Recursos> recursos;
 	public static PUCMM pucmm = null;
+	public static Persona logueado = null;
 	
 	public PUCMM() {
 		personas = new ArrayList<>();
 		trabajos = new ArrayList<>();
 		comisiones = new ArrayList<>();
-		setEventos(new ArrayList<>());
+		eventos = new ArrayList<>();
 		recursos = new ArrayList<>();
 		
 	}
@@ -32,14 +33,7 @@ public class PUCMM {
 		return pucmm;
 	}
 	
-	public ArrayList<Persona> getPersona() {
-		return personas;
-	}
 
-
-	public void setClientes(ArrayList<Persona> personas) {
-		this.personas = personas;
-	}
 	
 	public void crearEvento(Evento evento) {
 		
@@ -107,6 +101,23 @@ public class PUCMM {
 	}
 		
 	
+	public Persona loggin(String usuario, String password) {
+		
+		Persona aux = null;
+		
+		for (Persona persona: personas) {
+			if (((Administrador) persona).getUsuario().equalsIgnoreCase(usuario)) {
+				aux = persona;
+				if(((Administrador)aux).getPassword().equalsIgnoreCase(password)) {
+					return aux;
+				}
+			}
+		}
+	
+
+		return aux;
+	}
+	
 	public void RegistrarPersona(Persona persona) {
 		personas.add(persona);
 	}
@@ -123,47 +134,35 @@ public class PUCMM {
 		
 	}
 
-	public ArrayList<Evento> getEventos() {
-		return eventos;
-	}
 
-	public void setEventos(ArrayList<Evento> eventos) {
-		this.eventos = eventos;
-	}
 	
 	public Persona buscarPersonaByCedula(String cedulaPersona) {
 		
+		Persona aux = null;
+		
 		for (Persona persona: personas) {
 			if (persona.getCedula().equalsIgnoreCase(cedulaPersona)) {
-				return persona;
+				aux = persona;
 			}
 		}
-		return null;
-	}
-	
-	public Persona buscarPersonaEspecificoByCedula(String cedula) {
-		Persona aux = null;
-		boolean encontrado = false;
-		int i = 0;
-		while (!encontrado && i < personas.size()) {
-			if (personas.get(i).getCedula().equalsIgnoreCase(cedula)) {
-				aux = personas.get(i);
-				encontrado = true;
-			}
-			i++;
-		}
-		return aux;
-	}
-	
-	public void eliminarPersona(Persona selected) {
-		int index = buscarIndexOfPersonaByCedula(selected.getCedula());
-		while(index < personas.size()) {
-			personas.remove(index);
-			index++;
+		if(aux != null) {
+			return aux;
+		} else {
+//			JOptionPane.showMessageDialog(null, "Persona no encontrada.", "Error!", JOptionPane.ERROR_MESSAGE);
+			return null;
 		}
 	}
 	
-	public int buscarIndexOfPersonaByCedula(String cedula) {
+	public boolean eliminarPersona(Persona selected) {
+		return personas.remove(selected);
+//		int index = buscarIndexOfPersonaByCedula(selected.getCedula());
+//		while(index < personas.size()) {
+//			personas.remove(index);
+//			index++;
+//		}
+	}
+	
+	private int buscarIndexOfPersonaByCedula(String cedula) {
 		int aux = -1;
 		boolean encontrado = false;
 		int i = 0;
@@ -179,4 +178,22 @@ public class PUCMM {
 	
 	
 	
+	/*                   SET's & Get's                           */
+	
+	public ArrayList<Evento> getEventos() {
+		return eventos;
+	}
+
+	public void setEventos(ArrayList<Evento> eventos) {
+		this.eventos = eventos;
+	}
+	
+	public ArrayList<Persona> getPersona() {
+		return personas;
+	}
+
+
+	public void setPersona(ArrayList<Persona> personas) {
+		this.personas = personas;
+	}
 }
