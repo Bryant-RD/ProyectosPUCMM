@@ -124,7 +124,7 @@ public class ListPersona extends JDialog {
 			}
 			{
 				comboBox = new JComboBox();
-				comboBox.setModel(new DefaultComboBoxModel(new String[] {"<< Todos >>", "Participantes", "Jurados"}));
+				comboBox.setModel(new DefaultComboBoxModel(new String[] {"<< Todos >>", "Participantes", "Jurados", "Administradores"}));
 				comboBox.setBounds(375, 12, 105, 20);
 				panel.add(comboBox);
 			}

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
+import visual.MenuAdministracion;
+
 
 
 public class PUCMM {
@@ -85,7 +87,7 @@ public class PUCMM {
 		
 	}
 	
-	private ArrayList<Jurado> agregarJuradoComision(Jurado jurado, ArrayList<Jurado> jurados) {
+	public ArrayList<Jurado> agregarJuradoComision(Jurado jurado, ArrayList<Jurado> jurados) {
 		//Metodo verificar si hay jurados disponibles para la comision
 		
 		if(jurado.isDisponible()) {
@@ -101,7 +103,7 @@ public class PUCMM {
 	}
 		
 	
-	public Persona loggin(String usuario, String password) {
+	public void loggin(String usuario, String password) {
 		
 		Persona aux = null;
 		
@@ -109,13 +111,21 @@ public class PUCMM {
 			if (((Administrador) persona).getUsuario().equalsIgnoreCase(usuario)) {
 				aux = persona;
 				if(((Administrador)aux).getPassword().equalsIgnoreCase(password)) {
-					return aux;
+					if(aux instanceof Jurado) {
+						logueado = aux;
+												
+//						return aux;
+					} else {
+						logueado = aux;
+						MenuAdministracion reg = new MenuAdministracion();
+						reg.setVisible(true);
+					}
+					
 				}
 			}
 		}
 	
-
-		return aux;
+//		return aux;
 	}
 	
 	public void RegistrarPersona(Persona persona) {
@@ -155,11 +165,7 @@ public class PUCMM {
 	
 	public boolean eliminarPersona(Persona selected) {
 		return personas.remove(selected);
-//		int index = buscarIndexOfPersonaByCedula(selected.getCedula());
-//		while(index < personas.size()) {
-//			personas.remove(index);
-//			index++;
-//		}
+
 	}
 	
 	private int buscarIndexOfPersonaByCedula(String cedula) {
