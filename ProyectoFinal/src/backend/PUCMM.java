@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
+
+
 public class PUCMM {
 
 	private ArrayList<Persona> personas;
@@ -28,6 +30,15 @@ public class PUCMM {
 			pucmm = new PUCMM();
 		}
 		return pucmm;
+	}
+	
+	public ArrayList<Persona> getPersona() {
+		return personas;
+	}
+
+
+	public void setClientes(ArrayList<Persona> personas) {
+		this.personas = personas;
 	}
 	
 	public void crearEvento(Evento evento) {
@@ -120,7 +131,51 @@ public class PUCMM {
 		this.eventos = eventos;
 	}
 	
+	public Persona buscarPersonaByCedula(String cedulaPersona) {
+		
+		for (Persona persona: personas) {
+			if (persona.getCedula().equalsIgnoreCase(cedulaPersona)) {
+				return persona;
+			}
+		}
+		return null;
+	}
 	
+	public Persona buscarPersonaEspecificoByCedula(String cedula) {
+		Persona aux = null;
+		boolean encontrado = false;
+		int i = 0;
+		while (!encontrado && i < personas.size()) {
+			if (personas.get(i).getCedula().equalsIgnoreCase(cedula)) {
+				aux = personas.get(i);
+				encontrado = true;
+			}
+			i++;
+		}
+		return aux;
+	}
+	
+	public void eliminarPersona(Persona selected) {
+		int index = buscarIndexOfPersonaByCedula(selected.getCedula());
+		while(index < personas.size()) {
+			personas.remove(index);
+			index++;
+		}
+	}
+	
+	public int buscarIndexOfPersonaByCedula(String cedula) {
+		int aux = -1;
+		boolean encontrado = false;
+		int i = 0;
+		while(!encontrado && i < personas.size()) {
+			if (personas.get(i).getCedula().equalsIgnoreCase(cedula)) {
+				aux = i;
+				encontrado = true;
+			}
+			i++;
+		}
+		return aux;
+	}
 	
 	
 	
