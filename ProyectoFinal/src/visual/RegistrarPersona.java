@@ -40,6 +40,7 @@ public class RegistrarPersona extends JDialog {
 	private JTextField txtCodigoProyecto;
 	private JTextField txtNombreParticipante;
 	private JSpinner snpExp;
+	private JPanel JPanelJurado;
 
 	/**
 	 * Launch the application.
@@ -122,13 +123,21 @@ public class RegistrarPersona extends JDialog {
 					rdbtnParticipante.setSelected(true);
 					JPanelParticipante.setVisible(true);
 					rdbtnJurado.setSelected(false);
-//					jPanelJurado.setVisible(false);
+					JPanelJurado.setVisible(false);
 				}
 			});
 			rdbtnParticipante.setBounds(67, 25, 109, 23);
 			panel_2.add(rdbtnParticipante);
 			
 			rdbtnJurado = new JRadioButton("Jurado");
+			rdbtnJurado.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					rdbtnParticipante.setSelected(false);
+					JPanelParticipante.setVisible(false);
+					rdbtnJurado.setSelected(true);
+					JPanelJurado.setVisible(true);
+				}
+			});
 			rdbtnJurado.setBounds(312, 25, 109, 23);
 			panel_2.add(rdbtnJurado);
 			
@@ -139,7 +148,7 @@ public class RegistrarPersona extends JDialog {
 			JPanelParticipante.setLayout(null);
 			
 			JLabel lblNewLabel = new JLabel("Matricula");
-			lblNewLabel.setBounds(10, 33, 46, 14);
+			lblNewLabel.setBounds(10, 33, 58, 14);
 			JPanelParticipante.add(lblNewLabel);
 			
 			JLabel lblNewLabel_1 = new JLabel("Escuela");
@@ -148,7 +157,7 @@ public class RegistrarPersona extends JDialog {
 			
 			txtMatricula = new JTextField();
 			txtMatricula.setColumns(10);
-			txtMatricula.setBounds(66, 30, 158, 20);
+			txtMatricula.setBounds(78, 30, 158, 20);
 			JPanelParticipante.add(txtMatricula);
 			
 			txtEscuela = new JTextField();
@@ -204,7 +213,7 @@ public class RegistrarPersona extends JDialog {
 			txtNombreParticipante.setBounds(66, 85, 158, 20);
 			panel_3.add(txtNombreParticipante);
 			
-			JPanel JPanelJurado = new JPanel();
+			JPanelJurado = new JPanel();
 			JPanelJurado.setLayout(null);
 			JPanelJurado.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Jurado", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 			JPanelJurado.setBounds(10, 204, 494, 77);
