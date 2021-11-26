@@ -25,6 +25,9 @@ public class PUCMM {
 		eventos = new ArrayList<>();
 		recursos = new ArrayList<>();
 		
+		Administrador admin = new Administrador("admin", "admin", "admin", "admin", "admin", "admin");
+		personas.add(admin);
+		
 	}
 	
 	public static PUCMM getInstance() {
@@ -103,9 +106,10 @@ public class PUCMM {
 	}
 		
 	
-	public void loggin(String usuario, String password) {
+	public boolean loggin(String usuario, String password) {
 		
 		Persona aux = null;
+		boolean encontrado = false;
 		
 		for (Persona persona: personas) {
 			if (((Administrador) persona).getUsuario().equalsIgnoreCase(usuario)) {
@@ -113,19 +117,16 @@ public class PUCMM {
 				if(((Administrador)aux).getPassword().equalsIgnoreCase(password)) {
 					if(aux instanceof Jurado) {
 						logueado = aux;
-												
-//						return aux;
 					} else {
 						logueado = aux;
-						MenuAdministracion reg = new MenuAdministracion();
-						reg.setVisible(true);
+
 					}
-					
+					encontrado =  true;
 				}
 			}
 		}
 	
-//		return aux;
+		return encontrado;
 	}
 	
 	public void RegistrarPersona(Persona persona) {

@@ -7,7 +7,11 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import backend.PUCMM;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -71,6 +75,13 @@ public class Login extends JDialog {
 			btnLoggin = new JButton("Iniciar sesion");
 			btnLoggin.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					if (PUCMM.getInstance().loggin(txtUsuario.getText(), txtPassword.getText())) {
+						dispose();
+						MenuAdministracion reg = new MenuAdministracion();
+						reg.setVisible(true);
+					} else {
+						JOptionPane.showConfirmDialog(null, "Usuario y contraseña no coinciden", "Ups!", JOptionPane.WARNING_MESSAGE);
+					}
 					
 				}
 			});

@@ -38,7 +38,7 @@ public class RegRecursos extends JDialog {
 	 */
 	public RegRecursos() {
 		setTitle("Registrar Recursos");
-		setBounds(100, 100, 591, 404);
+		setBounds(100, 100, 320, 220);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -50,26 +50,26 @@ public class RegRecursos extends JDialog {
 		}
 		
 		textField = new JTextField();
-		textField.setBounds(142, 23, 158, 22);
+		textField.setBounds(119, 23, 158, 22);
 		contentPanel.add(textField);
 		textField.setColumns(10);
 		
 		JLabel lblCantidad = new JLabel("Cantidad:");
-		lblCantidad.setBounds(348, 26, 56, 16);
+		lblCantidad.setBounds(12, 89, 56, 16);
 		contentPanel.add(lblCantidad);
 		
 		JLabel lblTipo = new JLabel("Tipo de Objeto:");
-		lblTipo.setBounds(35, 68, 95, 16);
+		lblTipo.setBounds(10, 62, 95, 16);
 		contentPanel.add(lblTipo);
 		{
 			JSpinner spnCantidad = new JSpinner();
-			spnCantidad.setBounds(416, 23, 56, 22);
+			spnCantidad.setBounds(119, 86, 56, 22);
 			contentPanel.add(spnCantidad);
 		}
 		{
 			JComboBox cbxTipo = new JComboBox();
 			cbxTipo.setModel(new DefaultComboBoxModel(new String[] {"<<Seleccione>>", "Audio", "Visual", "Mobiliario"}));
-			cbxTipo.setBounds(142, 65, 125, 22);
+			cbxTipo.setBounds(119, 53, 158, 22);
 			contentPanel.add(cbxTipo);
 		}
 		{

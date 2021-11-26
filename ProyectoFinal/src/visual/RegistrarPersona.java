@@ -134,6 +134,8 @@ public class RegistrarPersona extends JDialog {
 				public void actionPerformed(ActionEvent arg0) {
 					rdbtnParticipante.setSelected(true);
 					JPanelParticipante.setVisible(true);
+					rdbtnAdministrador.setSelected(false);
+					JPanelAdministrador.setVisible(false);
 					rdbtnJurado.setSelected(false);
 					JPanelJurado.setVisible(false);
 				}
@@ -146,6 +148,8 @@ public class RegistrarPersona extends JDialog {
 				public void actionPerformed(ActionEvent e) {
 					rdbtnParticipante.setSelected(false);
 					JPanelParticipante.setVisible(false);
+					rdbtnAdministrador.setSelected(false);
+					JPanelAdministrador.setVisible(false);
 					rdbtnJurado.setSelected(true);
 					JPanelJurado.setVisible(true);
 				}
