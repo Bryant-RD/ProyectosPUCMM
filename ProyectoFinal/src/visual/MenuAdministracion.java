@@ -16,6 +16,8 @@ import javax.swing.JComboBox;
 import javax.swing.JSpinner;
 import javax.swing.border.TitledBorder;
 import javax.swing.JList;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class MenuAdministracion extends JDialog {
 
@@ -196,10 +198,22 @@ public class MenuAdministracion extends JDialog {
 				menuBar.add(mnNewMenu);
 				{
 					JMenuItem mntmNewMenuItem = new JMenuItem("Registrar Persona");
+					mntmNewMenuItem.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							RegistrarPersona regPerson = new RegistrarPersona();
+							regPerson.setVisible(true);
+						}
+					});
 					mnNewMenu.add(mntmNewMenuItem);
 				}
 				{
 					JMenuItem mntmNewMenuItem_2 = new JMenuItem("Registrar Comision");
+					mntmNewMenuItem_2.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							RegComision regComi = new RegComision();
+							regComi.setVisible(true);
+						}
+					});
 					mnNewMenu.add(mntmNewMenuItem_2);
 				}
 				{
@@ -211,16 +225,18 @@ public class MenuAdministracion extends JDialog {
 				JMenu mnNewMenu_1 = new JMenu("Listas");
 				menuBar.add(mnNewMenu_1);
 				{
-					JMenuItem mntmNewMenuItem_4 = new JMenuItem("Participantes");
+					JMenuItem mntmNewMenuItem_4 = new JMenuItem("Personas");
+					mntmNewMenuItem_4.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							ListPersona lstPer = new ListPersona();
+							lstPer.setVisible(true);
+						}
+					});
 					mnNewMenu_1.add(mntmNewMenuItem_4);
 				}
 				{
 					JMenuItem mntmNewMenuItem_5 = new JMenuItem("Proyectos");
 					mnNewMenu_1.add(mntmNewMenuItem_5);
-				}
-				{
-					JMenuItem mntmNewMenuItem_6 = new JMenuItem("Jurados");
-					mnNewMenu_1.add(mntmNewMenuItem_6);
 				}
 				{
 					JMenuItem mntmNewMenuItem_7 = new JMenuItem("Comisiones");

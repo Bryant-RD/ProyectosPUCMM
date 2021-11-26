@@ -9,6 +9,8 @@ public class testing {
 		PUCMM.getInstance().agregarRecurso(recurso);
 		PUCMM.getInstance().agregarRecursoEvento(recurso, 5);
 		
+		System.out.print(recurso.getNombreEquipo());
+		
 		System.out.print(PUCMM.getInstance().buscarRecurso(recurso.getNombreEquipo()).getDisponibilidad());
 		
 

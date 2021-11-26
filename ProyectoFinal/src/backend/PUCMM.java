@@ -145,6 +145,19 @@ public class PUCMM {
 	}
 
 
+	public Evento buscarEventoByName(String nombre) {
+		Evento aux = null;
+		boolean encontrado = false;
+		int i = 0;
+		while(!encontrado && i < eventos.size()) {
+			if (eventos.get(i).getNombre().equalsIgnoreCase(nombre)) {
+				aux = eventos.get(i);
+				encontrado = true;
+			}
+			i++;
+		}
+		return aux;
+	}
 	
 	public Persona buscarPersonaByCedula(String cedulaPersona) {
 		
@@ -168,20 +181,7 @@ public class PUCMM {
 
 	}
 	
-	private int buscarIndexOfPersonaByCedula(String cedula) {
-		int aux = -1;
-		boolean encontrado = false;
-		int i = 0;
-		while(!encontrado && i < personas.size()) {
-			if (personas.get(i).getCedula().equalsIgnoreCase(cedula)) {
-				aux = i;
-				encontrado = true;
-			}
-			i++;
-		}
-		return aux;
-	}
-	
+
 	
 	
 	/*                   SET's & Get's                           */

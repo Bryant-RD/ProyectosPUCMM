@@ -12,7 +12,10 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
+import backend.Evento;
+import backend.Jurado;
 import backend.PUCMM;
+import backend.Participante;
 
 import javax.swing.JRadioButton;
 import javax.swing.JComboBox;
@@ -38,9 +41,17 @@ public class RegistrarPersona extends JDialog {
 	private JRadioButton rdbtnJurado;
 	private JTextField txtArea;
 	private JTextField txtCodigoProyecto;
-	private JTextField txtNombreParticipante;
+	private JTextField txtNombreTrabajo;
 	private JSpinner snpExp;
 	private JPanel JPanelJurado;
+	private JButton btnRegistrar;
+	private JComboBox cbxEvento;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField txtUsuario;
+	private JTextField txtPassword;
+	private JPanel JPanelAdministrador;
+	private JRadioButton rdbtnAdministrador;
 
 	/**
 	 * Launch the application.
@@ -59,7 +70,7 @@ public class RegistrarPersona extends JDialog {
 	 * Create the dialog.
 	 */
 	public RegistrarPersona() {
-		setBounds(100, 100, 540, 492);
+		setBounds(100, 100, 540, 495);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -126,7 +137,7 @@ public class RegistrarPersona extends JDialog {
 					JPanelJurado.setVisible(false);
 				}
 			});
-			rdbtnParticipante.setBounds(67, 25, 109, 23);
+			rdbtnParticipante.setBounds(17, 25, 109, 23);
 			panel_2.add(rdbtnParticipante);
 			
 			rdbtnJurado = new JRadioButton("Jurado");
@@ -138,8 +149,23 @@ public class RegistrarPersona extends JDialog {
 					JPanelJurado.setVisible(true);
 				}
 			});
-			rdbtnJurado.setBounds(312, 25, 109, 23);
+			rdbtnJurado.setBounds(211, 25, 109, 23);
 			panel_2.add(rdbtnJurado);
+			
+			rdbtnAdministrador = new JRadioButton("Administrador");
+			rdbtnAdministrador.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+					rdbtnAdministrador.setSelected(true);
+					JPanelAdministrador.setVisible(true);
+					rdbtnParticipante.setSelected(false);
+					JPanelParticipante.setVisible(false);
+					rdbtnJurado.setSelected(false);
+					JPanelJurado.setVisible(false);
+				}
+			});
+			rdbtnAdministrador.setBounds(364, 25, 109, 23);
+			panel_2.add(rdbtnAdministrador);
 			
 			JPanelParticipante = new JPanel();
 			JPanelParticipante.setBorder(new TitledBorder(null, "Participante", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -208,15 +234,23 @@ public class RegistrarPersona extends JDialog {
 			txtCodigoProyecto.setBounds(66, 32, 158, 20);
 			panel_3.add(txtCodigoProyecto);
 			
-			txtNombreParticipante = new JTextField();
-			txtNombreParticipante.setColumns(10);
-			txtNombreParticipante.setBounds(66, 85, 158, 20);
-			panel_3.add(txtNombreParticipante);
+			txtNombreTrabajo = new JTextField();
+			txtNombreTrabajo.setColumns(10);
+			txtNombreTrabajo.setBounds(66, 85, 158, 20);
+			panel_3.add(txtNombreTrabajo);
+			
+			JLabel lblNewLabel_5 = new JLabel("Evento");
+			lblNewLabel_5.setBounds(259, 88, 46, 14);
+			panel_3.add(lblNewLabel_5);
+			
+			cbxEvento = new JComboBox();
+			cbxEvento.setBounds(299, 85, 165, 20);
+			panel_3.add(cbxEvento);
 			
 			JPanelJurado = new JPanel();
 			JPanelJurado.setLayout(null);
 			JPanelJurado.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Jurado", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-			JPanelJurado.setBounds(10, 204, 494, 77);
+			JPanelJurado.setBounds(10, 204, 494, 103);
 			panel.add(JPanelJurado);
 			
 			JLabel lblArea = new JLabel("Area");
@@ -235,19 +269,77 @@ public class RegistrarPersona extends JDialog {
 			snpExp = new JSpinner();
 			snpExp.setBounds(388, 30, 96, 20);
 			JPanelJurado.add(snpExp);
+			
+			JLabel lblNewLabel_6 = new JLabel("Usuario");
+			lblNewLabel_6.setBounds(10, 72, 46, 14);
+			JPanelJurado.add(lblNewLabel_6);
+			
+			textField = new JTextField();
+			textField.setColumns(10);
+			textField.setBounds(66, 69, 158, 20);
+			JPanelJurado.add(textField);
+			
+			textField_1 = new JTextField();
+			textField_1.setColumns(10);
+			textField_1.setBounds(326, 69, 158, 20);
+			JPanelJurado.add(textField_1);
+			
+			JLabel lblNewLabel_7 = new JLabel("contrase\u00F1a");
+			lblNewLabel_7.setBounds(251, 72, 65, 14);
+			JPanelJurado.add(lblNewLabel_7);
+			
+			JPanelAdministrador = new JPanel();
+			JPanelAdministrador.setLayout(null);
+			JPanelAdministrador.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Jurado", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+			JPanelAdministrador.setBounds(10, 204, 494, 61);
+			panel.add(JPanelAdministrador);
+			
+			JLabel label_6 = new JLabel("Usuario");
+			label_6.setBounds(10, 28, 46, 14);
+			JPanelAdministrador.add(label_6);
+			
+			txtUsuario = new JTextField();
+			txtUsuario.setColumns(10);
+			txtUsuario.setBounds(66, 25, 158, 20);
+			JPanelAdministrador.add(txtUsuario);
+			
+			txtPassword = new JTextField();
+			txtPassword.setColumns(10);
+			txtPassword.setBounds(326, 25, 158, 20);
+			JPanelAdministrador.add(txtPassword);
+			
+			JLabel label_7 = new JLabel("contrase\u00F1a");
+			label_7.setBounds(251, 28, 65, 14);
+			JPanelAdministrador.add(label_7);
 		}
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("OK");
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
+				btnRegistrar = new JButton("Registrar");
+				btnRegistrar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+						if(rdbtnParticipante.isSelected()) {
+							String codEvent = PUCMM.getInstance().buscarEventoByName(cbxEvento.getSelectedItem().toString()).getCodigo();
+							
+							Participante participante = new Participante(txtNombre.getText(), txtCedula.getText(), txtTelefono.getText(), txtCorreo.getText(), txtMatricula.getText(), txtEscuela.getText(), codEvent, txtCodigoProyecto.getText(), txtNombreTrabajo.getText(), cbxTemas.getSelectedItem().toString());
+							PUCMM.getInstance().RegistrarPersona(participante);
+							
+						} if(rdbtnJurado.isSelected()) {
+							Jurado jurado = new Jurado(txtNombre.getText(), txtCedula.getText(), txtTelefono.getText(), txtCorreo.getText(), txtArea.getText(), Integer.valueOf(snpExp.getValue().toString()), txtUsuario.getText(), txtPassword.getText());
+							PUCMM.getInstance().RegistrarPersona(jurado);
+						}
+						
+					}
+				});
+				btnRegistrar.setActionCommand("OK");
+				buttonPane.add(btnRegistrar);
+				getRootPane().setDefaultButton(btnRegistrar);
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
+				JButton cancelButton = new JButton("Cancelar");
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
