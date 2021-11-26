@@ -203,4 +203,16 @@ public class PUCMM {
 	public void setPersona(ArrayList<Persona> personas) {
 		this.personas = personas;
 	}
+	
+	public ArrayList<Recursos> getRecursos() {
+		return recursos;
+	}
+
+
+	public void setRecursos(ArrayList<Recursos> recursos) {
+		this.recursos = recursos;
+	}
+	
+	
+	
 }

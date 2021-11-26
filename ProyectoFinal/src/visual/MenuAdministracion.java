@@ -254,6 +254,12 @@ public class MenuAdministracion extends JDialog {
 				}
 				{
 					JMenuItem mntmNewMenuItem_9 = new JMenuItem("Recursos");
+					mntmNewMenuItem_9.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							ListRecursos lstRec = new ListRecursos();
+							lstRec.setVisible(true);
+						}
+					});
 					mnNewMenu_1.add(mntmNewMenuItem_9);
 				}
 			}
