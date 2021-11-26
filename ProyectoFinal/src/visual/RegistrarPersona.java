@@ -9,6 +9,7 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
@@ -331,14 +332,39 @@ public class RegistrarPersona extends JDialog {
 							
 							Participante participante = new Participante(txtNombre.getText(), txtCedula.getText(), txtTelefono.getText(), txtCorreo.getText(), txtMatricula.getText(), txtEscuela.getText(), codEvent, txtCodigoProyecto.getText(), txtNombreTrabajo.getText(), cbxTemas.getSelectedItem().toString());
 							PUCMM.getInstance().RegistrarPersona(participante);
+							JOptionPane.showMessageDialog(null, "Participante registrado correctamente", "Operacion exitosa", JOptionPane.INFORMATION_MESSAGE);
+							
+							txtMatricula.setText("");
+							txtEscuela.setText("");
+							txtCodigoProyecto.setText("");
+							txtNombreTrabajo.setText("");
+							cbxTemas.setSelectedItem(0);
 							
 						} if(rdbtnJurado.isSelected()) {
 							Jurado jurado = new Jurado(txtNombre.getText(), txtCedula.getText(), txtTelefono.getText(), txtCorreo.getText(), txtArea.getText(), Integer.valueOf(snpExp.getValue().toString()), txtUsuario.getText(), txtPassword.getText());
 							PUCMM.getInstance().RegistrarPersona(jurado);
+							JOptionPane.showMessageDialog(null, "Jurado registrado correctamente", "Operacion exitosa", JOptionPane.INFORMATION_MESSAGE);
+							
+					
+							txtArea.setText("");
+							snpExp.setValue("");
+							txtUsuario.setText("");
+							txtPassword.setText("");
+							
+							
 						} if(rdbtnAdministrador.isSelected()) {
 							Administrador admin = new Administrador(txtNombre.getText(), txtCedula.getText(), txtTelefono.getText(), txtCorreo.getText(), txtUsuario.getText(), txtPassword.getText());
+							JOptionPane.showMessageDialog(null, "Administrador registrado correctamente", "Operacion exitosa", JOptionPane.INFORMATION_MESSAGE);
+							
 							PUCMM.getInstance().RegistrarPersona(admin);
+							txtUsuario.setText("");
+							txtPassword.setText("");
 						}
+						
+						txtNombre.setText("");
+						txtCedula.setText("");
+						txtTelefono.setText("");
+						txtCorreo.setText("");
 						
 					}
 				});
