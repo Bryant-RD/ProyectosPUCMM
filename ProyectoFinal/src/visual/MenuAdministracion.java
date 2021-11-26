@@ -218,6 +218,12 @@ public class MenuAdministracion extends JDialog {
 				}
 				{
 					JMenuItem mntmNewMenuItem_3 = new JMenuItem("Regitrar Recurso");
+					mntmNewMenuItem_3.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							RegRecursos reg = new RegRecursos();
+							reg.setVisible(true);
+						}
+					});
 					mnNewMenu.add(mntmNewMenuItem_3);
 				}
 			}

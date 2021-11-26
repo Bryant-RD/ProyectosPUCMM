@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
+import backend.Administrador;
 import backend.Evento;
 import backend.Jurado;
 import backend.PUCMM;
@@ -330,6 +331,9 @@ public class RegistrarPersona extends JDialog {
 						} if(rdbtnJurado.isSelected()) {
 							Jurado jurado = new Jurado(txtNombre.getText(), txtCedula.getText(), txtTelefono.getText(), txtCorreo.getText(), txtArea.getText(), Integer.valueOf(snpExp.getValue().toString()), txtUsuario.getText(), txtPassword.getText());
 							PUCMM.getInstance().RegistrarPersona(jurado);
+						} if(rdbtnAdministrador.isSelected()) {
+							Administrador admin = new Administrador(txtNombre.getText(), txtCedula.getText(), txtTelefono.getText(), txtCorreo.getText(), txtUsuario.getText(), txtPassword.getText());
+							PUCMM.getInstance().RegistrarPersona(admin);
 						}
 						
 					}
