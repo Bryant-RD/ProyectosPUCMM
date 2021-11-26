@@ -8,7 +8,7 @@ public class Recursos {
 	private String nombreEquipo;
 	
 	
-	public Recursos(int cantidad, int disponibilidad, String tipo, String nombreEquipo) {
+	public Recursos(int cantidad, String tipo, String nombreEquipo) {
 		this.cantidad = cantidad;
 		this.disponibilidad = disponibilidad;
 		this.tipo = tipo;

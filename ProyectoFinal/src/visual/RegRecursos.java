@@ -7,9 +7,14 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import backend.PUCMM;
+import backend.Recursos;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JSpinner;
 import javax.swing.JComboBox;
@@ -18,7 +23,10 @@ import javax.swing.DefaultComboBoxModel;
 public class RegRecursos extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField;
+	private JTextField txtNombre;
+	private JComboBox cbxTipo;
+	private JButton btnRegistrar;
+	private JSpinner spnCantidad;
 
 	/**
 	 * Launch the application.
@@ -49,10 +57,10 @@ public class RegRecursos extends JDialog {
 			contentPanel.add(lblNombreObj);
 		}
 		
-		textField = new JTextField();
-		textField.setBounds(119, 23, 158, 22);
-		contentPanel.add(textField);
-		textField.setColumns(10);
+		txtNombre = new JTextField();
+		txtNombre.setBounds(119, 23, 158, 22);
+		contentPanel.add(txtNombre);
+		txtNombre.setColumns(10);
 		
 		JLabel lblCantidad = new JLabel("Cantidad:");
 		lblCantidad.setBounds(12, 89, 56, 16);
@@ -62,12 +70,12 @@ public class RegRecursos extends JDialog {
 		lblTipo.setBounds(10, 62, 95, 16);
 		contentPanel.add(lblTipo);
 		{
-			JSpinner spnCantidad = new JSpinner();
+			spnCantidad = new JSpinner();
 			spnCantidad.setBounds(119, 86, 56, 22);
 			contentPanel.add(spnCantidad);
 		}
 		{
-			JComboBox cbxTipo = new JComboBox();
+			cbxTipo = new JComboBox();
 			cbxTipo.setModel(new DefaultComboBoxModel(new String[] {"<<Seleccione>>", "Audio", "Visual", "Mobiliario"}));
 			cbxTipo.setBounds(119, 53, 158, 22);
 			contentPanel.add(cbxTipo);
@@ -77,17 +85,36 @@ public class RegRecursos extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("Registrar");
-				okButton.addActionListener(new ActionListener() {
+				btnRegistrar = new JButton("Registrar");
+				btnRegistrar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
+						if (txtNombre.getText().length() == 0 ||cbxTipo.getSelectedIndex() == 0 || Integer.valueOf(spnCantidad.getValue().toString()) == 0) {
+							
+							JOptionPane.showMessageDialog(null, "Los campos no pueden estar vacios", "Error!", JOptionPane.ERROR_MESSAGE);
+							
+						} else {
+
+							Recursos recurso = new Recursos(Integer.valueOf(spnCantidad.getValue().toString()),cbxTipo.getSelectedItem().toString(), txtNombre.getText());
+							PUCMM.getInstance().agregarRecurso(recurso);
+							JOptionPane.showMessageDialog(null, "Nuevo equipo registrado correctamente", "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
+							
+							txtNombre.setText("");
+							cbxTipo.setSelectedIndex(0);
+							spnCantidad.setValue(0);
+						}
 					}
 				});
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
+				btnRegistrar.setActionCommand("OK");
+				buttonPane.add(btnRegistrar);
+				getRootPane().setDefaultButton(btnRegistrar);
 			}
 			{
 				JButton cancelButton = new JButton("Cancelar");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+					}
+				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
