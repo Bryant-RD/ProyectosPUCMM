@@ -182,6 +182,28 @@ public class PUCMM {
 
 	}
 	
+	public Trabajo buscarTrabajoByCod(String codigoTrabajo) {
+			
+			Trabajo aux = null;
+			
+			for (Trabajo trabajo: trabajos) {
+				if (trabajo.getCodigo().equalsIgnoreCase(codigoTrabajo)) {
+					aux = trabajo;
+				}
+			}
+			if(aux != null) {
+				return aux;
+			} else {
+	//			JOptionPane.showMessageDialog(null, "Trabajo.", "Error!", JOptionPane.ERROR_MESSAGE);
+				return null;
+			}
+		}
+	
+	public boolean eliminarTrabajo(Trabajo selected) {
+		return trabajos.remove(selected);
+
+	}
+	
 
 	
 	
@@ -211,6 +233,15 @@ public class PUCMM {
 
 	public void setRecursos(ArrayList<Recursos> recursos) {
 		this.recursos = recursos;
+	}
+	
+	public ArrayList<Trabajo> getTrabajo() {
+		return trabajos;
+	}
+
+
+	public void setTrabajo(ArrayList<Trabajo> trabajos) {
+		this.trabajos = trabajos;
 	}
 	
 	
