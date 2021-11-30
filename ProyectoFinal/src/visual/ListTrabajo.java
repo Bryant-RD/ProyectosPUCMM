@@ -172,6 +172,7 @@ public class ListTrabajo extends JDialog {
 		loadTable();
 	}
 
+	// COMENTARIO DE PRUEBA
 	public static void loadTable() {
 		model.setRowCount(0);
 		rows = new Object[model.getColumnCount()];
