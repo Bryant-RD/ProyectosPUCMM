@@ -8,7 +8,6 @@ public class Participante extends Persona {
 	private String matricula;
 	private String escuela;
 	private ArrayList <Trabajo> trabajos; 
-	private Trabajo trabajo;
 	
 	
 	public Participante(String nombre, String cedula, String numero, String email, String matricula, String escuela, String codEvento , String codigo, String nombreTrabajo, String tema) {
@@ -19,8 +18,7 @@ public class Participante extends Persona {
 		trabajos = new ArrayList<>();
 		
 		Trabajo trabajo = new Trabajo(codigo, nombreTrabajo, tema);
-		
-		this.trabajo = trabajo;
+		trabajos.add(trabajo);
 	}
 
 	public String getMatricula() {
@@ -46,13 +44,5 @@ public class Participante extends Persona {
 	public void setTrabajos(ArrayList<Trabajo> trabajos) {
 		this.trabajos = trabajos;
 	}
-	
-	public Trabajo getTrabajo() {
-		return trabajo;
-	}
-	
-	public void setTrabajo(Trabajo trabajo) {
-		this.trabajo = trabajo;
-	} 
 
 }

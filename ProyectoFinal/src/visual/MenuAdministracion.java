@@ -307,6 +307,11 @@ public class MenuAdministracion extends JDialog {
 					});
 					
 					JMenuItem mntmNewMenuItem_1 = new JMenuItem("Registrar Trabajo");
+					mntmNewMenuItem_1.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							
+						}
+					});
 					mnNewMenu.add(mntmNewMenuItem_1);
 					mnNewMenu.add(mntmNewMenuItem_3);
 				}

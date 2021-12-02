@@ -131,6 +131,7 @@ public class RegistrarPersona extends JDialog {
 			panel_2.setLayout(null);
 			
 			rdbtnParticipante = new JRadioButton("Participante");
+			rdbtnParticipante.setSelected(true);
 			rdbtnParticipante.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					rdbtnParticipante.setSelected(true);
@@ -254,6 +255,7 @@ public class RegistrarPersona extends JDialog {
 			panel_3.add(cbxEvento);
 			
 			JPanelJurado = new JPanel();
+			JPanelJurado.setVisible(false);
 			JPanelJurado.setLayout(null);
 			JPanelJurado.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Jurado", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 			JPanelJurado.setBounds(10, 204, 494, 103);
@@ -295,6 +297,7 @@ public class RegistrarPersona extends JDialog {
 			JPanelJurado.add(lblNewLabel_7);
 			
 			JPanelAdministrador = new JPanel();
+			JPanelAdministrador.setVisible(false);
 			JPanelAdministrador.setLayout(null);
 			JPanelAdministrador.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Jurado", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 			JPanelAdministrador.setBounds(10, 204, 494, 61);

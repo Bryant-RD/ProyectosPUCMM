@@ -45,6 +45,10 @@ public class PUCMM {
 		
 	}
 	
+	public void agregarProyectoParticipante(String cedulaPart, Trabajo trabajo) {
+		Persona participante = buscarPersonaByCedula(cedulaPart);
+		((Participante)participante).getTrabajos().add(trabajo);
+	}
 	
 	
 	public  Comision getComisionByName(String name) {
