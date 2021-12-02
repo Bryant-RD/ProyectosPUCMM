@@ -94,6 +94,8 @@ public class RegComision extends JDialog {
 							lstModel.addElement(text);
 							jurados.add(jurado);
 							
+							txtJurado.setText("");
+							
 						} else {
 							JOptionPane.showMessageDialog(null, "Jurado no encontrado", "Error!", JOptionPane.ERROR_MESSAGE);
 						}
@@ -113,7 +115,7 @@ public class RegComision extends JDialog {
 			lblNewLabel_2.setBounds(10, 11, 106, 14);
 			panel.add(lblNewLabel_2);
 			
-			JLabel lblNewLabel_3 = new JLabel("Area de Conocimiento");
+			JLabel lblNewLabel_3 = new JLabel("Area Conocimiento");
 			lblNewLabel_3.setBounds(10, 42, 118, 14);
 			panel.add(lblNewLabel_3);
 			
@@ -140,7 +142,11 @@ public class RegComision extends JDialog {
 						if(presidente != null && PUCMM.getInstance().agregarJuradoComision(presidente) && jurados.size() > 0) {
 							
 							PUCMM.getInstance().crearComision(txtNombre.getText(), presidente, txtAreaConocimiento.getText(), jurados);
+							JOptionPane.showMessageDialog(null, "Comision registrada correctamente.");
 							
+							txtNombre.setText("");
+							txtAreaConocimiento.setText("");
+							txtPresidente.setText("");
 						}
 							
 					}

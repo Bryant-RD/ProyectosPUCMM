@@ -97,6 +97,10 @@ public class PUCMM {
 	
 	public Comision crearComision(String nombre, Jurado presidente, String areaConocimiento ,ArrayList<Jurado> jurados) {
 		
+		for (Jurado jurado : jurados) {
+			jurado.setDisponible(false);
+		}
+		
 		Comision comision = new Comision(nombre, presidente, areaConocimiento, jurados);
 		comisiones.add(comision);
 		
@@ -108,7 +112,7 @@ public class PUCMM {
 		//Metodo verificar si hay jurados disponibles para la comision
 		
 		if(jurado.isDisponible()) {
-			jurado.setDisponible(false);
+			
 			return true;
 
 		} else {
@@ -165,11 +169,44 @@ public class PUCMM {
 		trabajos.add(trabajo);
 	}
 	
-	public void Calificar() {
+	public void calificarTrabajo(String codTrabajo, float calificacion) {
+		
+		Calificacion cali = new Calificacion(logueado.getNombre(), calificacion);
+		
+		Trabajo trabajo = buscarTrabajoByCod(codTrabajo);
+		
+		trabajo.getCalificaciones().add(cali);
 		
 	}
 	
-	public void Ganador() {
+	public float calCalificacionFinal(String codeTrabajo) {
+		float cali = 0;
+		
+		Trabajo trabajo = buscarTrabajoByCod(codeTrabajo);
+		
+		for (Calificacion calificacion : trabajo.getCalificaciones()) {
+			cali += calificacion.getCalificacion();
+		}
+		
+		cali = cali/trabajo.getCalificaciones().size();
+		
+		return cali;
+	}
+	
+	public Participante getGanador() {
+		
+		Participante ganador = null;
+		float calificacion = 0;
+		for (int i = 0; i < personas.size(); i++) {
+			if(personas.get(i) instanceof Participante) {				
+				if(((Participante) personas.get(i)).getTrabajos().get(i).getCalificacionFinal() > calificacion) {
+					calificacion = ((Participante) personas.get(i)).getTrabajos().get(i).getCalificacionFinal();
+					ganador = ((Participante) personas.get(i));
+				}
+			}
+		}
+		
+		return ganador;
 		
 	}
 
