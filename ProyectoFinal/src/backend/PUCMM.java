@@ -41,12 +41,26 @@ public class PUCMM {
 
 	
 	public void crearEvento(Evento evento) {
-		
-		
-		 
-		
+		eventos.add(evento);
 		
 	}
+	
+	
+	
+	public  Comision getComisionByName(String name) {
+		Comision comision = null;
+		boolean encontrado = false;
+		int i = 0;
+		while(!encontrado && i < comisiones.size() ){
+		  if(comisiones.get(i).getNombre().equalsIgnoreCase(name)){
+			  encontrado = true;
+			  comision = comisiones.get(i);
+		  }	
+		  i++;
+		}
+		return comision;
+	}
+	
 	
 	public void agregarRecurso(Recursos recurso) {
 		recursos.add(recurso);
@@ -81,28 +95,42 @@ public class PUCMM {
 	}
 	
 	
-	public Comision crearComision(String codigo, String nombre, Jurado presidente, String areaConocimiento ,ArrayList<Jurado> jurados) {
+	public Comision crearComision(String nombre, Jurado presidente, String areaConocimiento ,ArrayList<Jurado> jurados) {
 		
-		Comision comision = new Comision(codigo, nombre, presidente, areaConocimiento, jurados);
+		Comision comision = new Comision(nombre, presidente, areaConocimiento, jurados);
 		comisiones.add(comision);
 		
 		return comision;
 		
 	}
 	
-	public ArrayList<Jurado> agregarJuradoComision(Jurado jurado, ArrayList<Jurado> jurados) {
+	public boolean agregarJuradoComision(Jurado jurado) {
 		//Metodo verificar si hay jurados disponibles para la comision
 		
 		if(jurado.isDisponible()) {
 			jurado.setDisponible(false);
-			jurados.add(jurado);
-			return jurados;	
+			return true;
+
 		} else {
 			
 			JOptionPane.showMessageDialog(null, "Este jurado no esta disponible: " + jurado.getNombre());
-			return null;
+			return false;
 		}
 		
+	}
+	
+	public Jurado getJuradoByCedula(String cedula) {
+		Jurado jurado = null;
+		boolean encontrado = false;
+		int i = 0;
+		while(!encontrado && i< personas.size() ){
+		  if(personas.get(i).getCedula().equalsIgnoreCase(cedula) && personas.get(i) instanceof Jurado){
+			  encontrado = true;
+			  jurado = (Jurado) personas.get(i);
+		  }	
+		  i++;
+		}
+		return jurado;
 	}
 		
 	

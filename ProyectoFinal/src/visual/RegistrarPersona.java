@@ -347,7 +347,7 @@ public class RegistrarPersona extends JDialog {
 							
 					
 							txtArea.setText("");
-							snpExp.setValue("");
+							snpExp.setValue(0);
 							txtUsuario.setText("");
 							txtPassword.setText("");
 							

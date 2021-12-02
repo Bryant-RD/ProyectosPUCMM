@@ -3,6 +3,7 @@ package visual;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
@@ -12,12 +13,26 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.SpinnerDateModel;
 import javax.swing.JComboBox;
 import javax.swing.JSpinner;
 import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableModel;
+
+import backend.Comision;
+import backend.Evento;
+import backend.PUCMM;
+
 import javax.swing.JList;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.awt.event.ActionEvent;
+import javax.swing.DefaultComboBoxModel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.text.SimpleDateFormat;
 
 public class MenuAdministracion extends JDialog {
 
@@ -29,7 +44,13 @@ public class MenuAdministracion extends JDialog {
 	private JTextField txtTema;
 	private JList lstRecursos;
 	private JComboBox cbxComision;
-	private JComboBox cbxFecha;
+	private JButton btnAgregar;
+	private JComboBox cbxRecurso;
+	private JSpinner spnCantidadRecurso;
+	private DefaultListModel modelRecursos;
+	private ArrayList<String> recursos;
+	static String[] aRecursos ;
+	private JSpinner snpFecha;
 
 	/**
 	 * Launch the application.
@@ -48,6 +69,7 @@ public class MenuAdministracion extends JDialog {
 	 * Create the dialog.
 	 */
 	public MenuAdministracion() {
+		recursos = new ArrayList<>();
 		setTitle("Administracion");
 		setBounds(100, 100, 682, 525);
 		getContentPane().setLayout(new BorderLayout());
@@ -127,11 +149,6 @@ public class MenuAdministracion extends JDialog {
 				panel.add(txtTema);
 				txtTema.setColumns(10);
 			}
-			{
-				cbxFecha = new JComboBox();
-				cbxFecha.setBounds(278, 95, 145, 20);
-				panel.add(cbxFecha);
-			}
 			
 			cbxComision = new JComboBox();
 			cbxComision.setBounds(76, 138, 145, 20);
@@ -148,7 +165,33 @@ public class MenuAdministracion extends JDialog {
 					panel_1.add(label);
 				}
 				{
-					JComboBox cbxRecurso = new JComboBox();
+					cbxRecurso = new JComboBox();
+					DefaultComboBoxModel model = (DefaultComboBoxModel) cbxRecurso.getModel();
+					cbxRecurso.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseClicked(MouseEvent arg0) {
+							//Arreglar
+							System.out.print("Funicona");
+							cbxRecurso.removeAll();
+							ArrayList<String> aux = new ArrayList<>();
+//							aRecursos[0] = "<< Seleccione - C >>";
+							for (int i = 0; i < PUCMM.getInstance().getRecursos().size(); i++) {
+								aRecursos[i] = PUCMM.getInstance().getRecursos().get(i).getNombreEquipo();
+
+							}
+							
+							cbxRecurso.setModel(new DefaultComboBoxModel(aRecursos));
+							
+						}
+					});
+					
+					aRecursos = new String[PUCMM.getInstance().getRecursos().size()+1];
+					aRecursos[0] = "<< Seleccione >>";
+				
+
+					
+					cbxRecurso.setModel(new DefaultComboBoxModel(aRecursos));
+					
 					cbxRecurso.setBounds(76, 23, 145, 20);
 					panel_1.add(cbxRecurso);
 				}
@@ -158,21 +201,45 @@ public class MenuAdministracion extends JDialog {
 					panel_1.add(label);
 				}
 				{
-					JSpinner spnCantidadRecurso = new JSpinner();
+					spnCantidadRecurso = new JSpinner();
 					spnCantidadRecurso.setBounds(296, 23, 65, 20);
 					panel_1.add(spnCantidadRecurso);
 				}
 				{
-					JButton btnAgregar = new JButton("Agregar");
+					btnAgregar = new JButton("Agregar");
+					btnAgregar.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent arg0) {
+							String recurso = cbxRecurso.getSelectedItem().toString() + " - " + Integer.valueOf(spnCantidadRecurso.getValue().toString());
+							modelRecursos.addElement(recurso);
+							recursos.add(recurso);
+							
+							
+						}
+					});
 					btnAgregar.setBounds(371, 22, 89, 23);
 					panel_1.add(btnAgregar);
 				}
 				{
 					lstRecursos = new JList();
+					modelRecursos = new DefaultListModel<>();
+					lstRecursos.setModel(modelRecursos);
 					lstRecursos.setBounds(10, 62, 450, 154);
 					panel_1.add(lstRecursos);
 				}
 			}
+			
+			snpFecha = new JSpinner();
+			
+			snpFecha = new JSpinner();
+			Date date = new Date();
+			
+			
+			snpFecha.setModel(new SpinnerDateModel(date, null, null, Calendar.YEAR));
+			JSpinner.DateEditor de = new JSpinner.DateEditor(snpFecha,"dd/MM/YYYY");
+			snpFecha.setEditor(de);
+			
+			snpFecha.setBounds(278, 95, 145, 20);
+			panel.add(snpFecha);
 		}
 		{
 			JPanel buttonPane = new JPanel();
@@ -180,6 +247,20 @@ public class MenuAdministracion extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton btnCrear = new JButton("Crear");
+				btnCrear.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						
+						Comision comision = PUCMM.getInstance().getComisionByName(cbxComision.getSelectedItem().toString());
+						Date dateAux = (Date) snpFecha.getValue();
+						SimpleDateFormat de = new SimpleDateFormat("dd/mm/yyyy");
+
+						String fecha = de.format(dateAux);
+						
+						Evento evento = new Evento(txtCodigo.getText(), txtNombre.getText(), txtTema.getText(), cbxTipo.getSelectedItem().toString(), fecha, txtLocal.getText(), comision);
+						PUCMM.getInstance().crearEvento(evento);
+						
+					}
+				});
 				btnCrear.setActionCommand("OK");
 				buttonPane.add(btnCrear);
 				getRootPane().setDefaultButton(btnCrear);

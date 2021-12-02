@@ -101,6 +101,7 @@ public class RegRecursos extends JDialog {
 							txtNombre.setText("");
 							cbxTipo.setSelectedIndex(0);
 							spnCantidad.setValue(0);
+							
 						}
 					}
 				});
