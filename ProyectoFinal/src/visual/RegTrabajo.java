@@ -16,7 +16,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import javax.swing.DefaultComboBoxModel;
 
 public class RegTrabajo extends JDialog {
 
@@ -81,10 +83,46 @@ public class RegTrabajo extends JDialog {
 			panel.add(label);
 			
 			cbxTema = new JComboBox();
+			
+			ArrayList<String> auxTemas = new ArrayList<>();
+			auxTemas.add("<< Seleccione >>");
+
+			for (int i = 0; i < PUCMM.getInstance().getEventos().size(); i++) {
+				auxTemas.add(PUCMM.getInstance().getEventos().get(i).getTema());
+			}
+			
+			String[] temas = new String[auxTemas.size()];
+			
+			for (int i = 0; i < auxTemas.size(); i++) {
+				temas[i] = auxTemas.get(i);
+			}
+			
+			cbxTema.setModel(new DefaultComboBoxModel(temas));
 			cbxTema.setBounds(166, 197, 237, 22);
 			panel.add(cbxTema);
 			
 			cbxEvento = new JComboBox();
+			
+			ArrayList<String> auxEvento = new ArrayList<>();
+			auxEvento.add("<< Seleccione >>");
+
+			for (int i = 0; i < PUCMM.getInstance().getEventos().size(); i++) {
+				auxEvento.add(PUCMM.getInstance().getEventos().get(i).getTema());
+			}
+			
+			String[] eventos = new String[auxEvento.size()];
+			
+			for (int i = 0; i < auxEvento.size(); i++) {
+				eventos[i] = auxEvento.get(i);
+			}
+			
+			cbxTema.setModel(new DefaultComboBoxModel(eventos));
+			
+			
+			cbxEvento.setModel(new DefaultComboBoxModel(new String[] {"<< seleccione >>"}));
+			
+			
+			
 			cbxEvento.setBounds(166, 154, 237, 22);
 			panel.add(cbxEvento);
 			

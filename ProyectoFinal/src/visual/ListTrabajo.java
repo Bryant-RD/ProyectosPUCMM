@@ -176,7 +176,7 @@ public class ListTrabajo extends JDialog {
 	public static void loadTable() {
 		model.setRowCount(0);
 		rows = new Object[model.getColumnCount()];
-		for (int i = 0; i < PUCMM.getInstance().getPersona().size(); i++) {
+		for (int i = 0; i < PUCMM.getInstance().getTrabajo().size(); i++) {
 			rows[0] = PUCMM.getInstance().getTrabajo().get(i).getCodigo();
 			rows[1] = PUCMM.getInstance().getTrabajo().get(i).getNombre();
 			rows[2] = PUCMM.getInstance().getTrabajo().get(i).getTema();

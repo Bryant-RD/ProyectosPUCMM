@@ -152,7 +152,21 @@ public class MenuAdministracion extends JDialog {
 			}
 			
 			cbxComision = new JComboBox();
-			cbxComision.setModel(new DefaultComboBoxModel(new String[] {"<< Seleccione >>", "a", "b", "c"}));
+			
+			ArrayList<String> aux = new ArrayList<>();
+			aux.add("<< Seleccione >>");
+
+			for (int i = 0; i < PUCMM.getInstance().getEventos().size(); i++) {
+				aux.add(PUCMM.getInstance().getEventos().get(i).getTema());
+			}
+			
+			String[] comisiones = new String[aux.size()];
+			
+			for (int i = 0; i < aux.size(); i++) {
+				comisiones[i] = aux.get(i);
+			}
+			
+			cbxComision.setModel(new DefaultComboBoxModel(comisiones));
 			cbxComision.setBounds(76, 138, 145, 20);
 			panel.add(cbxComision);
 			{
