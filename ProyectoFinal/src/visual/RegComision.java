@@ -88,7 +88,7 @@ public class RegComision extends JDialog {
 				btnNewButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						Jurado jurado = PUCMM.getInstance().getJuradoByCedula(txtJurado.getText());
-						if(jurado != null && PUCMM.getInstance().agregarJuradoComision(jurado)) {
+						if(jurado != null) {
 							
 							String text = jurado.getCedula() + " - " + jurado.getNombre();
 							lstModel.addElement(text);
@@ -139,7 +139,7 @@ public class RegComision extends JDialog {
 					public void actionPerformed(ActionEvent e) {
 						
 						Jurado presidente = PUCMM.getInstance().getJuradoByCedula(txtPresidente.getText());
-						if(presidente != null && PUCMM.getInstance().agregarJuradoComision(presidente) && jurados.size() > 0) {
+						if(presidente != null && PUCMM.getInstance().verificarJurado(presidente) && jurados.size() > 0) {
 							
 							PUCMM.getInstance().crearComision(txtNombre.getText(), presidente, txtAreaConocimiento.getText(), jurados);
 							JOptionPane.showMessageDialog(null, "Comision registrada correctamente.");

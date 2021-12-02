@@ -2,7 +2,6 @@ package visual;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
-import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -11,28 +10,26 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import backend.PUCMM;
-import backend.Trabajo;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-public class Calificaciones extends JDialog {
+public class ListComisiones extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField txtCodigo;
-	private JButton btnBuscar;
+	private JTextField textField;
 	private JTable table;
 	private DefaultTableModel model;
 	private Object[] rows;
-	
+
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
-			Calificaciones dialog = new Calificaciones();
+			ListComisiones dialog = new ListComisiones();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -43,8 +40,8 @@ public class Calificaciones extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public Calificaciones() {
-		setBounds(100, 100, 526, 403);
+	public ListComisiones() {
+		setBounds(100, 100, 716, 575);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -53,35 +50,39 @@ public class Calificaciones extends JDialog {
 			JPanel panel = new JPanel();
 			contentPanel.add(panel, BorderLayout.CENTER);
 			panel.setLayout(null);
-			
-			JLabel lblNewLabel = new JLabel("Codigo");
-			lblNewLabel.setBounds(10, 11, 46, 14);
-			panel.add(lblNewLabel);
-			
-			txtCodigo = new JTextField();
-			txtCodigo.setBounds(66, 8, 214, 20);
-			panel.add(txtCodigo);
-			txtCodigo.setColumns(10);
-			
-			btnBuscar = new JButton("Buscar");
-			btnBuscar.setBounds(290, 7, 89, 23);
-			panel.add(btnBuscar);
-			
-			JPanel panel_1 = new JPanel();
-			panel_1.setBounds(10, 36, 480, 274);
-			panel.add(panel_1);
-			panel_1.setLayout(null);
-			
-			JScrollPane scrollPane = new JScrollPane();
-			scrollPane.setBounds(0, 0, 480, 274);
-			panel_1.add(scrollPane);
-			
-			table = new JTable();
-			model = new DefaultTableModel();
-			String headers[] = {"Codigo", "propietario" ,"Nombre","Tema", "calificaicon", "Total"};
-			model.setColumnIdentifiers(headers);
-			table.setModel(model);
-			scrollPane.setViewportView(table);
+			{
+				JLabel lblNewLabel = new JLabel("Nombre");
+				lblNewLabel.setBounds(25, 33, 55, 14);
+				panel.add(lblNewLabel);
+			}
+			{
+				textField = new JTextField();
+				textField.setBounds(90, 30, 307, 20);
+				panel.add(textField);
+				textField.setColumns(10);
+			}
+			{
+				JButton btnNewButton = new JButton("Buscar");
+				btnNewButton.setBounds(434, 29, 89, 23);
+				panel.add(btnNewButton);
+			}
+			{
+				JPanel panel_1 = new JPanel();
+				panel_1.setBounds(10, 58, 670, 424);
+				panel.add(panel_1);
+				panel_1.setLayout(null);
+				
+				JScrollPane scrollPane = new JScrollPane();
+				scrollPane.setBounds(0, 0, 670, 424);
+				panel_1.add(scrollPane);
+				
+				table = new JTable();
+				model = new DefaultTableModel();
+				String[] headers = {"Nombre", "Presidente", "Area", "Intergantes", "Trabajos"};
+				model.setColumnIdentifiers(headers);
+				table.setModel(model);
+				scrollPane.setViewportView(table);
+			}
 		}
 		{
 			JPanel buttonPane = new JPanel();
@@ -99,30 +100,18 @@ public class Calificaciones extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
-		loadTable();
 	}
+	
 	private void loadTable() {
-		
-		ArrayList<Trabajo> trabajos =PUCMM.getInstance().trabajosLogueado();
-
-		
 		model.setRowCount(0);
 		rows = new Object[model.getColumnCount()];
-		for (int i = 0; i < trabajos.size(); i++) {
-			rows[0] = trabajos.get(i).getCodigo();
-			rows[1] = trabajos.get(i).getNombre();
-			rows[2] = trabajos.get(i).getTema();
-			
-			for (int j = 0; j < trabajos.get(i).getCalificaciones().size(); j++) {
-				if(trabajos.get(i).getCalificaciones().get(j).getNomJurado().equalsIgnoreCase(PUCMM.logueado.getNombre())) {
-					
-					rows[3] = trabajos.get(i).getCalificaciones().get(j).getCalificacion();
-				}
-			}
-
-			
-			
+		for (int i = 0; i < PUCMM.getInstance().getComisiones().size(); i++) {
+			rows[0] = PUCMM.getInstance().getComisiones().get(i).getNombre();
+			rows[1] = PUCMM.getInstance().getComisiones().get(i).getPresidente();
+			rows[2] = PUCMM.getInstance().getComisiones().get(i).getJurados().size();
+			rows[3] = PUCMM.getInstance().getComisiones().get(i).getTrabajos().size();
 			model.addRow(rows);
 		}
 	}
+	
 }

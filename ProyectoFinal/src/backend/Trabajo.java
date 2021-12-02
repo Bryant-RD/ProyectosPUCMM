@@ -5,15 +5,17 @@ import java.util.ArrayList;
 public class Trabajo {
 	
 	private String codigo;
+	private String evento; 
 	private String nombre;
 	private String tema;
 	private float calificacionFinal;
 	private ArrayList<Calificacion> calificaciones;
 	
 	
-	public Trabajo(String codigo, String nombre, String tema) {
+	public Trabajo(String codigo,String evento ,String nombre, String tema) {
 		super();
 		this.codigo = codigo;
+		this.evento = evento;
 		this.nombre = nombre;
 		this.tema = tema;
 		this.calificacionFinal = 0;
@@ -58,6 +60,14 @@ public class Trabajo {
 
 	public void setCalificaciones(ArrayList<Calificacion> calificaciones) {
 		this.calificaciones = calificaciones;
+	}
+
+	public String getEvento() {
+		return evento;
+	}
+
+	public void setEvento(String codEvento) {
+		this.evento = codEvento;
 	}
 
 }

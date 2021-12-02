@@ -140,6 +140,7 @@ public class MenuAdministracion extends JDialog {
 			}
 			{
 				cbxTipo = new JComboBox();
+				cbxTipo.setModel(new DefaultComboBoxModel(new String[] {"<< Seleccione >>", "Conferencias", "Panel", "Feria", "Ponencia", "Poster", "Mesa redonda", " "}));
 				cbxTipo.setBounds(488, 95, 145, 20);
 				panel.add(cbxTipo);
 			}
@@ -151,6 +152,7 @@ public class MenuAdministracion extends JDialog {
 			}
 			
 			cbxComision = new JComboBox();
+			cbxComision.setModel(new DefaultComboBoxModel(new String[] {"<< Seleccione >>", "a", "b", "c"}));
 			cbxComision.setBounds(76, 138, 145, 20);
 			panel.add(cbxComision);
 			{
@@ -167,6 +169,9 @@ public class MenuAdministracion extends JDialog {
 				{
 					cbxRecurso = new JComboBox();
 					DefaultComboBoxModel model = (DefaultComboBoxModel) cbxRecurso.getModel();
+					
+					//ARREGLAR CUANDO SE MODIFIQUE EL DISEÑO
+					
 					cbxRecurso.addMouseListener(new MouseAdapter() {
 						@Override
 						public void mouseClicked(MouseEvent arg0) {

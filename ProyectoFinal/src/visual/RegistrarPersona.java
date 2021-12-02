@@ -331,9 +331,9 @@ public class RegistrarPersona extends JDialog {
 					public void actionPerformed(ActionEvent e) {
 						
 						if(rdbtnParticipante.isSelected()) {
-							String codEvent = PUCMM.getInstance().buscarEventoByName(cbxEvento.getSelectedItem().toString()).getCodigo();
+//							String codEvent = PUCMM.getInstance().buscarEventoByName(cbxEvento.getSelectedItem().toString()).getCodigo();
 							
-							Participante participante = new Participante(txtNombre.getText(), txtCedula.getText(), txtTelefono.getText(), txtCorreo.getText(), txtMatricula.getText(), txtEscuela.getText(), codEvent, txtCodigoProyecto.getText(), txtNombreTrabajo.getText(), cbxTemas.getSelectedItem().toString());
+							Participante participante = new Participante(txtNombre.getText(), txtCedula.getText(), txtTelefono.getText(), txtCorreo.getText(), txtMatricula.getText(), txtEscuela.getText(), cbxEvento.getSelectedItem().toString(), txtCodigoProyecto.getText(), txtNombreTrabajo.getText(), cbxTemas.getSelectedItem().toString());
 							PUCMM.getInstance().RegistrarPersona(participante);
 							JOptionPane.showMessageDialog(null, "Participante registrado correctamente", "Operacion exitosa", JOptionPane.INFORMATION_MESSAGE);
 							

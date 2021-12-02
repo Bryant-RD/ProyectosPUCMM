@@ -7,15 +7,25 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import backend.PUCMM;
+import backend.Trabajo;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class RegTrabajo extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField txtCedula;
+	private JTextField txtNombre;
+	private JComboBox cbxEvento;
+	private JTextField txtCodigo;
+	private JComboBox cbxTema;
 
 	/**
 	 * Launch the application.
@@ -45,38 +55,47 @@ public class RegTrabajo extends JDialog {
 			panel.setLayout(null);
 			
 			JLabel lblNewLabel = new JLabel("Cedula Participante");
-			lblNewLabel.setBounds(29, 44, 125, 16);
+			lblNewLabel.setBounds(29, 38, 125, 16);
 			panel.add(lblNewLabel);
 			
-			textField = new JTextField();
-			textField.setBounds(166, 41, 237, 22);
-			panel.add(textField);
-			textField.setColumns(10);
+			txtCedula = new JTextField();
+			txtCedula.setBounds(166, 35, 237, 22);
+			panel.add(txtCedula);
+			txtCedula.setColumns(10);
 			
 			JLabel lblNewLabel_1 = new JLabel("Nombre del Trabajo");
-			lblNewLabel_1.setBounds(29, 102, 135, 16);
+			lblNewLabel_1.setBounds(29, 115, 135, 16);
 			panel.add(lblNewLabel_1);
 			
-			textField_1 = new JTextField();
-			textField_1.setBounds(166, 99, 237, 22);
-			panel.add(textField_1);
-			textField_1.setColumns(10);
+			txtNombre = new JTextField();
+			txtNombre.setBounds(166, 112, 237, 22);
+			panel.add(txtNombre);
+			txtNombre.setColumns(10);
 			
 			JLabel lblNewLabel_3 = new JLabel("Evento");
-			lblNewLabel_3.setBounds(29, 151, 56, 16);
+			lblNewLabel_3.setBounds(29, 157, 56, 16);
 			panel.add(lblNewLabel_3);
 			
 			JLabel label = new JLabel("Tema del evento");
 			label.setBounds(29, 200, 125, 16);
 			panel.add(label);
 			
-			JComboBox comboBox = new JComboBox();
-			comboBox.setBounds(166, 197, 237, 22);
-			panel.add(comboBox);
+			cbxTema = new JComboBox();
+			cbxTema.setBounds(166, 197, 237, 22);
+			panel.add(cbxTema);
 			
-			JComboBox comboBox_1 = new JComboBox();
-			comboBox_1.setBounds(166, 148, 237, 22);
-			panel.add(comboBox_1);
+			cbxEvento = new JComboBox();
+			cbxEvento.setBounds(166, 154, 237, 22);
+			panel.add(cbxEvento);
+			
+			JLabel lblNewLabel_2 = new JLabel("codigo");
+			lblNewLabel_2.setBounds(29, 81, 46, 14);
+			panel.add(lblNewLabel_2);
+			
+			txtCodigo = new JTextField();
+			txtCodigo.setBounds(166, 75, 237, 20);
+			panel.add(txtCodigo);
+			txtCodigo.setColumns(10);
 		}
 		{
 			JPanel buttonPane = new JPanel();
@@ -84,6 +103,18 @@ public class RegTrabajo extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("Registrar");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						
+//						String codEvento = PUCMM.getInstance().buscarEventoByName(cbxEvento.getSelectedItem().toString()).getCodigo();
+						
+						Trabajo trabajo = new Trabajo(txtCodigo.getText(), cbxEvento.getSelectedItem().toString(), txtNombre.getText(), cbxTema.getSelectedItem().toString());
+						PUCMM.getInstance().agregarTrabajo(txtCedula.getText(), trabajo);
+						JOptionPane.showMessageDialog(null, "Trabajo agregado correctamente al evento");
+
+						
+					}
+				});
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);

@@ -45,10 +45,14 @@ public class PUCMM {
 		
 	}
 	
-	public void agregarProyectoParticipante(String cedulaPart, Trabajo trabajo) {
+	public void agregarTrabajo(String cedulaPart, Trabajo trabajo) {
 		Persona participante = buscarPersonaByCedula(cedulaPart);
 		((Participante)participante).getTrabajos().add(trabajo);
+		
+		Evento evento = buscarEventoByName(trabajo.getEvento());
+		evento.getProyectos().add(trabajo);
 	}
+	
 	
 	
 	public  Comision getComisionByName(String name) {
@@ -101,8 +105,11 @@ public class PUCMM {
 	
 	public Comision crearComision(String nombre, Jurado presidente, String areaConocimiento ,ArrayList<Jurado> jurados) {
 		
+		presidente.setDisponible(false);
+		presidente.getComisiones().add(nombre);
+		
 		for (Jurado jurado : jurados) {
-			jurado.setDisponible(false);
+			jurado.getComisiones().add(nombre);
 		}
 		
 		Comision comision = new Comision(nombre, presidente, areaConocimiento, jurados);
@@ -112,7 +119,7 @@ public class PUCMM {
 		
 	}
 	
-	public boolean agregarJuradoComision(Jurado jurado) {
+	public boolean verificarJurado(Jurado jurado) {
 		//Metodo verificar si hay jurados disponibles para la comision
 		
 		if(jurado.isDisponible()) {
@@ -139,6 +146,31 @@ public class PUCMM {
 		  i++;
 		}
 		return jurado;
+	}
+	
+	public ArrayList<Trabajo> trabajosLogueado() {
+		ArrayList<Trabajo> trabajos = new ArrayList<>();
+		
+		ArrayList<String> comisionesJurado = new ArrayList<>();
+
+		
+		for (int i = 0; i < comisiones.size(); i++) {
+			
+			comisionesJurado.add(((Jurado)logueado).getComisiones().get(i));
+			
+			Comision actual = comisiones.get(i);
+			for (int j = 0; j < comisionesJurado.size(); j++) {
+				if(comisionesJurado.get(j).equalsIgnoreCase(actual.getNombre())) {
+					for (int j2 = 0; j2 < actual.getTrabajos().size(); j2++) {
+						trabajos.add(actual.getTrabajos().get(j2));
+					}
+				}
+			}
+		}
+		
+		
+		
+		return trabajos;
 	}
 		
 	
@@ -313,6 +345,8 @@ public class PUCMM {
 		this.trabajos = trabajos;
 	}
 	
-	
+	public ArrayList<Comision> getComisiones() {
+		return comisiones;
+	}
 	
 }
