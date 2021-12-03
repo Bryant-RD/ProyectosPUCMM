@@ -16,11 +16,14 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Font;
 import java.awt.Color;
+import javax.swing.SwingConstants;
 
 public class RegTrabajo extends JDialog {
 
@@ -50,23 +53,25 @@ public class RegTrabajo extends JDialog {
 	 * Create the dialog.
 	 */
 	public RegTrabajo() {
-		setBackground(new Color(198, 215, 193));
+		setBackground(new Color(244, 244, 249));
 		setFont(new Font("Serif", Font.PLAIN, 12));
 		setTitle("Registrar Trabajo");
 		setBounds(100, 100, 596, 392);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(new Color(176, 224, 230));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		setUndecorated(true);
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
 			JPanel panel = new JPanel();
-			panel.setBackground(new Color(178, 201, 171));
+			panel.setBackground(new Color(244, 244, 249));
 			contentPanel.add(panel, BorderLayout.CENTER);
 			panel.setLayout(null);
 			
-			JLabel lblNewLabel = new JLabel("Cedula Participante");
+			JLabel lblNewLabel = new JLabel("Cedula Participante:");
 			lblNewLabel.setFont(new Font("Serif", Font.PLAIN, 14));
-			lblNewLabel.setBounds(29, 37, 125, 16);
+			lblNewLabel.setBounds(42, 37, 125, 16);
 			panel.add(lblNewLabel);
 			
 			txtCedula = new JTextField();
@@ -74,9 +79,9 @@ public class RegTrabajo extends JDialog {
 			panel.add(txtCedula);
 			txtCedula.setColumns(10);
 			
-			JLabel lblNewLabel_1 = new JLabel("Nombre del Trabajo");
+			JLabel lblNewLabel_1 = new JLabel("Nombre del Trabajo:");
 			lblNewLabel_1.setFont(new Font("Serif", Font.PLAIN, 14));
-			lblNewLabel_1.setBounds(29, 129, 135, 16);
+			lblNewLabel_1.setBounds(42, 129, 135, 16);
 			panel.add(lblNewLabel_1);
 			
 			txtNombre = new JTextField();
@@ -84,17 +89,41 @@ public class RegTrabajo extends JDialog {
 			panel.add(txtNombre);
 			txtNombre.setColumns(10);
 			
-			JLabel lblNewLabel_3 = new JLabel("Evento");
+			JLabel lblNewLabel_3 = new JLabel("Evento:");
 			lblNewLabel_3.setFont(new Font("Serif", Font.PLAIN, 14));
-			lblNewLabel_3.setBounds(29, 178, 96, 16);
+			lblNewLabel_3.setBounds(42, 178, 79, 16);
 			panel.add(lblNewLabel_3);
 			
-			JLabel label = new JLabel("Tema del evento");
-			label.setFont(new Font("Serif", Font.PLAIN, 14));
-			label.setBounds(29, 235, 125, 16);
-			panel.add(label);
+			JLabel lblTemaDelEvento = new JLabel("Tema del evento:");
+			lblTemaDelEvento.setHorizontalAlignment(SwingConstants.CENTER);
+			lblTemaDelEvento.setFont(new Font("Serif", Font.PLAIN, 14));
+			lblTemaDelEvento.setBounds(29, 235, 125, 16);
+			panel.add(lblTemaDelEvento);
+			
+			JLabel lblX = new JLabel("X");
+			lblX.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					if(JOptionPane.showConfirmDialog(null, "Esta seguro de que quieres cerrar la aplicacion?","Confirmacion", JOptionPane.YES_NO_OPTION) == 0) {
+						dispose();
+					}
+				}
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					lblX.setForeground(Color.RED);
+				}
+				public void mouseExited(MouseEvent e) {
+					lblX.setForeground(Color.BLACK);
+				}
+			});
+			lblX.setForeground(Color.BLACK);
+			lblX.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
+			lblX.setHorizontalAlignment(SwingConstants.CENTER);
+			lblX.setBounds(566, 0, 20, 20);
+			panel.add(lblX);
 			
 			cbxTema = new JComboBox();
+			cbxTema.setBackground(new Color(244, 244, 249));
 			
 			cbxTema.removeAll();
 
@@ -110,6 +139,7 @@ public class RegTrabajo extends JDialog {
 			panel.add(cbxTema);
 			
 			cbxEvento = new JComboBox();
+			cbxEvento.setBackground(new Color(244, 244, 249));
 			
 			cbxEvento.removeAll();
 
@@ -126,9 +156,9 @@ public class RegTrabajo extends JDialog {
 			cbxEvento.setBounds(178, 172, 237, 30);
 			panel.add(cbxEvento);
 			
-			JLabel lblNewLabel_2 = new JLabel("Codigo");
+			JLabel lblNewLabel_2 = new JLabel("Codigo:");
 			lblNewLabel_2.setFont(new Font("Serif", Font.PLAIN, 14));
-			lblNewLabel_2.setBounds(29, 77, 73, 24);
+			lblNewLabel_2.setBounds(42, 77, 73, 24);
 			panel.add(lblNewLabel_2);
 			
 			txtCodigo = new JTextField();
@@ -136,14 +166,16 @@ public class RegTrabajo extends JDialog {
 			panel.add(txtCodigo);
 			txtCodigo.setColumns(10);
 		}
+		
 		{
 			JPanel buttonPane = new JPanel();
-			buttonPane.setBackground(new Color(198, 215, 193));
+			buttonPane.setBackground(new Color(244, 244, 249));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("Registrar");
-				okButton.setBackground(new Color(232, 221, 181));
+				okButton.setForeground(Color.WHITE);
+				okButton.setBackground(new Color(88, 111, 124));
 				okButton.setFont(new Font("Serif", Font.PLAIN, 14));
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
@@ -163,11 +195,14 @@ public class RegTrabajo extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
-				cancelButton.setBackground(new Color(232, 221, 181));
+				cancelButton.setForeground(Color.WHITE);
+				cancelButton.setBackground(new Color(88, 111, 124));
 				cancelButton.setFont(new Font("Serif", Font.PLAIN, 14));
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
+			
+			
 		}
 	}
 }

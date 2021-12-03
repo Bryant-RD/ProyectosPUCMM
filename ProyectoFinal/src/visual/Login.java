@@ -120,7 +120,7 @@ public class Login extends JDialog {
 						txtUsuario.setText("Usuario");
 				}
 			});
-			txtUsuario.setFont(new Font("Serif", Font.PLAIN, 14));
+			txtUsuario.setFont(new Font("Calibri", Font.PLAIN, 14));
 			txtUsuario.setText("Usuario");
 			txtUsuario.setBounds(12, 13, 180, 21);
 			pnlUser.add(txtUsuario);
@@ -162,7 +162,7 @@ public class Login extends JDialog {
 			});
 			txtPassword.setBorder(null);
 			txtPassword.setEchoChar((char)0);
-			txtPassword.setFont(new Font("Serif", Font.PLAIN, 14));
+			txtPassword.setFont(new Font("Calibri", Font.PLAIN, 14));
 			txtPassword.setText("Contrase\u00F1a");
 			txtPassword.setBounds(12, 12, 180, 22);
 			pnlPassword.add(txtPassword);
@@ -175,9 +175,9 @@ public class Login extends JDialog {
 			lblIconPassword.setIcon(new ImageIcon(img_password));
 			
 			btnLoggin = new JButton("Iniciar sesion");
-			btnLoggin.setForeground(new Color(0, 0, 0));
-			btnLoggin.setFont(new Font("Serif", Font.BOLD, 17));
-			btnLoggin.setBackground(new Color(184, 219, 217));
+			btnLoggin.setForeground(new Color(255, 255, 255));
+			btnLoggin.setFont(new Font("Calibri", Font.PLAIN, 18));
+			btnLoggin.setBackground(new Color(88, 111, 124));
 			btnLoggin.setBorderPainted(false);
 			btnLoggin.setOpaque(true);
 			

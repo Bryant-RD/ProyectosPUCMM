@@ -95,7 +95,7 @@ public class test extends JFrame {
 		btnRegEvento = new JButton("Evento");
 		btnRegEvento.setForeground(new Color(255, 255, 255));
 		btnRegEvento.setBackground(new Color(88, 111, 124));
-		btnRegEvento.setFont(new Font("Serif", Font.BOLD, 14));
+		btnRegEvento.setFont(new Font("Calibri", Font.PLAIN, 15));
 		btnRegEvento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RegEvento rgEvento = new RegEvento();
@@ -108,7 +108,7 @@ public class test extends JFrame {
 		btnRegPersona = new JButton("Persona");
 		btnRegPersona.setForeground(new Color(255, 255, 255));
 		btnRegPersona.setBackground(new Color(88, 111, 124));
-		btnRegPersona.setFont(new Font("Serif", Font.BOLD, 14));
+		btnRegPersona.setFont(new Font("Calibri", Font.PLAIN, 15));
 		btnRegPersona.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RegistrarPersona regPerson = new RegistrarPersona();
@@ -121,7 +121,7 @@ public class test extends JFrame {
 		btnComision = new JButton("Comision");
 		btnComision.setForeground(new Color(255, 255, 255));
 		btnComision.setBackground(new Color(88, 111, 124));
-		btnComision.setFont(new Font("Serif", Font.BOLD, 14));
+		btnComision.setFont(new Font("Calibri", Font.PLAIN, 15));
 		btnComision.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RegComision regComi = new RegComision();
@@ -134,7 +134,7 @@ public class test extends JFrame {
 		btnRegRecurso = new JButton("Recurso");
 		btnRegRecurso.setForeground(new Color(255, 255, 255));
 		btnRegRecurso.setBackground(new Color(88, 111, 124));
-		btnRegRecurso.setFont(new Font("Serif", Font.BOLD, 14));
+		btnRegRecurso.setFont(new Font("Calibri", Font.PLAIN, 15));
 		btnRegRecurso.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RegRecursos reg = new RegRecursos();
@@ -147,7 +147,7 @@ public class test extends JFrame {
 		btnRegTrabajo = new JButton("Trabajo");
 		btnRegTrabajo.setForeground(new Color(255, 255, 255));
 		btnRegTrabajo.setBackground(new Color(88, 111, 124));
-		btnRegTrabajo.setFont(new Font("Serif", Font.BOLD, 14));
+		btnRegTrabajo.setFont(new Font("Calibri", Font.PLAIN, 15));
 		btnRegTrabajo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -169,7 +169,7 @@ public class test extends JFrame {
 		btnEventos = new JButton("Eventos");
 		btnEventos.setForeground(new Color(255, 255, 255));
 		btnEventos.setBackground(new Color(88, 111, 124));
-		btnEventos.setFont(new Font("Serif", Font.BOLD, 14));
+		btnEventos.setFont(new Font("Calibri", Font.PLAIN, 15));
 		btnEventos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -181,7 +181,7 @@ public class test extends JFrame {
 		btnPersonas = new JButton("Personas");
 		btnPersonas.setForeground(new Color(255, 255, 255));
 		btnPersonas.setBackground(new Color(88, 111, 124));
-		btnPersonas.setFont(new Font("Serif", Font.BOLD, 14));
+		btnPersonas.setFont(new Font("Calibri", Font.PLAIN, 15));
 		btnPersonas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ListPersona lstPer = new ListPersona();
@@ -194,7 +194,7 @@ public class test extends JFrame {
 		btnComisiones = new JButton("Comisiones");
 		btnComisiones.setForeground(new Color(255, 255, 255));
 		btnComisiones.setBackground(new Color(88, 111, 124));
-		btnComisiones.setFont(new Font("Serif", Font.BOLD, 14));
+		btnComisiones.setFont(new Font("Calibri", Font.PLAIN, 15));
 		btnComisiones.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ListComisiones lstComi = new ListComisiones();
@@ -207,7 +207,7 @@ public class test extends JFrame {
 		btnRecursos = new JButton("Recursos");
 		btnRecursos.setForeground(new Color(255, 255, 255));
 		btnRecursos.setBackground(new Color(88, 111, 124));
-		btnRecursos.setFont(new Font("Serif", Font.BOLD, 14));
+		btnRecursos.setFont(new Font("Calibri", Font.PLAIN, 15));
 		btnRecursos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -221,7 +221,7 @@ public class test extends JFrame {
 		btnProyectos = new JButton("Trabajos");
 		btnProyectos.setForeground(new Color(255, 255, 255));
 		btnProyectos.setBackground(new Color(88, 111, 124));
-		btnProyectos.setFont(new Font("Serif", Font.BOLD, 14));
+		btnProyectos.setFont(new Font("Calibri", Font.PLAIN, 15));
 		btnProyectos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ListTrabajo lstTrabajo = new ListTrabajo();
@@ -240,18 +240,18 @@ public class test extends JFrame {
 		JLabel lblNewLabel = new JLabel("Men\u00FA Administracion");
 		lblNewLabel.setBounds(296, 39, 248, 38);
 		panelMenu.add(lblNewLabel);
-		lblNewLabel.setFont(new Font("Serif", Font.BOLD, 18));
+		lblNewLabel.setFont(new Font("Century Gothic", Font.BOLD, 18));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		lblRegistrar = new JLabel("Registrar");
 		lblRegistrar.setHorizontalAlignment(SwingConstants.CENTER);
-		lblRegistrar.setFont(new Font("Serif", Font.ITALIC, 20));
+		lblRegistrar.setFont(new Font("Century Gothic", Font.ITALIC, 20));
 		lblRegistrar.setBounds(495, 289, 144, 27);
 		panel.add(lblRegistrar);
 		
 		lblListar = new JLabel("Listar");
 		lblListar.setHorizontalAlignment(SwingConstants.CENTER);
-		lblListar.setFont(new Font("Serif", Font.ITALIC, 20));
+		lblListar.setFont(new Font("Century Gothic", Font.ITALIC, 20));
 		lblListar.setBounds(1274, 289, 144, 27);
 		panel.add(lblListar);
 	}
