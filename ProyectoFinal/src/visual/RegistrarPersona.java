@@ -27,6 +27,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.UIManager;
 import java.awt.Color;
 import javax.swing.JSpinner;
+import java.awt.Font;
 
 public class RegistrarPersona extends JDialog {
 
@@ -73,6 +74,7 @@ public class RegistrarPersona extends JDialog {
 	 * Create the dialog.
 	 */
 	public RegistrarPersona() {
+		setTitle("Registar Persona");
 		setBounds(100, 100, 540, 495);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -80,10 +82,12 @@ public class RegistrarPersona extends JDialog {
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
 			JPanel panel = new JPanel();
+			panel.setBackground(new Color(244, 244, 249));
 			contentPanel.add(panel, BorderLayout.CENTER);
 			panel.setLayout(null);
 			
 			JPanel panel_1 = new JPanel();
+			panel_1.setBackground(new Color(244, 244, 249));
 			panel_1.setBorder(new TitledBorder(null, "Datos Generales", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			panel_1.setBounds(10, 11, 494, 103);
 			panel.add(panel_1);
@@ -94,22 +98,25 @@ public class RegistrarPersona extends JDialog {
 			txtCorreo.setBounds(330, 72, 158, 20);
 			panel_1.add(txtCorreo);
 			
-			JLabel label = new JLabel("Correo");
-			label.setBounds(274, 75, 46, 14);
-			panel_1.add(label);
+			JLabel lblCorreo = new JLabel("Correo:");
+			lblCorreo.setFont(new Font("Serif", Font.PLAIN, 13));
+			lblCorreo.setBounds(274, 75, 46, 14);
+			panel_1.add(lblCorreo);
 			
 			txtNombre = new JTextField();
 			txtNombre.setColumns(10);
 			txtNombre.setBounds(66, 72, 158, 20);
 			panel_1.add(txtNombre);
 			
-			JLabel label_1 = new JLabel("Nombre");
-			label_1.setBounds(10, 75, 46, 14);
-			panel_1.add(label_1);
+			JLabel lblNombre = new JLabel("Nombre:");
+			lblNombre.setFont(new Font("Serif", Font.PLAIN, 13));
+			lblNombre.setBounds(10, 75, 46, 14);
+			panel_1.add(lblNombre);
 			
-			JLabel label_2 = new JLabel("Cedula");
-			label_2.setBounds(10, 32, 46, 14);
-			panel_1.add(label_2);
+			JLabel lblCedula = new JLabel("Cedula:");
+			lblCedula.setFont(new Font("Serif", Font.PLAIN, 13));
+			lblCedula.setBounds(10, 32, 46, 14);
+			panel_1.add(lblCedula);
 			
 			txtCedula = new JTextField();
 			txtCedula.setColumns(10);
@@ -121,17 +128,21 @@ public class RegistrarPersona extends JDialog {
 			txtTelefono.setBounds(330, 29, 158, 20);
 			panel_1.add(txtTelefono);
 			
-			JLabel label_3 = new JLabel("Telefono");
-			label_3.setBounds(274, 32, 46, 14);
-			panel_1.add(label_3);
+			JLabel lblTelefono = new JLabel("Telefono:");
+			lblTelefono.setFont(new Font("Serif", Font.PLAIN, 13));
+			lblTelefono.setBounds(272, 32, 61, 14);
+			panel_1.add(lblTelefono);
 			
 			JPanel panel_2 = new JPanel();
+			panel_2.setBackground(new Color(244, 244, 249));
 			panel_2.setBorder(new TitledBorder(null, "Tipo", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			panel_2.setBounds(10, 125, 494, 68);
 			panel.add(panel_2);
 			panel_2.setLayout(null);
 			
 			rdbtnParticipante = new JRadioButton("Participante");
+			rdbtnParticipante.setBackground(new Color(244, 244, 249));
+			rdbtnParticipante.setFont(new Font("Serif", Font.PLAIN, 13));
 			rdbtnParticipante.setSelected(true);
 			rdbtnParticipante.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
@@ -147,6 +158,8 @@ public class RegistrarPersona extends JDialog {
 			panel_2.add(rdbtnParticipante);
 			
 			rdbtnJurado = new JRadioButton("Jurado");
+			rdbtnJurado.setBackground(new Color(244, 244, 249));
+			rdbtnJurado.setFont(new Font("Serif", Font.PLAIN, 13));
 			rdbtnJurado.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					rdbtnParticipante.setSelected(false);
@@ -161,6 +174,8 @@ public class RegistrarPersona extends JDialog {
 			panel_2.add(rdbtnJurado);
 			
 			rdbtnAdministrador = new JRadioButton("Administrador");
+			rdbtnAdministrador.setBackground(new Color(244, 244, 249));
+			rdbtnAdministrador.setFont(new Font("Serif", Font.PLAIN, 13));
 			rdbtnAdministrador.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					
@@ -176,16 +191,19 @@ public class RegistrarPersona extends JDialog {
 			panel_2.add(rdbtnAdministrador);
 			
 			JPanelParticipante = new JPanel();
+			JPanelParticipante.setBackground(new Color(244, 244, 249));
 			JPanelParticipante.setBorder(new TitledBorder(null, "Participante", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			JPanelParticipante.setBounds(10, 204, 494, 201);
 			panel.add(JPanelParticipante);
 			JPanelParticipante.setLayout(null);
 			
 			JLabel lblNewLabel = new JLabel("Matricula");
+			lblNewLabel.setFont(new Font("Serif", Font.PLAIN, 13));
 			lblNewLabel.setBounds(10, 33, 58, 14);
 			JPanelParticipante.add(lblNewLabel);
 			
 			JLabel lblNewLabel_1 = new JLabel("Escuela");
+			lblNewLabel_1.setFont(new Font("Serif", Font.PLAIN, 13));
 			lblNewLabel_1.setBounds(270, 33, 46, 14);
 			JPanelParticipante.add(lblNewLabel_1);
 			
@@ -200,20 +218,24 @@ public class RegistrarPersona extends JDialog {
 			JPanelParticipante.add(txtEscuela);
 			
 			JPanel panel_3 = new JPanel();
+			panel_3.setBackground(new Color(244, 244, 249));
 			panel_3.setBorder(new TitledBorder(null, "Proyecto", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			panel_3.setBounds(10, 72, 474, 114);
 			JPanelParticipante.add(panel_3);
 			panel_3.setLayout(null);
 			
 			JLabel lblNewLabel_2 = new JLabel("Codigo");
-			lblNewLabel_2.setBounds(10, 35, 46, 14);
+			lblNewLabel_2.setFont(new Font("Serif", Font.PLAIN, 13));
+			lblNewLabel_2.setBounds(10, 29, 46, 27);
 			panel_3.add(lblNewLabel_2);
 			
 			JLabel lblNewLabel_3 = new JLabel("Nombre");
+			lblNewLabel_3.setFont(new Font("Serif", Font.PLAIN, 13));
 			lblNewLabel_3.setBounds(10, 88, 46, 14);
 			panel_3.add(lblNewLabel_3);
 			
 			JLabel lblNewLabel_4 = new JLabel("Tema");
+			lblNewLabel_4.setFont(new Font("Serif", Font.PLAIN, 13));
 			lblNewLabel_4.setBounds(259, 35, 46, 14);
 			panel_3.add(lblNewLabel_4);
 			
@@ -234,7 +256,7 @@ public class RegistrarPersona extends JDialog {
 			
 			
 			cbxTemas.setModel(new DefaultComboBoxModel(temas));
-			cbxTemas.setBounds(299, 32, 165, 20);
+			cbxTemas.setBounds(306, 32, 158, 20);
 			panel_3.add(cbxTemas);
 			
 			txtCodigoProyecto = new JTextField();
@@ -248,6 +270,7 @@ public class RegistrarPersona extends JDialog {
 			panel_3.add(txtNombreTrabajo);
 			
 			JLabel lblNewLabel_5 = new JLabel("Evento");
+			lblNewLabel_5.setFont(new Font("Serif", Font.PLAIN, 13));
 			lblNewLabel_5.setBounds(259, 88, 46, 14);
 			panel_3.add(lblNewLabel_5);
 			
@@ -264,7 +287,7 @@ public class RegistrarPersona extends JDialog {
 			
 			cbxEvento.setModel(new DefaultComboBoxModel(aEventos));
 			
-			cbxEvento.setBounds(299, 85, 165, 20);
+			cbxEvento.setBounds(306, 85, 158, 20);
 			panel_3.add(cbxEvento);
 			
 			JPanelJurado = new JPanel();
@@ -340,6 +363,7 @@ public class RegistrarPersona extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				btnRegistrar = new JButton("Registrar");
+				btnRegistrar.setBackground(new Color(184, 219, 217));
 				btnRegistrar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						
@@ -390,6 +414,7 @@ public class RegistrarPersona extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("Cancelar");
+				cancelButton.setBackground(new Color(184, 219, 217));
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}

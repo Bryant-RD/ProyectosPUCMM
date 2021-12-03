@@ -19,6 +19,8 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.Font;
+import java.awt.Color;
 
 public class RegTrabajo extends JDialog {
 
@@ -48,6 +50,9 @@ public class RegTrabajo extends JDialog {
 	 * Create the dialog.
 	 */
 	public RegTrabajo() {
+		setBackground(new Color(198, 215, 193));
+		setFont(new Font("Serif", Font.PLAIN, 12));
+		setTitle("Registrar Trabajo");
 		setBounds(100, 100, 596, 392);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -55,33 +60,38 @@ public class RegTrabajo extends JDialog {
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
 			JPanel panel = new JPanel();
+			panel.setBackground(new Color(178, 201, 171));
 			contentPanel.add(panel, BorderLayout.CENTER);
 			panel.setLayout(null);
 			
 			JLabel lblNewLabel = new JLabel("Cedula Participante");
-			lblNewLabel.setBounds(29, 38, 125, 16);
+			lblNewLabel.setFont(new Font("Serif", Font.PLAIN, 14));
+			lblNewLabel.setBounds(29, 37, 125, 16);
 			panel.add(lblNewLabel);
 			
 			txtCedula = new JTextField();
-			txtCedula.setBounds(166, 35, 237, 22);
+			txtCedula.setBounds(178, 31, 237, 30);
 			panel.add(txtCedula);
 			txtCedula.setColumns(10);
 			
 			JLabel lblNewLabel_1 = new JLabel("Nombre del Trabajo");
-			lblNewLabel_1.setBounds(29, 115, 135, 16);
+			lblNewLabel_1.setFont(new Font("Serif", Font.PLAIN, 14));
+			lblNewLabel_1.setBounds(29, 129, 135, 16);
 			panel.add(lblNewLabel_1);
 			
 			txtNombre = new JTextField();
-			txtNombre.setBounds(166, 112, 237, 22);
+			txtNombre.setBounds(178, 123, 237, 30);
 			panel.add(txtNombre);
 			txtNombre.setColumns(10);
 			
 			JLabel lblNewLabel_3 = new JLabel("Evento");
-			lblNewLabel_3.setBounds(29, 157, 56, 16);
+			lblNewLabel_3.setFont(new Font("Serif", Font.PLAIN, 14));
+			lblNewLabel_3.setBounds(29, 178, 96, 16);
 			panel.add(lblNewLabel_3);
 			
 			JLabel label = new JLabel("Tema del evento");
-			label.setBounds(29, 200, 125, 16);
+			label.setFont(new Font("Serif", Font.PLAIN, 14));
+			label.setBounds(29, 235, 125, 16);
 			panel.add(label);
 			
 			cbxTema = new JComboBox();
@@ -96,7 +106,7 @@ public class RegTrabajo extends JDialog {
 			}
 			
 			cbxTema.setModel(new DefaultComboBoxModel(temas));
-			cbxTema.setBounds(166, 197, 237, 22);
+			cbxTema.setBounds(178, 229, 237, 30);
 			panel.add(cbxTema);
 			
 			cbxEvento = new JComboBox();
@@ -113,24 +123,28 @@ public class RegTrabajo extends JDialog {
 			
 			
 			cbxEvento.setModel(new DefaultComboBoxModel(eventos));
-			cbxEvento.setBounds(166, 154, 237, 22);
+			cbxEvento.setBounds(178, 172, 237, 30);
 			panel.add(cbxEvento);
 			
-			JLabel lblNewLabel_2 = new JLabel("codigo");
-			lblNewLabel_2.setBounds(29, 81, 46, 14);
+			JLabel lblNewLabel_2 = new JLabel("Codigo");
+			lblNewLabel_2.setFont(new Font("Serif", Font.PLAIN, 14));
+			lblNewLabel_2.setBounds(29, 77, 73, 24);
 			panel.add(lblNewLabel_2);
 			
 			txtCodigo = new JTextField();
-			txtCodigo.setBounds(166, 75, 237, 20);
+			txtCodigo.setBounds(178, 75, 237, 30);
 			panel.add(txtCodigo);
 			txtCodigo.setColumns(10);
 		}
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(new Color(198, 215, 193));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("Registrar");
+				okButton.setBackground(new Color(232, 221, 181));
+				okButton.setFont(new Font("Serif", Font.PLAIN, 14));
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						
@@ -149,6 +163,8 @@ public class RegTrabajo extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
+				cancelButton.setBackground(new Color(232, 221, 181));
+				cancelButton.setFont(new Font("Serif", Font.PLAIN, 14));
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}

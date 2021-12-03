@@ -15,6 +15,8 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import java.awt.Font;
+import java.awt.Color;
 
 public class ListComisiones extends JDialog {
 
@@ -41,29 +43,36 @@ public class ListComisiones extends JDialog {
 	 * Create the dialog.
 	 */
 	public ListComisiones() {
+		setTitle("Lista de Comisiones");
 		setBounds(100, 100, 716, 575);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(new Color(248, 248, 255));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
 			JPanel panel = new JPanel();
+			panel.setBackground(new Color(244, 244, 249));
 			contentPanel.add(panel, BorderLayout.CENTER);
 			panel.setLayout(null);
 			{
-				JLabel lblNewLabel = new JLabel("Nombre");
-				lblNewLabel.setBounds(25, 33, 55, 14);
+				JLabel lblNewLabel = new JLabel("Nombre:");
+				lblNewLabel.setFont(new Font("Serif", Font.PLAIN, 14));
+				lblNewLabel.setBounds(10, 21, 55, 14);
 				panel.add(lblNewLabel);
 			}
 			{
 				textField = new JTextField();
-				textField.setBounds(90, 30, 307, 20);
+				textField.setBounds(77, 14, 293, 28);
 				panel.add(textField);
 				textField.setColumns(10);
 			}
 			{
 				JButton btnNewButton = new JButton("Buscar");
-				btnNewButton.setBounds(434, 29, 89, 23);
+				btnNewButton.setForeground(new Color(255, 255, 255));
+				btnNewButton.setBackground(new Color(88, 111, 124));
+				btnNewButton.setFont(new Font("Serif", Font.PLAIN, 14));
+				btnNewButton.setBounds(388, 14, 95, 28);
 				panel.add(btnNewButton);
 			}
 			{
@@ -86,16 +95,23 @@ public class ListComisiones extends JDialog {
 		}
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(new Color(244, 244, 249));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("OK");
+				okButton.setForeground(new Color(255, 255, 255));
+				okButton.setBackground(new Color(88, 111, 124));
+				okButton.setFont(new Font("Serif", Font.PLAIN, 14));
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
+				cancelButton.setForeground(new Color(255, 255, 255));
+				cancelButton.setBackground(new Color(88, 111, 124));
+				cancelButton.setFont(new Font("Serif", Font.PLAIN, 14));
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}

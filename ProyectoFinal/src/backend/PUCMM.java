@@ -27,6 +27,9 @@ public class PUCMM {
 		Administrador admin = new Administrador("admin", "admin", "admin", "admin", "admin", "admin");
 		personas.add(admin);
 		
+		//Jurado jur = new Jurado("manu", "940903", "098786", "mm@.com", "fisica", 10, "jurado", "12345");
+		//personas.add(jur);
+		
 	}
 	
 	public static PUCMM getInstance() {
@@ -199,6 +202,23 @@ public class PUCMM {
 				}
 			}
 		}
+		
+		/*
+		for (Persona persona: personas) {
+			if (((Jurado) persona).getUsuario().equalsIgnoreCase(usuario)) {
+				aux = persona;
+				if(((Jurado)aux).getPassword().equalsIgnoreCase(password)) {
+					if(aux instanceof Administrador) {
+						logueado = aux;
+					} else {
+						logueado = aux;
+
+					}
+					encontrado =  true;
+				}
+			}
+		}
+		*/
 	
 		return encontrado;
 	}
