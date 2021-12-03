@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
-import visual.MenuAdministracion;
 
 
 
@@ -47,10 +46,17 @@ public class PUCMM {
 	
 	public void agregarTrabajo(String cedulaPart, Trabajo trabajo) {
 		Persona participante = buscarPersonaByCedula(cedulaPart);
-		((Participante)participante).getTrabajos().add(trabajo);
-		
-		Evento evento = buscarEventoByName(trabajo.getEvento());
-		evento.getProyectos().add(trabajo);
+		if(participante != null) {
+			((Participante)participante).getTrabajos().add(trabajo);
+			
+			Evento evento = buscarEventoByName(trabajo.getEvento());
+			System.out.print(evento.getNombre());
+			evento.getProyectos().add(trabajo);
+			System.out.print(evento.getProyectos().size());
+			JOptionPane.showMessageDialog(null, "Trabajo registrado correctamente al evento: " + trabajo.getEvento());
+		} else {
+			JOptionPane.showMessageDialog(null, "Participante no entrado", "Error!", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 	
 	

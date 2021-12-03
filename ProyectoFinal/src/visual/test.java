@@ -13,10 +13,22 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
 import javax.swing.JRadioButtonMenuItem;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class test extends JFrame {
 
 	private JPanel contentPane;
+	private JButton btnRegEvento;
+	private JButton btnRecursos;
+	private JButton btnComisiones;
+	private JButton btnPersonas;
+	private JButton btnEventos;
+	private JButton btnProyectos;
+	private JButton btnRegPersona;
+	private JButton btnComision;
+	private JButton btnRegRecurso;
+	private JButton btnRegTrabajo;
 
 	/**
 	 * Launch the application.
@@ -66,25 +78,57 @@ public class test extends JFrame {
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 		
-		JButton button = new JButton("New button");
-		button.setBounds(72, 40, 166, 50);
-		panel_1.add(button);
+		btnRegEvento = new JButton("Evento");
+		btnRegEvento.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RegEvento rgEvento = new RegEvento();
+				rgEvento.setVisible(true);
+			}
+		});
+		btnRegEvento.setBounds(72, 40, 166, 50);
+		panel_1.add(btnRegEvento);
 		
-		JButton button_1 = new JButton("New button");
-		button_1.setBounds(72, 101, 166, 50);
-		panel_1.add(button_1);
+		btnRegPersona = new JButton("Persona");
+		btnRegPersona.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RegistrarPersona regPerson = new RegistrarPersona();
+				regPerson.setVisible(true);
+			}
+		});
+		btnRegPersona.setBounds(72, 101, 166, 50);
+		panel_1.add(btnRegPersona);
 		
-		JButton button_5 = new JButton("New button");
-		button_5.setBounds(72, 162, 166, 50);
-		panel_1.add(button_5);
+		btnComision = new JButton("Comision");
+		btnComision.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RegComision regComi = new RegComision();
+				regComi.setVisible(true);
+			}
+		});
+		btnComision.setBounds(72, 162, 166, 50);
+		panel_1.add(btnComision);
 		
-		JButton button_6 = new JButton("New button");
-		button_6.setBounds(72, 223, 166, 50);
-		panel_1.add(button_6);
+		btnRegRecurso = new JButton("Recurso");
+		btnRegRecurso.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RegRecursos reg = new RegRecursos();
+				reg.setVisible(true);
+			}
+		});
+		btnRegRecurso.setBounds(72, 223, 166, 50);
+		panel_1.add(btnRegRecurso);
 		
-		JButton button_7 = new JButton("New button");
-		button_7.setBounds(72, 284, 166, 50);
-		panel_1.add(button_7);
+		btnRegTrabajo = new JButton("Trabajo");
+		btnRegTrabajo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				RegTrabajo rgTrabajo = new RegTrabajo();
+				rgTrabajo.setVisible(true);
+				
+			}
+		});
+		btnRegTrabajo.setBounds(72, 284, 166, 50);
+		panel_1.add(btnRegTrabajo);
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBorder(new TitledBorder(null, "Listar", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -92,16 +136,54 @@ public class test extends JFrame {
 		panel.add(panel_2);
 		panel_2.setLayout(null);
 		
-		JButton button_2 = new JButton("New button");
-		button_2.setBounds(79, 56, 166, 50);
-		panel_2.add(button_2);
+		btnEventos = new JButton("Eventos");
+		btnEventos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		btnEventos.setBounds(79, 40, 166, 50);
+		panel_2.add(btnEventos);
 		
-		JButton button_3 = new JButton("New button");
-		button_3.setBounds(79, 131, 166, 50);
-		panel_2.add(button_3);
+		btnPersonas = new JButton("Personas");
+		btnPersonas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ListPersona lstPer = new ListPersona();
+				lstPer.setVisible(true);
+			}
+		});
+		btnPersonas.setBounds(79, 101, 166, 50);
+		panel_2.add(btnPersonas);
 		
-		JButton button_4 = new JButton("New button");
-		button_4.setBounds(79, 205, 166, 50);
-		panel_2.add(button_4);
+		btnComisiones = new JButton("Comisiones");
+		btnComisiones.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ListComisiones lstComi = new ListComisiones();
+				lstComi.setVisible(true);
+			}
+		});
+		btnComisiones.setBounds(79, 162, 166, 50);
+		panel_2.add(btnComisiones);
+		
+		btnRecursos = new JButton("Recursos");
+		btnRecursos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				ListRecursos lstRec = new ListRecursos();
+				lstRec.setVisible(true);
+			}
+		});
+		btnRecursos.setBounds(79, 223, 166, 50);
+		panel_2.add(btnRecursos);
+		
+		btnProyectos = new JButton("Trabajos");
+		btnProyectos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ListTrabajo lstTrabajo = new ListTrabajo();
+				lstTrabajo.setVisible(true);
+			}
+		});
+		btnProyectos.setBounds(79, 284, 166, 50);
+		panel_2.add(btnProyectos);
 	}
 }

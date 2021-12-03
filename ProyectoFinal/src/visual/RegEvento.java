@@ -34,7 +34,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
 
-public class MenuAdministracion extends JDialog {
+public class RegEvento extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txtCodigo;
@@ -49,15 +49,16 @@ public class MenuAdministracion extends JDialog {
 	private JSpinner spnCantidadRecurso;
 	private DefaultListModel modelRecursos;
 	private ArrayList<String> recursos;
-	static String[] aRecursos ;
+	private String[] aRecursos ;
 	private JSpinner snpFecha;
+	private String[] aComisiones;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
-			MenuAdministracion dialog = new MenuAdministracion();
+			RegEvento dialog = new RegEvento();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -68,7 +69,7 @@ public class MenuAdministracion extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public MenuAdministracion() {
+	public RegEvento() {
 		recursos = new ArrayList<>();
 		setTitle("Administracion");
 		setBounds(100, 100, 682, 525);
@@ -153,20 +154,16 @@ public class MenuAdministracion extends JDialog {
 			
 			cbxComision = new JComboBox();
 			
-			ArrayList<String> aux = new ArrayList<>();
-			aux.add("<< Seleccione >>");
+			cbxComision.removeAll();
 
-			for (int i = 0; i < PUCMM.getInstance().getEventos().size(); i++) {
-				aux.add(PUCMM.getInstance().getEventos().get(i).getTema());
+			aComisiones = new String[PUCMM.getInstance().getComisiones().size()+1];
+			aComisiones[0] = "<< Seleccione >>";
+			for (int i = 0; i < PUCMM.getInstance().getComisiones().size(); i++) {
+				aComisiones[i+1] = PUCMM.getInstance().getComisiones().get(i).getNombre();
+
 			}
 			
-			String[] comisiones = new String[aux.size()];
-			
-			for (int i = 0; i < aux.size(); i++) {
-				comisiones[i] = aux.get(i);
-			}
-			
-			cbxComision.setModel(new DefaultComboBoxModel(comisiones));
+			cbxComision.setModel(new DefaultComboBoxModel(aComisiones));
 			cbxComision.setBounds(76, 138, 145, 20);
 			panel.add(cbxComision);
 			{
@@ -183,29 +180,16 @@ public class MenuAdministracion extends JDialog {
 				{
 					cbxRecurso = new JComboBox();
 					DefaultComboBoxModel model = (DefaultComboBoxModel) cbxRecurso.getModel();
+								
 					
-					//ARREGLAR CUANDO SE MODIFIQUE EL DISEÑO
-					
-					cbxRecurso.addMouseListener(new MouseAdapter() {
-						@Override
-						public void mouseClicked(MouseEvent arg0) {
-							//Arreglar
-							System.out.print("Funicona");
-							cbxRecurso.removeAll();
-							ArrayList<String> aux = new ArrayList<>();
-//							aRecursos[0] = "<< Seleccione - C >>";
-							for (int i = 0; i < PUCMM.getInstance().getRecursos().size(); i++) {
-								aRecursos[i] = PUCMM.getInstance().getRecursos().get(i).getNombreEquipo();
-
-							}
-							
-							cbxRecurso.setModel(new DefaultComboBoxModel(aRecursos));
-							
-						}
-					});
-					
+					cbxRecurso.removeAll();
+//					ArrayList<String> aux1 = new ArrayList<>();
 					aRecursos = new String[PUCMM.getInstance().getRecursos().size()+1];
 					aRecursos[0] = "<< Seleccione >>";
+					for (int i = 0; i < PUCMM.getInstance().getRecursos().size(); i++) {
+						aRecursos[i+1] = PUCMM.getInstance().getRecursos().get(i).getNombreEquipo();
+
+					}
 				
 
 					
@@ -288,88 +272,6 @@ public class MenuAdministracion extends JDialog {
 				JButton cancelButton = new JButton("Cancelar");
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
-			}
-		}
-		{
-			JMenuBar menuBar = new JMenuBar();
-			setJMenuBar(menuBar);
-			{
-				JMenu mnNewMenu = new JMenu("Registros");
-				menuBar.add(mnNewMenu);
-				{
-					JMenuItem mntmNewMenuItem = new JMenuItem("Registrar Persona");
-					mntmNewMenuItem.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
-							RegistrarPersona regPerson = new RegistrarPersona();
-							regPerson.setVisible(true);
-						}
-					});
-					mnNewMenu.add(mntmNewMenuItem);
-				}
-				{
-					JMenuItem mntmNewMenuItem_2 = new JMenuItem("Registrar Comision");
-					mntmNewMenuItem_2.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
-							RegComision regComi = new RegComision();
-							regComi.setVisible(true);
-						}
-					});
-					mnNewMenu.add(mntmNewMenuItem_2);
-				}
-				{
-					JMenuItem mntmNewMenuItem_3 = new JMenuItem("Regitrar Recurso");
-					mntmNewMenuItem_3.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
-							RegRecursos reg = new RegRecursos();
-							reg.setVisible(true);
-						}
-					});
-					
-					JMenuItem mntmNewMenuItem_1 = new JMenuItem("Registrar Trabajo");
-					mntmNewMenuItem_1.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
-							
-						}
-					});
-					mnNewMenu.add(mntmNewMenuItem_1);
-					mnNewMenu.add(mntmNewMenuItem_3);
-				}
-			}
-			{
-				JMenu mnNewMenu_1 = new JMenu("Listas");
-				menuBar.add(mnNewMenu_1);
-				{
-					JMenuItem mntmNewMenuItem_4 = new JMenuItem("Personas");
-					mntmNewMenuItem_4.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
-							ListPersona lstPer = new ListPersona();
-							lstPer.setVisible(true);
-						}
-					});
-					mnNewMenu_1.add(mntmNewMenuItem_4);
-				}
-				{
-					JMenuItem mntmNewMenuItem_5 = new JMenuItem("Proyectos");
-					mnNewMenu_1.add(mntmNewMenuItem_5);
-				}
-				{
-					JMenuItem mntmNewMenuItem_7 = new JMenuItem("Comisiones");
-					mnNewMenu_1.add(mntmNewMenuItem_7);
-				}
-				{
-					JMenuItem mntmNewMenuItem_8 = new JMenuItem("Eventos");
-					mnNewMenu_1.add(mntmNewMenuItem_8);
-				}
-				{
-					JMenuItem mntmNewMenuItem_9 = new JMenuItem("Recursos");
-					mntmNewMenuItem_9.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
-							ListRecursos lstRec = new ListRecursos();
-							lstRec.setVisible(true);
-						}
-					});
-					mnNewMenu_1.add(mntmNewMenuItem_9);
-				}
 			}
 		}
 	}

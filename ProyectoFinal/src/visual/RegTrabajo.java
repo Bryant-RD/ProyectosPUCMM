@@ -28,7 +28,9 @@ public class RegTrabajo extends JDialog {
 	private JComboBox cbxEvento;
 	private JTextField txtCodigo;
 	private JComboBox cbxTema;
-
+	private String[] temas;
+	private String[] eventos;
+ 
 	/**
 	 * Launch the application.
 	 */
@@ -84,17 +86,13 @@ public class RegTrabajo extends JDialog {
 			
 			cbxTema = new JComboBox();
 			
-			ArrayList<String> auxTemas = new ArrayList<>();
-			auxTemas.add("<< Seleccione >>");
+			cbxTema.removeAll();
 
+			temas = new String[PUCMM.getInstance().getEventos().size()+1];
+			temas[0] = "<< Seleccione >>";
 			for (int i = 0; i < PUCMM.getInstance().getEventos().size(); i++) {
-				auxTemas.add(PUCMM.getInstance().getEventos().get(i).getTema());
-			}
-			
-			String[] temas = new String[auxTemas.size()];
-			
-			for (int i = 0; i < auxTemas.size(); i++) {
-				temas[i] = auxTemas.get(i);
+				temas[i+1] = PUCMM.getInstance().getEventos().get(i).getTema();
+
 			}
 			
 			cbxTema.setModel(new DefaultComboBoxModel(temas));
@@ -103,26 +101,18 @@ public class RegTrabajo extends JDialog {
 			
 			cbxEvento = new JComboBox();
 			
-			ArrayList<String> auxEvento = new ArrayList<>();
-			auxEvento.add("<< Seleccione >>");
+			cbxEvento.removeAll();
 
+			eventos = new String[PUCMM.getInstance().getEventos().size()+1];
+			eventos[0] = "<< Seleccione >>";
 			for (int i = 0; i < PUCMM.getInstance().getEventos().size(); i++) {
-				auxEvento.add(PUCMM.getInstance().getEventos().get(i).getTema());
+				eventos[i+1] = PUCMM.getInstance().getEventos().get(i).getNombre();
+
 			}
 			
-			String[] eventos = new String[auxEvento.size()];
-			
-			for (int i = 0; i < auxEvento.size(); i++) {
-				eventos[i] = auxEvento.get(i);
-			}
-			
-			cbxTema.setModel(new DefaultComboBoxModel(eventos));
 			
 			
-			cbxEvento.setModel(new DefaultComboBoxModel(new String[] {"<< seleccione >>"}));
-			
-			
-			
+			cbxEvento.setModel(new DefaultComboBoxModel(eventos));
 			cbxEvento.setBounds(166, 154, 237, 22);
 			panel.add(cbxEvento);
 			
@@ -148,7 +138,7 @@ public class RegTrabajo extends JDialog {
 						
 						Trabajo trabajo = new Trabajo(txtCodigo.getText(), cbxEvento.getSelectedItem().toString(), txtNombre.getText(), cbxTema.getSelectedItem().toString());
 						PUCMM.getInstance().agregarTrabajo(txtCedula.getText(), trabajo);
-						JOptionPane.showMessageDialog(null, "Trabajo agregado correctamente al evento");
+//						JOptionPane.showMessageDialog(null, "Trabajo agregado correctamente al evento");
 
 						
 					}

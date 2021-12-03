@@ -54,6 +54,7 @@ public class RegistrarPersona extends JDialog {
 	private JTextField txtPassword;
 	private JPanel JPanelAdministrador;
 	private JRadioButton rdbtnAdministrador;
+	private String[] aEventos;
 
 	/**
 	 * Launch the application.
@@ -251,6 +252,18 @@ public class RegistrarPersona extends JDialog {
 			panel_3.add(lblNewLabel_5);
 			
 			cbxEvento = new JComboBox();
+			
+			cbxEvento.removeAll();
+
+			aEventos = new String[PUCMM.getInstance().getComisiones().size()+1];
+			aEventos[0] = "<< Seleccione >>";
+			for (int i = 0; i < PUCMM.getInstance().getComisiones().size(); i++) {
+				aEventos[i+1] = PUCMM.getInstance().getComisiones().get(i).getNombre();
+
+			}
+			
+			cbxEvento.setModel(new DefaultComboBoxModel(aEventos));
+			
 			cbxEvento.setBounds(299, 85, 165, 20);
 			panel_3.add(cbxEvento);
 			
