@@ -9,6 +9,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import backend.PUCMM;
+import backend.Participante;
+import backend.Persona;
 import backend.Trabajo;
 
 import javax.swing.JLabel;
@@ -180,11 +182,18 @@ public class RegTrabajo extends JDialog {
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						
-//						String codEvento = PUCMM.getInstance().buscarEventoByName(cbxEvento.getSelectedItem().toString()).getCodigo();
+						Persona persona = PUCMM.getInstance().buscarPersonaByCedula(txtCedula.getText());
 						
-						Trabajo trabajo = new Trabajo(txtCodigo.getText(), cbxEvento.getSelectedItem().toString(), txtNombre.getText(), cbxTema.getSelectedItem().toString());
-						PUCMM.getInstance().agregarTrabajo(txtCedula.getText(), trabajo);
-//						JOptionPane.showMessageDialog(null, "Trabajo agregado correctamente al evento");
+						if(persona != null && persona instanceof Participante) {
+							
+							Trabajo trabajo = new Trabajo(txtCodigo.getText(), cbxEvento.getSelectedItem().toString(), txtNombre.getText(), cbxTema.getSelectedItem().toString());
+							PUCMM.getInstance().agregarTrabajo(txtCedula.getText(), trabajo);
+							JOptionPane.showMessageDialog(null, "Trabajo agregado correctamente al evento");
+						} else {
+							JOptionPane.showConfirmDialog(null, "Participante no encontrado", "Error!", JOptionPane.ERROR_MESSAGE);
+						}
+												
+						
 
 						
 					}
