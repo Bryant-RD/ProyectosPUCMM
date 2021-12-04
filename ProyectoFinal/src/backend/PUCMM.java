@@ -40,6 +40,12 @@ public class PUCMM {
 		return pucmm;
 	}
 	
+	public static PUCMM pucmm() {
+		if(pucmm == null) {
+			pucmm = new PUCMM();
+		}
+		return pucmm;
+	}
 
 	
 	public void crearEvento(Evento evento) {
@@ -331,6 +337,29 @@ public class PUCMM {
 
 	}
 	
+	// Buscar evento
+	
+	public Evento searchEventoByCodigo(String codigo) {
+		
+		Evento miEvento = null;
+		boolean finded = false;
+		int i = 0;
+		while (!finded && i < eventos.size()) {
+			if(eventos.get(i).getCodigo().equalsIgnoreCase(codigo)) {
+				miEvento = eventos.get(i);
+				finded = true;
+			}
+			
+			else {
+				i ++;
+			}
+		}
+		return miEvento;
+
+	}
+	
+	// Remover evento por fecha
+	
 
 	// COMENTARIO DE PRUEBA
 	
@@ -374,5 +403,7 @@ public class PUCMM {
 	public ArrayList<Comision> getComisiones() {
 		return comisiones;
 	}
+
+
 	
 }

@@ -1,6 +1,7 @@
 package visual;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 
 import javax.swing.JButton;
@@ -9,126 +10,180 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import backend.Evento;
 import backend.PUCMM;
 
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import java.awt.Font;
-import java.awt.Color;
+import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.ImageIcon;
+import javax.swing.JScrollPane;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import javax.swing.border.BevelBorder;
+import java.awt.Toolkit;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JSpinner;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class ListEventos extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField;
 	private JTable table;
-	private DefaultTableModel model;
-	private Object[] rows;
+	private static DefaultTableModel model;
+	private static Object[] rows;
+	private JButton btnModificar;
+	private String select;
+	private JButton btnEliminar;
+	private int index;
+	private JButton btnReporte;
+	private JComboBox cbxTipo = new JComboBox();
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			ListEventos dialog = new ListEventos();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
-	/**
-	 * Create the dialog.
-	 */
+	
 	public ListEventos() {
 		setTitle("Lista de Eventos");
-		setBounds(100, 100, 716, 575);
+		setBounds(100, 100, 781, 537);
 		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setBackground(new Color(248, 248, 255));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		setLocationRelativeTo(null);
+		
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
 			JPanel panel = new JPanel();
-			panel.setBackground(new Color(244, 244, 249));
 			contentPanel.add(panel, BorderLayout.CENTER);
 			panel.setLayout(null);
+			panel.setBackground(new Color(190,209,201));
+			
+			JLabel label = new JLabel("");
+			label.setBounds(6, 51, 102, 328);
+			panel.add(label);
+			
+			JScrollPane scrollPane = new JScrollPane();
+			scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+			scrollPane.setBackground(new Color(190,209,201));
+			scrollPane.setBounds(35, 75, 679, 328);
+			panel.add(scrollPane);
 			{
-				JLabel lblNewLabel = new JLabel("Codigo:");
-				lblNewLabel.setFont(new Font("Serif", Font.PLAIN, 14));
-				lblNewLabel.setBounds(10, 21, 55, 14);
-				panel.add(lblNewLabel);
-			}
-			{
-				textField = new JTextField();
-				textField.setBounds(77, 14, 293, 28);
-				panel.add(textField);
-				textField.setColumns(10);
-			}
-			{
-				JButton btnNewButton = new JButton("Buscar");
-				btnNewButton.setForeground(new Color(255, 255, 255));
-				btnNewButton.setBackground(new Color(88, 111, 124));
-				btnNewButton.setFont(new Font("Serif", Font.PLAIN, 14));
-				btnNewButton.setBounds(388, 14, 95, 28);
-				panel.add(btnNewButton);
-			}
-			{
-				JPanel panel_1 = new JPanel();
-				panel_1.setBounds(10, 58, 670, 424);
-				panel.add(panel_1);
-				panel_1.setLayout(null);
-				
-				JScrollPane scrollPane = new JScrollPane();
-				scrollPane.setBounds(0, 0, 670, 424);
-				panel_1.add(scrollPane);
-				
 				table = new JTable();
+				table.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+				table.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						index = table.getSelectedRow();
+						if(index >= 0) {
+							select = table.getValueAt(index, 0).toString();
+							btnModificar.setEnabled(true);
+							btnEliminar.setEnabled(true);
+							btnReporte.setEnabled(true);
+						}
+					}
+				});
 				model = new DefaultTableModel();
-				String[] headers = {"Codigo", "Nombre", "Tema", "Tipo", "Fecha"};
-				model.setColumnIdentifiers(headers);
+				String[] columnNames = {"Codigo","Nombre del Evento","Tema","Tipo","Local","Fecha"};
+				model.setColumnIdentifiers(columnNames);
 				table.setModel(model);
 				scrollPane.setViewportView(table);
+				
+				JLabel lblTipo = new JLabel("Tema:");
+				lblTipo.setBounds(35, 31, 43, 16);
+				panel.add(lblTipo);
+				
+				cbxTipo.setModel(new DefaultComboBoxModel(new String[] {"Todos", "Fisica", "Quimica", "Medicina", "Administracion", "Informatica"}));
+				cbxTipo.setBounds(79, 26, 140, 26);
+				panel.add(cbxTipo);
+				
+				JButton btnBuscar = new JButton("Buscar");
+				btnBuscar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						loadEventos();
+
+					}
+				});
+				btnBuscar.setBounds(242, 25, 90, 28);
+				panel.add(btnBuscar);
 			}
+			
+			
 		}
 		{
 			JPanel buttonPane = new JPanel();
-			buttonPane.setBackground(new Color(244, 244, 249));
+			buttonPane.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
+			buttonPane.setBackground(new Color(190,209,201));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("OK");
-				okButton.setForeground(new Color(255, 255, 255));
-				okButton.setBackground(new Color(88, 111, 124));
-				okButton.setFont(new Font("Serif", Font.PLAIN, 14));
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
+				JButton okButton = new JButton("Registrar");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						RegEvento registrarEvento = new RegEvento();
+						registrarEvento.setModal(true);
+						registrarEvento.setVisible(true);
+						loadEventos();
+					}
+				});
+				{
+					btnModificar = new JButton("Modificar");
+					btnModificar.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							Evento miEvento = PUCMM.pucmm().searchEventoByCodigo(select);
+							RegEvento unEvento = new RegEvento();
+							unEvento.setModal(true);
+							unEvento.setVisible(true);
+							loadEventos();
+						}
+					});
+					{
+						btnEliminar = new JButton("Eliminar");
+						btnEliminar.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								// PUCMM.pucmm().removeEventoByCodigo(select);
+								JOptionPane.showMessageDialog(null, "Operacion completada con �xito", "Informaci�n", JOptionPane.INFORMATION_MESSAGE);
+								loadEventos();
+							}
+						});
+						btnEliminar.setEnabled(false);
+						buttonPane.add(btnEliminar);
+					}
+					btnModificar.setEnabled(false);
+					
+					buttonPane.add(btnModificar);
+				}
+				
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
-				cancelButton.setForeground(new Color(255, 255, 255));
-				cancelButton.setBackground(new Color(88, 111, 124));
-				cancelButton.setFont(new Font("Serif", Font.PLAIN, 14));
+				JButton cancelButton = new JButton("Cerrar");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+					}
+				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
 		}
+		loadEventos();
 	}
-	
-	private void loadTable() {
+	private static void loadEventos() {
 		model.setRowCount(0);
 		rows = new Object[model.getColumnCount()];
+		
 		for (int i = 0; i < PUCMM.getInstance().getEventos().size(); i++) {
 			rows[0] = PUCMM.getInstance().getEventos().get(i).getCodigo();
 			rows[1] = PUCMM.getInstance().getEventos().get(i).getNombre();
 			rows[2] = PUCMM.getInstance().getEventos().get(i).getTema();
 			rows[3] = PUCMM.getInstance().getEventos().get(i).getTipo();
-			rows[4] = PUCMM.getInstance().getEventos().get(i).getFecha();
+			rows[4] = PUCMM.getInstance().getEventos().get(i).getLocal();
+			rows[5] = PUCMM.getInstance().getEventos().get(i).getFecha();
 			model.addRow(rows);
 		}
+		
 	}
-	
 }
