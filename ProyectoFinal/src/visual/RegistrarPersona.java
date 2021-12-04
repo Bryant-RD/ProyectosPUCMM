@@ -52,8 +52,8 @@ public class RegistrarPersona extends JDialog {
 	private JPanel JPanelJurado;
 	private JButton btnRegistrar;
 	private JComboBox cbxEvento;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField txtUsuarioJurado;
+	private JTextField txtPasswordJurado;
 	private JTextField txtUsuario;
 	private JTextField txtPassword;
 	private JPanel JPanelAdministrador;
@@ -323,15 +323,15 @@ public class RegistrarPersona extends JDialog {
 			lblNewLabel_6.setBounds(10, 72, 46, 14);
 			JPanelJurado.add(lblNewLabel_6);
 			
-			textField = new JTextField();
-			textField.setColumns(10);
-			textField.setBounds(66, 69, 158, 20);
-			JPanelJurado.add(textField);
+			txtUsuarioJurado = new JTextField();
+			txtUsuarioJurado.setColumns(10);
+			txtUsuarioJurado.setBounds(66, 69, 158, 20);
+			JPanelJurado.add(txtUsuarioJurado);
 			
-			textField_1 = new JTextField();
-			textField_1.setColumns(10);
-			textField_1.setBounds(326, 69, 158, 20);
-			JPanelJurado.add(textField_1);
+			txtPasswordJurado = new JTextField();
+			txtPasswordJurado.setColumns(10);
+			txtPasswordJurado.setBounds(326, 69, 158, 20);
+			JPanelJurado.add(txtPasswordJurado);
 			
 			JLabel lblNewLabel_7 = new JLabel("contrase\u00F1a");
 			lblNewLabel_7.setBounds(251, 72, 65, 14);
@@ -411,7 +411,7 @@ public class RegistrarPersona extends JDialog {
 							cbxTemas.setSelectedItem(0);
 							
 						} if(rdbtnJurado.isSelected()) {
-							Jurado jurado = new Jurado(txtNombre.getText(), txtCedula.getText(), txtTelefono.getText(), txtCorreo.getText(), txtArea.getText(), Integer.valueOf(snpExp.getValue().toString()), txtUsuario.getText(), txtPassword.getText());
+							Jurado jurado = new Jurado(txtNombre.getText(), txtCedula.getText(), txtTelefono.getText(), txtCorreo.getText(), txtArea.getText(), Integer.valueOf(snpExp.getValue().toString()), txtUsuarioJurado.getText(), txtPasswordJurado.getText());
 							PUCMM.getInstance().RegistrarPersona(jurado);
 							JOptionPane.showMessageDialog(null, "Jurado registrado correctamente", "Operacion exitosa", JOptionPane.INFORMATION_MESSAGE);
 							

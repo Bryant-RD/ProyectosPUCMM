@@ -46,5 +46,10 @@ public class Persona {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	public String getPassword() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

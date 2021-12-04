@@ -236,9 +236,13 @@ public class RegEvento extends JDialog {
 					btnAgregar.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent arg0) {
 							String recurso = cbxRecurso.getSelectedItem().toString() + " - " + Integer.valueOf(spnCantidadRecurso.getValue().toString());
-							modelRecursos.addElement(recurso);
-							recursos.add(recurso);
-							
+
+							if (PUCMM.getInstance().verificarRecurso(cbxRecurso.getSelectedItem().toString(), Integer.valueOf(spnCantidadRecurso.getValue().toString()))) {
+								modelRecursos.addElement(recurso);
+								recursos.add(recurso);
+							} else {
+								JOptionPane.showMessageDialog(null, "Cantidad no disponible", "Error!", JOptionPane.ERROR_MESSAGE);
+							}
 							
 						}
 					});
@@ -314,6 +318,7 @@ public class RegEvento extends JDialog {
 						
 						Evento evento = new Evento(txtCodigo.getText(), txtNombre.getText(), txtTema.getText(), cbxTipo.getSelectedItem().toString(), fecha, txtLocal.getText(), comision);
 						PUCMM.getInstance().crearEvento(evento);
+						JOptionPane.showMessageDialog(null, "Evento creado correctamente");
 						
 					}
 				});

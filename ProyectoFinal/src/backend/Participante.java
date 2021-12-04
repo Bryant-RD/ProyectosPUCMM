@@ -19,6 +19,7 @@ public class Participante extends Persona {
 		
 		Trabajo trabajo = new Trabajo(codigo, codEvento ,nombreTrabajo, tema);
 		trabajos.add(trabajo);
+		PUCMM.getInstance().registrarTrabajo(trabajo);
 	}
 
 	public String getMatricula() {

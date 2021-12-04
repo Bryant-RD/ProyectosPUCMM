@@ -167,7 +167,8 @@ public class RegComision extends JDialog {
 					public void actionPerformed(ActionEvent e) {
 						
 						Jurado presidente = PUCMM.getInstance().getJuradoByCedula(txtPresidente.getText());
-						if(presidente != null && PUCMM.getInstance().verificarJurado(presidente) && jurados.size() > 0) {
+						
+						if(presidente != null && PUCMM.getInstance().verificarJurado(presidente) && jurados.size() > 0 && verificarlista(presidente) == 0) {
 							
 							PUCMM.getInstance().crearComision(txtNombre.getText(), presidente, txtAreaConocimiento.getText(), jurados);
 							JOptionPane.showMessageDialog(null, "Comision registrada correctamente.");
@@ -175,6 +176,8 @@ public class RegComision extends JDialog {
 							txtNombre.setText("");
 							txtAreaConocimiento.setText("");
 							txtPresidente.setText("");
+						} else {
+							JOptionPane.showMessageDialog(null, "Ha ocurrido un problema con los jurados seleccionados", "Error!", JOptionPane.ERROR_MESSAGE);
 						}
 							
 					}
@@ -192,5 +195,14 @@ public class RegComision extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+	}
+	private int verificarlista(Jurado presidente) {
+		int cont = 0;
+		for (Jurado jurado : jurados) {
+			if(jurado.getCedula().equalsIgnoreCase(presidente.getCedula())) {
+				cont++;
+			}
+		}
+		return cont;
 	}
 }

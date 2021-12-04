@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
+import visual.Calificaciones;
+import visual.test;
+
 
 
 
@@ -27,8 +30,8 @@ public class PUCMM {
 		Administrador admin = new Administrador("admin", "admin", "admin", "admin", "admin", "admin");
 		personas.add(admin);
 		
-		//Jurado jur = new Jurado("manu", "940903", "098786", "mm@.com", "fisica", 10, "jurado", "12345");
-		//personas.add(jur);
+		Jurado jur = new Jurado("manu", "940903", "098786", "mm@.com", "fisica", 10, "jurado", "12345");
+		personas.add(jur);
 		
 	}
 	
@@ -50,6 +53,18 @@ public class PUCMM {
 	
 	public void crearEvento(Evento evento) {
 		eventos.add(evento);
+		
+	}
+	
+	public boolean verificarRecurso(String nomRecurso, int cantidad) {
+		
+		Recursos recurso = buscarRecurso(nomRecurso);
+		if(recurso.getDisponibilidad() > cantidad) {
+			return true;
+		} else {
+			return false;
+		}
+		
 		
 	}
 	
@@ -195,27 +210,35 @@ public class PUCMM {
 		boolean encontrado = false;
 		
 		for (Persona persona: personas) {
+			
+			
 			if (((Administrador) persona).getUsuario().equalsIgnoreCase(usuario)) {
 				aux = persona;
 				if(((Administrador)aux).getPassword().equalsIgnoreCase(password)) {
 					if(aux instanceof Jurado) {
 						logueado = aux;
+						Calificaciones cali = new Calificaciones();
+						cali.setVisible(true);
+						
 					} else {
 						logueado = aux;
 
 					}
 					encontrado =  true;
+					break;
 				}
-			}
-		}
-		
-		/*
-		for (Persona persona: personas) {
-			if (((Jurado) persona).getUsuario().equalsIgnoreCase(usuario)) {
+			}	
+			
+			
+			
+			
+			if (((Administrador) persona).getUsuario().equalsIgnoreCase(usuario)) {
 				aux = persona;
-				if(((Jurado)aux).getPassword().equalsIgnoreCase(password)) {
+				if(((Administrador)aux).getPassword().equalsIgnoreCase(password)) {
 					if(aux instanceof Administrador) {
 						logueado = aux;
+						test reg = new test();
+						reg.setVisible(true);
 					} else {
 						logueado = aux;
 
@@ -223,8 +246,11 @@ public class PUCMM {
 					encontrado =  true;
 				}
 			}
+					
+			
 		}
-		*/
+		
+		
 	
 		return encontrado;
 	}

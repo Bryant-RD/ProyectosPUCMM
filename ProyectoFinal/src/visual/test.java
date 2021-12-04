@@ -9,6 +9,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.border.TitledBorder;
+
+import backend.PUCMM;
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
@@ -21,6 +24,8 @@ import java.awt.Dimension;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.UIManager;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class test extends JFrame {
 
@@ -72,6 +77,16 @@ public class test extends JFrame {
 		setJMenuBar(menuBar);
 		
 		JMenu mnNewMenu = new JMenu("Cerrar Sesion");
+		mnNewMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				PUCMM.getInstance().logueado = null;
+				dispose();
+				Login lg = new Login();
+				lg.setVisible(true);
+			}
+		});
+		
 		mnNewMenu.setFont(new Font("Serif", Font.PLAIN, 15));
 		menuBar.add(mnNewMenu);
 		contentPane = new JPanel();
@@ -172,7 +187,8 @@ public class test extends JFrame {
 		btnEventos.setFont(new Font("Calibri", Font.PLAIN, 15));
 		btnEventos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				ListEventos lstEv = new ListEventos();
+				lstEv.setVisible(true);
 			}
 		});
 		btnEventos.setBounds(125, 32, 166, 50);

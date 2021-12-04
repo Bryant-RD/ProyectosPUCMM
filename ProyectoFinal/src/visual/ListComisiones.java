@@ -116,6 +116,7 @@ public class ListComisiones extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+		loadTable();
 	}
 	
 	private void loadTable() {
@@ -123,9 +124,10 @@ public class ListComisiones extends JDialog {
 		rows = new Object[model.getColumnCount()];
 		for (int i = 0; i < PUCMM.getInstance().getComisiones().size(); i++) {
 			rows[0] = PUCMM.getInstance().getComisiones().get(i).getNombre();
-			rows[1] = PUCMM.getInstance().getComisiones().get(i).getPresidente();
-			rows[2] = PUCMM.getInstance().getComisiones().get(i).getJurados().size();
-			rows[3] = PUCMM.getInstance().getComisiones().get(i).getTrabajos().size();
+			rows[1] = PUCMM.getInstance().getComisiones().get(i).getPresidente().getNombre();
+			rows[2] = PUCMM.getInstance().getComisiones().get(i).getAreaConocimiento();
+			rows[3] = PUCMM.getInstance().getComisiones().get(i).getJurados().size();
+			rows[4] = PUCMM.getInstance().getComisiones().get(i).getTrabajos().size();
 			model.addRow(rows);
 		}
 	}
