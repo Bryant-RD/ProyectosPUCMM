@@ -23,24 +23,6 @@ public class Comision {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	public String getNombre() {
 		return nombre;
 	}

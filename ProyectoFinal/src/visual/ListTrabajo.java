@@ -97,8 +97,8 @@ public class ListTrabajo extends JDialog {
 						if (index != -1) {
 							btnEliminar.setEnabled(true);
 							btnModificar.setEnabled(true);
-							String codigo = (String)(model.getValueAt(index, 0));
-							selected = PUCMM.getInstance().buscarTrabajoByCod(codigo);
+							String nombre = (String)(model.getValueAt(index, 0));
+							selected = PUCMM.getInstance().buscarTrabajoByName(nombre);
 							System.out.println(selected.getCodigo()+" "+selected.getNombre());
 						}
 					}
@@ -132,7 +132,7 @@ public class ListTrabajo extends JDialog {
 				btnModificar = new JButton("Modificar");
 				btnModificar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						RegistrarPersona aux = new RegistrarPersona();
+						RegTrabajo aux = new RegTrabajo();
 						aux.setModal(true);
 						aux.setVisible(true);
 					}

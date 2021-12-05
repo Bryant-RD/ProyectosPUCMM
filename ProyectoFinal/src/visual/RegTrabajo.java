@@ -106,9 +106,8 @@ public class RegTrabajo extends JDialog {
 			lblX.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
-					if(JOptionPane.showConfirmDialog(null, "Esta seguro de que quieres cerrar la aplicacion?","Confirmacion", JOptionPane.YES_NO_OPTION) == 0) {
-						dispose();
-					}
+					dispose();
+					
 				}
 				@Override
 				public void mouseEntered(MouseEvent e) {
@@ -165,6 +164,8 @@ public class RegTrabajo extends JDialog {
 			
 			txtCodigo = new JTextField();
 			txtCodigo.setBounds(178, 75, 237, 30);
+			txtCodigo.setEditable(false);
+			txtCodigo.setText("T-"+ Trabajo.codigo);
 			panel.add(txtCodigo);
 			txtCodigo.setColumns(10);
 		}
@@ -186,7 +187,7 @@ public class RegTrabajo extends JDialog {
 						
 						if(persona != null && persona instanceof Participante) {
 							
-							Trabajo trabajo = new Trabajo(txtCodigo.getText(), cbxEvento.getSelectedItem().toString(), txtNombre.getText(), cbxTema.getSelectedItem().toString());
+							Trabajo trabajo = new Trabajo(cbxEvento.getSelectedItem().toString(), txtNombre.getText(), cbxTema.getSelectedItem().toString());
 							PUCMM.getInstance().agregarTrabajo(txtCedula.getText(), trabajo);
 							JOptionPane.showMessageDialog(null, "Trabajo agregado correctamente al evento");
 						} else {

@@ -275,9 +275,8 @@ public class RegEvento extends JDialog {
 			lblX.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
-					if(JOptionPane.showConfirmDialog(null, "Esta seguro de que quieres cerrar la aplicacion?","Confirmacion", JOptionPane.YES_NO_OPTION) == 0) {
-						dispose();
-					}
+					dispose();
+				
 				}
 				@Override
 				public void mouseEntered(MouseEvent e) {

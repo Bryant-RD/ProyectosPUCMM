@@ -17,7 +17,7 @@ public class Participante extends Persona {
 		this.escuela = escuela;
 		trabajos = new ArrayList<>();
 		
-		Trabajo trabajo = new Trabajo(codigo, codEvento ,nombreTrabajo, tema);
+		Trabajo trabajo = new Trabajo(codEvento ,nombreTrabajo, tema);
 		trabajos.add(trabajo);
 		PUCMM.getInstance().registrarTrabajo(trabajo);
 	}

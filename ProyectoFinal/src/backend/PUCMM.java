@@ -30,8 +30,6 @@ public class PUCMM {
 		Administrador admin = new Administrador("admin", "admin", "admin", "admin", "admin", "admin");
 		personas.add(admin);
 		
-		Jurado jur = new Jurado("manu", "940903", "098786", "mm@.com", "fisica", 10, "jurado", "12345");
-		personas.add(jur);
 		
 	}
 	
@@ -82,6 +80,7 @@ public class PUCMM {
 			JOptionPane.showMessageDialog(null, "Participante no entrado", "Error!", JOptionPane.ERROR_MESSAGE);
 		}
 	}
+	
 	
 	
 	
@@ -267,7 +266,7 @@ public class PUCMM {
 		
 		Calificacion cali = new Calificacion(logueado.getNombre(), calificacion);
 		
-		Trabajo trabajo = buscarTrabajoByCod(codTrabajo);
+		Trabajo trabajo = buscarTrabajoByName(codTrabajo);
 		
 		trabajo.getCalificaciones().add(cali);
 		
@@ -276,7 +275,7 @@ public class PUCMM {
 	public float calCalificacionFinal(String codeTrabajo) {
 		float cali = 0;
 		
-		Trabajo trabajo = buscarTrabajoByCod(codeTrabajo);
+		Trabajo trabajo = buscarTrabajoByName(codeTrabajo);
 		
 		for (Calificacion calificacion : trabajo.getCalificaciones()) {
 			cali += calificacion.getCalificacion();
@@ -341,12 +340,12 @@ public class PUCMM {
 
 	}
 	
-	public Trabajo buscarTrabajoByCod(String codigoTrabajo) {
+	public Trabajo buscarTrabajoByName(String nombreTrabajo) {
 			
 			Trabajo aux = null;
 			
 			for (Trabajo trabajo: trabajos) {
-				if (trabajo.getCodigo().equalsIgnoreCase(codigoTrabajo)) {
+				if (trabajo.getNombre().equalsIgnoreCase(nombreTrabajo)) {
 					aux = trabajo;
 				}
 			}

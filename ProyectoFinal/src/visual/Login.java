@@ -46,7 +46,7 @@ public class Login extends JDialog {
 	private Dimension dim;
 	private JTextField txtUsuario;
 	private JButton btnLoggin;
-	private JPasswordField txtPassword;
+	private JTextField txtPassword;
 
 	/**
 	 * Launch the application.
@@ -139,12 +139,12 @@ public class Login extends JDialog {
 			panel.add(pnlPassword);
 			pnlPassword.setLayout(null);
 			
-			txtPassword = new JPasswordField();
+			txtPassword = new JTextField();
+			txtPassword.setText("Password");
 			txtPassword.addFocusListener(new FocusAdapter() {
 				@Override
-				public void focusGained(FocusEvent e) {
+				public void focusGained(FocusEvent arg0) {
 					if(txtPassword.getText().equals("Password")) {
-						txtPassword.setEchoChar('●');
 						txtPassword.setText("");
 					}
 					else {
@@ -153,20 +153,15 @@ public class Login extends JDialog {
 				}
 				@Override
 				public void focusLost(FocusEvent e) {
-					if(txtPassword.getText().equals("")) {
+					if(txtPassword.getText().equals(""))
 						txtPassword.setText("Password");
-						txtPassword.setEchoChar((char)0);
-						
-					}
 				}
 			});
-			txtPassword.setBorder(null);
-			txtPassword.setEchoChar((char)0);
 			txtPassword.setFont(new Font("Calibri", Font.PLAIN, 14));
-			txtPassword.setText("Contrase\u00F1a");
-			txtPassword.setBounds(12, 12, 180, 22);
-			pnlPassword.add(txtPassword);
 			txtPassword.setColumns(10);
+			txtPassword.setBorder(null);
+			txtPassword.setBounds(12, 13, 180, 21);
+			pnlPassword.add(txtPassword);
 			
 			JLabel lblIconPassword = new JLabel("");
 			lblIconPassword.setHorizontalAlignment(SwingConstants.CENTER);
@@ -185,6 +180,9 @@ public class Login extends JDialog {
 				public void actionPerformed(ActionEvent e) {
 					if (PUCMM.getInstance().loggin(txtUsuario.getText(), txtPassword.getText())) {
 						dispose();
+						test reg = new test();
+						reg.setVisible(true);
+						
 					} else {
 						JOptionPane.showConfirmDialog(null, "Usuario y contraseña no coinciden", "Ups!", JOptionPane.WARNING_MESSAGE);
 					}
