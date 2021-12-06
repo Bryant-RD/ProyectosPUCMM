@@ -31,6 +31,7 @@ public class PUCMM {
 		personas.add(admin);
 		
 		
+		
 	}
 	
 	public static PUCMM getInstance() {
@@ -57,7 +58,7 @@ public class PUCMM {
 	public boolean verificarRecurso(String nomRecurso, int cantidad) {
 		
 		Recursos recurso = buscarRecurso(nomRecurso);
-		if(recurso.getDisponibilidad() > cantidad) {
+		if(recurso.getDisponibilidad() < cantidad) {
 			return true;
 		} else {
 			return false;
