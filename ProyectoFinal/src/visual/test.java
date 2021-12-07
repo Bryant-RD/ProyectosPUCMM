@@ -152,7 +152,7 @@ public class test extends JFrame {
 		btnRegRecurso.setFont(new Font("Calibri", Font.PLAIN, 15));
 		btnRegRecurso.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RegRecursos reg = new RegRecursos();
+				RegRecursos reg = new RegRecursos(null);
 				reg.setVisible(true);
 			}
 		});

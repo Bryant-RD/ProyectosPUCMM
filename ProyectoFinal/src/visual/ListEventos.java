@@ -51,6 +51,9 @@ public class ListEventos extends JDialog {
 	public ListEventos() {
 		setTitle("Lista de Eventos");
 		setBounds(100, 100, 781, 537);
+		setLocationRelativeTo(null);
+		setResizable(false);
+		setModal(true);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);

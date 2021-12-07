@@ -25,6 +25,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.ListSelectionModel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class ListRecursos extends JDialog {
 
@@ -33,6 +35,7 @@ public class ListRecursos extends JDialog {
 	private Recursos selected = null;
 	private Object[] rows;
 	private JTable table;
+	private JButton btnUpdate;
 	
 
 	/**
@@ -90,6 +93,17 @@ public class ListRecursos extends JDialog {
 			panel.add(scrollPane, BorderLayout.CENTER);
 			
 			table = new JTable();
+			table.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					int row = table.getSelectedRow();
+					if(row != -1) {
+						String name = (String) table.getValueAt(row, 0);
+						selected = PUCMM.getInstance().buscarRecurso(name);
+						btnUpdate.setEnabled(true);
+					}
+				}
+			});
 			table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			String[] headers = {"Nombre del equipo","Tipo","Cantidad", "Disponibilidad"};
 			model = new DefaultTableModel();
@@ -103,7 +117,14 @@ public class ListRecursos extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton btnUpdate = new JButton("Modificar");
+				btnUpdate = new JButton("Modificar");
+				btnUpdate.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						RegRecursos reg = new RegRecursos(selected);
+						reg.setVisible(true);
+						System.out.print("funciona");
+					}
+				});
 				btnUpdate.setEnabled(false);
 				btnUpdate.setActionCommand("OK");
 				buttonPane.add(btnUpdate);

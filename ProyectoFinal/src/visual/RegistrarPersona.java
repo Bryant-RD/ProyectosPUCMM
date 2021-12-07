@@ -79,6 +79,9 @@ public class RegistrarPersona extends JDialog {
 	public RegistrarPersona() {
 		setTitle("Registar Persona");
 		setBounds(100, 100, 540, 495);
+		setLocationRelativeTo(null);
+		setResizable(false);
+		setModal(true);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(new Color(176, 224, 230));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -418,8 +421,8 @@ public class RegistrarPersona extends JDialog {
 					
 							txtArea.setText("");
 							snpExp.setValue(0);
-							txtUsuario.setText("");
-							txtPassword.setText("");
+							txtUsuarioJurado.setText("");
+							txtPasswordJurado.setText("");
 							
 							
 						} if(rdbtnAdministrador.isSelected()) {

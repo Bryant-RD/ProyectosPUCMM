@@ -55,6 +55,9 @@ public class RegTrabajo extends JDialog {
 	 * Create the dialog.
 	 */
 	public RegTrabajo() {
+		setLocationRelativeTo(null);
+		setResizable(false);
+		setModal(true);
 		setBackground(new Color(244, 244, 249));
 		setFont(new Font("Serif", Font.PLAIN, 12));
 		setTitle("Registrar Trabajo");

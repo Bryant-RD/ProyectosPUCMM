@@ -62,6 +62,8 @@ public class ListTrabajo extends JDialog {
 		setTitle("Listado de Trabajos");
 		setBounds(100, 100, 510, 357);
 		setLocationRelativeTo(null);
+		setResizable(false);
+		setModal(true);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);

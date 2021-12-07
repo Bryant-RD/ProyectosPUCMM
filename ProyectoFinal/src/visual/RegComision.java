@@ -56,6 +56,9 @@ public class RegComision extends JDialog {
 	public RegComision() {
 		jurados = new ArrayList<>();
 		setBounds(100, 100, 569, 574);
+		setLocationRelativeTo(null);
+		setResizable(false);
+		setModal(true);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);

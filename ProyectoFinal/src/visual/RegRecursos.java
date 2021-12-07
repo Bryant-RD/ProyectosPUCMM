@@ -33,13 +33,14 @@ public class RegRecursos extends JDialog {
 	private JComboBox cbxTipo;
 	private JButton btnRegistrar;
 	private JSpinner spnCantidad;
+	private static Recursos updated = null;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
-			RegRecursos dialog = new RegRecursos();
+			RegRecursos dialog = new RegRecursos(null);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -50,9 +51,20 @@ public class RegRecursos extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public RegRecursos() {
-		setTitle("Registrar Recursos");
+	public RegRecursos(Recursos recurso) {
+		updated = recurso;
+		
+		if(updated != null) {
+			setTitle("Modificar Recurso");
+		} else {
+			setTitle("Registrar Recursos");
+		}
 		setBounds(100, 100, 425, 303);
+		
+		setLocationRelativeTo(null);
+		setResizable(false);
+		setModal(true);
+		
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(new Color(244, 244, 249));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -110,10 +122,22 @@ public class RegRecursos extends JDialog {
 							
 						} else {
 
-							Recursos recurso = new Recursos(Integer.valueOf(spnCantidad.getValue().toString()),cbxTipo.getSelectedItem().toString(), txtNombre.getText());
-							PUCMM.getInstance().agregarRecurso(recurso);
-							JOptionPane.showMessageDialog(null, "Nuevo equipo registrado correctamente", "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
-							
+							if(updated != null) {
+								
+								Recursos nuevo = new Recursos(Integer.valueOf(spnCantidad.getValue().toString()), cbxTipo.getSelectedItem().toString(), txtNombre.getText());
+
+								int aux = JOptionPane.showConfirmDialog(null, "Estas seguro que quieres modificar este recurso?", "Confirma modificacion.", JOptionPane.YES_NO_OPTION);
+								
+								if(aux == JOptionPane.YES_OPTION) {
+									PUCMM.getInstance().editarRecurso(updated, nuevo);
+								}
+								
+							} else {
+								Recursos recurso = new Recursos(Integer.valueOf(spnCantidad.getValue().toString()),cbxTipo.getSelectedItem().toString(), txtNombre.getText());
+								PUCMM.getInstance().agregarRecurso(recurso);
+								JOptionPane.showMessageDialog(null, "Nuevo equipo registrado correctamente", "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
+								
+							}
 							txtNombre.setText("");
 							cbxTipo.setSelectedIndex(0);
 							spnCantidad.setValue(0);
@@ -174,6 +198,13 @@ public class RegRecursos extends JDialog {
 			panel.setBackground(new Color(176, 224, 230));
 			panel.setBounds(99, 22, 228, 39);
 			contentPanel.add(panel);
+		}
+		if(updated != null) {
+			txtNombre.setText(updated.getNombreEquipo());
+			cbxTipo.setSelectedItem(updated.getTipo());
+			spnCantidad.setValue(updated.getCantidad());
+			
+			btnRegistrar.setText("Actualizar");
 		}
 	}
 }

@@ -89,7 +89,11 @@ public class PUCMM {
 	}
 	
 	
-	
+	public void editarRecurso(Recursos viejo, Recursos nuevo) {
+		viejo.setNombreEquipo(nuevo.getNombreEquipo());
+		viejo.setCantidad(nuevo.getCantidad());
+		viejo.setTipo(nuevo.getTipo());
+	}
 	
 	public  Comision getComisionByName(String name) {
 		Comision comision = null;

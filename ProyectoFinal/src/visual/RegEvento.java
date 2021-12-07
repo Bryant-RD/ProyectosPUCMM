@@ -79,6 +79,9 @@ public class RegEvento extends JDialog {
 		recursos = new ArrayList<>();
 		setTitle("Administracion");
 		setBounds(100, 100, 760, 574);
+		setLocationRelativeTo(null);
+		setResizable(false);
+		setModal(true);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(new Color(176, 224, 230));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
