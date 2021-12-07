@@ -53,12 +53,15 @@ public class PUCMM {
 	public void crearEvento(Evento evento) {
 		eventos.add(evento);
 		
+		
 	}
 	
 	public boolean verificarRecurso(String nomRecurso, int cantidad) {
 		
 		Recursos recurso = buscarRecurso(nomRecurso);
-		if(recurso.getDisponibilidad() < cantidad) {
+		System.out.print(recurso.getDisponibilidad());
+		if(recurso.getDisponibilidad() > cantidad) {
+			
 			return true;
 		} else {
 			return false;
@@ -104,16 +107,19 @@ public class PUCMM {
 		recursos.add(recurso);
 	}
 	
-	public Recursos agregarRecursoEvento(Recursos recurso, int cantidad) { //Funciona
+	public void agregarRecursoEvento(Recursos recurso, int cantidad, String nombre) { //Funciona
 		//Chequear si hay recursos
 		
 		if(recurso.getDisponibilidad() > cantidad) {
 			
 			recurso.setDisponibilidad(recurso.getDisponibilidad()-cantidad);
-			return recurso;
+			Evento evento = buscarEventoByName(nombre);
+			
+			evento.getRecursosUtilizados().add(recurso);
+			
 		} else {
 			JOptionPane.showMessageDialog(null, "No hay disponibilidad para este equipo: " + recurso.getNombreEquipo());
-			return null;
+			
 		}
 	}
 	

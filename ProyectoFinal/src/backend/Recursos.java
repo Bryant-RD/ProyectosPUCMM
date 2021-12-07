@@ -10,7 +10,7 @@ public class Recursos {
 	
 	public Recursos(int cantidad, String tipo, String nombreEquipo) {
 		this.cantidad = cantidad;
-		this.disponibilidad = disponibilidad;
+		this.disponibilidad = cantidad;
 		this.tipo = tipo;
 		this.nombreEquipo = nombreEquipo;
 		

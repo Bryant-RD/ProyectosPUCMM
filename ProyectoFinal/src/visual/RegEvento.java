@@ -26,6 +26,7 @@ import javax.swing.table.DefaultTableModel;
 import backend.Comision;
 import backend.Evento;
 import backend.PUCMM;
+import backend.Recursos;
 
 import javax.swing.JList;
 import java.awt.event.ActionListener;
@@ -315,8 +316,19 @@ public class RegEvento extends JDialog {
 
 						String fecha = de.format(dateAux);
 						
+						
+						
 						Evento evento = new Evento(txtCodigo.getText(), txtNombre.getText(), txtTema.getText(), cbxTipo.getSelectedItem().toString(), fecha, txtLocal.getText(), comision);
 						PUCMM.getInstance().crearEvento(evento);
+//						
+						for (String recurso : recursos) {
+							String[] split = recurso.split("-");
+							int nun = Integer.parseInt(split[1].replaceAll("\\s",""));
+							Recursos re = PUCMM.getInstance().buscarRecurso(split[0].replaceAll("\\s",""));
+							PUCMM.getInstance().agregarRecursoEvento(re, nun , txtNombre.getText());
+						}
+						
+						
 						JOptionPane.showMessageDialog(null, "Evento creado correctamente");
 						
 					}
