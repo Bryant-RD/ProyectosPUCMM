@@ -31,6 +31,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JSpinner;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.Font;
 
 public class ListEventos extends JDialog {
 
@@ -60,7 +61,7 @@ public class ListEventos extends JDialog {
 			JPanel panel = new JPanel();
 			contentPanel.add(panel, BorderLayout.CENTER);
 			panel.setLayout(null);
-			panel.setBackground(new Color(190,209,201));
+			panel.setBackground(new Color(184, 219, 217));
 			
 			JLabel label = new JLabel("");
 			label.setBounds(6, 51, 102, 328);
@@ -93,14 +94,18 @@ public class ListEventos extends JDialog {
 				scrollPane.setViewportView(table);
 				
 				JLabel lblTipo = new JLabel("Tema:");
+				lblTipo.setFont(new Font("Calibri", Font.PLAIN, 14));
 				lblTipo.setBounds(35, 31, 43, 16);
 				panel.add(lblTipo);
+				cbxTipo.setFont(new Font("Calibri", Font.PLAIN, 14));
 				
 				cbxTipo.setModel(new DefaultComboBoxModel(new String[] {"Todos", "Fisica", "Quimica", "Medicina", "Administracion", "Informatica"}));
 				cbxTipo.setBounds(79, 26, 140, 26);
 				panel.add(cbxTipo);
 				
 				JButton btnBuscar = new JButton("Buscar");
+				btnBuscar.setBackground(new Color(244, 244, 249));
+				btnBuscar.setFont(new Font("Calibri", Font.PLAIN, 14));
 				btnBuscar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						loadEventos();
@@ -117,7 +122,7 @@ public class ListEventos extends JDialog {
 			JPanel buttonPane = new JPanel();
 			buttonPane.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-			buttonPane.setBackground(new Color(190,209,201));
+			buttonPane.setBackground(new Color(184, 219, 217));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("Registrar");
@@ -131,6 +136,8 @@ public class ListEventos extends JDialog {
 				});
 				{
 					btnModificar = new JButton("Modificar");
+					btnModificar.setBackground(new Color(244, 244, 249));
+					btnModificar.setFont(new Font("Calibri", Font.PLAIN, 14));
 					btnModificar.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							Evento miEvento = PUCMM.pucmm().searchEventoByCodigo(select);
@@ -142,6 +149,8 @@ public class ListEventos extends JDialog {
 					});
 					{
 						btnEliminar = new JButton("Eliminar");
+						btnEliminar.setBackground(new Color(244, 244, 249));
+						btnEliminar.setFont(new Font("Calibri", Font.PLAIN, 14));
 						btnEliminar.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
 								// PUCMM.pucmm().removeEventoByCodigo(select);
@@ -160,6 +169,8 @@ public class ListEventos extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("Cerrar");
+				cancelButton.setBackground(new Color(244, 244, 249));
+				cancelButton.setFont(new Font("Calibri", Font.PLAIN, 14));
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();
