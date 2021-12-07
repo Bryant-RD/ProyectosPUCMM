@@ -28,6 +28,8 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.Font;
+import java.awt.Color;
 
 public class ListTrabajo extends JDialog {
 
@@ -68,6 +70,7 @@ public class ListTrabajo extends JDialog {
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
 			JPanel panel = new JPanel();
+			panel.setBackground(new Color(184, 219, 217));
 			panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			contentPanel.add(panel);
 			panel.setLayout(null);
@@ -107,7 +110,8 @@ public class ListTrabajo extends JDialog {
 				scrollPane.setViewportView(table);
 			}
 			{
-				JLabel lblNewLabel = new JLabel("Codigo");
+				JLabel lblNewLabel = new JLabel("Codigo:");
+				lblNewLabel.setFont(new Font("Calibri", Font.PLAIN, 14));
 				lblNewLabel.setBounds(10, 15, 46, 14);
 				panel.add(lblNewLabel);
 			}
@@ -119,6 +123,8 @@ public class ListTrabajo extends JDialog {
 			}
 			{
 				btnBuscar = new JButton("Buscar");
+				btnBuscar.setBackground(new Color(244, 244, 249));
+				btnBuscar.setFont(new Font("Calibri", Font.PLAIN, 14));
 				btnBuscar.setBounds(276, 11, 89, 23);
 				panel.add(btnBuscar);
 			}
@@ -126,10 +132,13 @@ public class ListTrabajo extends JDialog {
 		}
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(new Color(184, 219, 217));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				btnModificar = new JButton("Modificar");
+				btnModificar.setBackground(new Color(244, 244, 249));
+				btnModificar.setFont(new Font("Calibri", Font.PLAIN, 14));
 				btnModificar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						RegTrabajo aux = new RegTrabajo();
@@ -142,6 +151,8 @@ public class ListTrabajo extends JDialog {
 			}
 			{
 				btnEliminar = new JButton("Eliminar");
+				btnEliminar.setBackground(new Color(244, 244, 249));
+				btnEliminar.setFont(new Font("Calibri", Font.PLAIN, 14));
 				btnEliminar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						int option = JOptionPane.showConfirmDialog(null, "Desea eliminar la persona seleccionado: "+selected.getCodigo(), "Eliminar persona", JOptionPane.YES_NO_OPTION);
@@ -159,7 +170,9 @@ public class ListTrabajo extends JDialog {
 				getRootPane().setDefaultButton(btnEliminar);
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
+				JButton cancelButton = new JButton("Cancelar");
+				cancelButton.setBackground(new Color(244, 244, 249));
+				cancelButton.setFont(new Font("Calibri", Font.PLAIN, 14));
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();
