@@ -27,6 +27,7 @@ import backend.Comision;
 import backend.Evento;
 import backend.PUCMM;
 import backend.Recursos;
+import backend.Trabajo;
 
 import javax.swing.JList;
 import java.awt.event.ActionListener;
@@ -105,7 +106,6 @@ public class RegEvento extends JDialog {
 				JLabel lblNewLabel_2 = new JLabel("Codigo:");
 				lblNewLabel_2.setFont(new Font("Calibri", Font.PLAIN, 14));
 				lblNewLabel_2.setBounds(22, 87, 46, 28);
-				panel.add(lblNewLabel_2);
 			}
 			{
 				JLabel lblNewLabel_3 = new JLabel("Tema:");
@@ -140,6 +140,8 @@ public class RegEvento extends JDialog {
 			{
 				txtCodigo = new JTextField();
 				txtCodigo.setBounds(80, 92, 145, 20);
+				txtCodigo.setEditable(false);
+				txtCodigo.setText("E-"+ PUCMM.getInstance().getEventos().size());
 				panel.add(txtCodigo);
 				txtCodigo.setColumns(10);
 			}
@@ -297,6 +299,11 @@ public class RegEvento extends JDialog {
 			panel_1.setBackground(new Color(176, 224, 230));
 			panel_1.setBounds(234, 13, 258, 45);
 			panel.add(panel_1);
+			
+			JLabel lblCodigo = new JLabel("Codigo:");
+			lblCodigo.setFont(new Font("Calibri", Font.PLAIN, 14));
+			lblCodigo.setBounds(22, 92, 46, 14);
+			panel.add(lblCodigo);
 		}
 		{
 			JPanel buttonPane = new JPanel();
