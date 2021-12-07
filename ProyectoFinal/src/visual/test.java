@@ -166,7 +166,7 @@ public class test extends JFrame {
 		btnRegTrabajo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				RegTrabajo rgTrabajo = new RegTrabajo();
+				RegTrabajo rgTrabajo = new RegTrabajo(null);
 				rgTrabajo.setVisible(true);
 				
 			}

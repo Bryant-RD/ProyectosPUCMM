@@ -130,6 +130,7 @@ public class RegRecursos extends JDialog {
 								
 								if(aux == JOptionPane.YES_OPTION) {
 									PUCMM.getInstance().editarRecurso(updated, nuevo);
+									dispose();
 								}
 								
 							} else {

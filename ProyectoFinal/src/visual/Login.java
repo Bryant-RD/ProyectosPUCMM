@@ -81,6 +81,8 @@ public class Login extends JDialog {
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		setUndecorated(true);
 		setLocationRelativeTo(null);
+		setResizable(false);
+		setModal(true);
 		{
 			
 			
@@ -180,8 +182,8 @@ public class Login extends JDialog {
 				public void actionPerformed(ActionEvent e) {
 					if (PUCMM.getInstance().loggin(txtUsuario.getText(), txtPassword.getText())) {
 						dispose();
-						test reg = new test();
-						reg.setVisible(true);
+//						test reg = new test();
+//						reg.setVisible(true);
 						
 					} else {
 						JOptionPane.showConfirmDialog(null, "Usuario y contraseña no coinciden", "Ups!", JOptionPane.WARNING_MESSAGE);

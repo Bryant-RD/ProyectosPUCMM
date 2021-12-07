@@ -134,7 +134,7 @@ public class ListTrabajo extends JDialog {
 				btnModificar = new JButton("Modificar");
 				btnModificar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						RegTrabajo aux = new RegTrabajo();
+						RegTrabajo aux = new RegTrabajo(selected);
 						aux.setModal(true);
 						aux.setVisible(true);
 					}

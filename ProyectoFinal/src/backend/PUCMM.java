@@ -71,20 +71,32 @@ public class PUCMM {
 	}
 	
 	public void agregarTrabajo(String cedulaPart, Trabajo trabajo) {
+		if(verificarTrabajo(cedulaPart, trabajo)) {
+			Evento evento = buscarEventoByName(trabajo.getEvento());
+			Persona participante = buscarPersonaByCedula(cedulaPart);
+			evento.getProyectos().add(trabajo);
+			trabajos.add(trabajo);
+			((Participante)participante).getTrabajos().add(trabajo);
+		} else {
+			JOptionPane.showMessageDialog(null, "El trabajo no pudo ser registrado. verifique los campos.", "Error!", JOptionPane.ERROR_MESSAGE);
+		}
+		
+
+	}
+	
+	public boolean verificarTrabajo(String cedulaPart, Trabajo trabajo) {
 		Persona participante = buscarPersonaByCedula(cedulaPart);
 		if(participante != null) {
-			((Participante)participante).getTrabajos().add(trabajo);
-			
 			Evento evento = buscarEventoByName(trabajo.getEvento());
 			if(evento != null) {
-				evento.getProyectos().add(trabajo);
-				trabajos.add(trabajo);
+				return true;
 			} else {
 				JOptionPane.showMessageDialog(null, "Evento no encontrado", "Error!", JOptionPane.ERROR_MESSAGE);
+				return false;
 			}
-			JOptionPane.showMessageDialog(null, "Trabajo registrado correctamente al evento: " + trabajo.getEvento());
 		} else {
 			JOptionPane.showMessageDialog(null, "Participante no entrado", "Error!", JOptionPane.ERROR_MESSAGE);
+			return false;
 		}
 	}
 	
@@ -93,6 +105,12 @@ public class PUCMM {
 		viejo.setNombreEquipo(nuevo.getNombreEquipo());
 		viejo.setCantidad(nuevo.getCantidad());
 		viejo.setTipo(nuevo.getTipo());
+	}
+	
+	public void editarTrabajo(Trabajo viejo, Trabajo nuevo) {
+		viejo.setNombre(nuevo.getNombre());
+		viejo.setEvento(nuevo.getEvento());
+		viejo.setTema(nuevo.getTema());
 	}
 	
 	public  Comision getComisionByName(String name) {
@@ -194,21 +212,26 @@ public class PUCMM {
 	public ArrayList<Trabajo> trabajosLogueado() {
 		ArrayList<Trabajo> trabajos = new ArrayList<>();
 		
-		ArrayList<String> comisionesJurado = new ArrayList<>();
-
+//		ArrayList<String> comisionesJurado = new ArrayList<>();
+		System.out.print(((Jurado) logueado).getComisiones().size());
 		
 		for (int i = 0; i < comisiones.size(); i++) {
 			
-			comisionesJurado.add(((Jurado)logueado).getComisiones().get(i));
-			
+//			comisionesJurado.add(((Jurado)logueado).getComisiones().get(i));
+//			
 			Comision actual = comisiones.get(i);
-			for (int j = 0; j < comisionesJurado.size(); j++) {
-				if(comisionesJurado.get(j).equalsIgnoreCase(actual.getNombre())) {
-					for (int j2 = 0; j2 < actual.getTrabajos().size(); j2++) {
-						trabajos.add(actual.getTrabajos().get(j2));
-					}
+			if (((Jurado) logueado).getComisiones().get(i).equalsIgnoreCase(actual.getNombre())) {
+				for (int j = 0; j < actual.getTrabajos().size(); j++) {
+					trabajos.add(actual.getTrabajos().get(i));
 				}
 			}
+//			for (int j = 0; j < comisionesJurado.size(); j++) {
+//				if(comisionesJurado.get(j).equalsIgnoreCase(actual.getNombre())) {
+//					for (int j2 = 0; j2 < actual.getTrabajos().size(); j2++) {
+//						trabajos.add(actual.getTrabajos().get(j2));
+//					}
+//				}
+//			}
 		}
 		
 		
@@ -223,8 +246,7 @@ public class PUCMM {
 		boolean encontrado = false;
 		
 		for (Persona persona: personas) {
-			
-			
+
 			if (((Administrador) persona).getUsuario().equalsIgnoreCase(usuario)) {
 				aux = persona;
 				if(((Administrador)aux).getPassword().equalsIgnoreCase(password)) {
@@ -233,33 +255,29 @@ public class PUCMM {
 						Calificaciones cali = new Calificaciones();
 						cali.setVisible(true);
 						
+						
 					} else {
 						logueado = aux;
 
 					}
 					encontrado =  true;
-					break;
+//					break;
 				}
 			}	
-			
-			
-			
 			
 			if (((Administrador) persona).getUsuario().equalsIgnoreCase(usuario)) {
 				aux = persona;
 				if(((Administrador)aux).getPassword().equalsIgnoreCase(password)) {
 					if(aux instanceof Administrador) {
-						logueado = aux;
+
 						test reg = new test();
 						reg.setVisible(true);
-					} else {
-						logueado = aux;
-
-					}
+					} 
+					
+					logueado = aux;
 					encontrado =  true;
 				}
 			}
-					
 			
 		}
 		

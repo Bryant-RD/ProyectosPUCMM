@@ -17,6 +17,8 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Calificaciones extends JDialog {
 
@@ -44,7 +46,7 @@ public class Calificaciones extends JDialog {
 	 * Create the dialog.
 	 */
 	public Calificaciones() {
-		setBounds(100, 100, 526, 403);
+		setBounds(100, 100, 903, 725);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -55,25 +57,25 @@ public class Calificaciones extends JDialog {
 			panel.setLayout(null);
 			
 			JLabel lblNewLabel = new JLabel("Codigo");
-			lblNewLabel.setBounds(10, 11, 46, 14);
+			lblNewLabel.setBounds(10, 16, 46, 14);
 			panel.add(lblNewLabel);
 			
 			txtCodigo = new JTextField();
-			txtCodigo.setBounds(66, 8, 214, 20);
+			txtCodigo.setBounds(66, 8, 390, 31);
 			panel.add(txtCodigo);
 			txtCodigo.setColumns(10);
 			
 			btnBuscar = new JButton("Buscar");
-			btnBuscar.setBounds(290, 7, 89, 23);
+			btnBuscar.setBounds(466, 7, 89, 32);
 			panel.add(btnBuscar);
 			
 			JPanel panel_1 = new JPanel();
-			panel_1.setBounds(10, 36, 480, 274);
+			panel_1.setBounds(10, 50, 867, 593);
 			panel.add(panel_1);
 			panel_1.setLayout(null);
 			
 			JScrollPane scrollPane = new JScrollPane();
-			scrollPane.setBounds(0, 0, 480, 274);
+			scrollPane.setBounds(0, 0, 868, 607);
 			panel_1.add(scrollPane);
 			
 			table = new JTable();
@@ -88,13 +90,21 @@ public class Calificaciones extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("OK");
+				JButton okButton = new JButton("Calificar");
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
+				JButton cancelButton = new JButton("Cerrar Sesion");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						PUCMM.getInstance().logueado = null;
+						dispose();
+						Login lg = new Login();
+						lg.setVisible(true);
+					}
+				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
@@ -104,7 +114,7 @@ public class Calificaciones extends JDialog {
 	private void loadTable() {
 		
 		ArrayList<Trabajo> trabajos =PUCMM.getInstance().trabajosLogueado();
-
+		System.out.print(trabajos.size());
 		
 		model.setRowCount(0);
 		rows = new Object[model.getColumnCount()];

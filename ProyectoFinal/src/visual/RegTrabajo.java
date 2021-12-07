@@ -37,13 +37,14 @@ public class RegTrabajo extends JDialog {
 	private JComboBox cbxTema;
 	private String[] temas;
 	private String[] eventos;
+	private static Trabajo update = null;
  
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
-			RegTrabajo dialog = new RegTrabajo();
+			RegTrabajo dialog = new RegTrabajo(null);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -54,13 +55,20 @@ public class RegTrabajo extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public RegTrabajo() {
+	public RegTrabajo(Trabajo trabajo) {
+		update = trabajo;
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setModal(true);
 		setBackground(new Color(244, 244, 249));
 		setFont(new Font("Serif", Font.PLAIN, 12));
-		setTitle("Registrar Trabajo");
+		
+		if(update != null) {
+			setTitle("Registrar Trabajo");
+		} else {
+			setTitle("Modificar Trabajo");
+		}
+		
 		setBounds(100, 100, 596, 392);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(new Color(176, 224, 230));
@@ -188,15 +196,31 @@ public class RegTrabajo extends JDialog {
 						
 						Persona persona = PUCMM.getInstance().buscarPersonaByCedula(txtCedula.getText());
 						
-						if(persona != null && persona instanceof Participante) {
+						if(update != null) {
 							
-							Trabajo trabajo = new Trabajo(txtCodigo.getText(),cbxEvento.getSelectedItem().toString(), txtNombre.getText(), cbxTema.getSelectedItem().toString());
-							PUCMM.getInstance().agregarTrabajo(txtCedula.getText(), trabajo);
-							JOptionPane.showMessageDialog(null, "Trabajo agregado correctamente al evento");
+							Trabajo trNew = new Trabajo(txtCodigo.getText(), cbxEvento.getSelectedItem().toString(), txtNombre.getText(), cbxTema.getSelectedItem().toString());
+							
+							int n = JOptionPane.showConfirmDialog(null, "Estas seguro de que quieres modificar este Trabajo?", "Confirmacion", JOptionPane.YES_NO_OPTION);
+							if(n == JOptionPane.YES_OPTION) {
+								PUCMM.getInstance().editarTrabajo(update, trNew);
+								dispose();
+							}
+							
 						} else {
-							JOptionPane.showMessageDialog(null, "Participante no encontrado", "Error!", JOptionPane.ERROR_MESSAGE);
+							
+							if(persona != null && persona instanceof Participante) {
+								
+								Trabajo trabajo = new Trabajo(txtCodigo.getText(),cbxEvento.getSelectedItem().toString(), txtNombre.getText(), cbxTema.getSelectedItem().toString());
+								PUCMM.getInstance().agregarTrabajo(txtCedula.getText(), trabajo);
+								
+							} else {
+								JOptionPane.showMessageDialog(null, "Participante no encontrado", "Error!", JOptionPane.ERROR_MESSAGE);
+								
+							}
 							
 						}
+						 
+
 												
 						
 
@@ -217,6 +241,12 @@ public class RegTrabajo extends JDialog {
 			}
 			
 			
+		}
+		if(update != null) {
+			txtCedula.setEnabled(false);
+			txtNombre.setText(update.getNombre());
+			cbxEvento.setSelectedItem(update.getEvento());
+			cbxTema.setSelectedItem(update.getTema());
 		}
 	}
 }
