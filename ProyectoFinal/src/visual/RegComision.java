@@ -179,6 +179,7 @@ public class RegComision extends JDialog {
 							txtNombre.setText("");
 							txtAreaConocimiento.setText("");
 							txtPresidente.setText("");
+							lstModel.removeAllElements();
 						} else {
 							JOptionPane.showMessageDialog(null, "Ha ocurrido un problema con los jurados seleccionados", "Error!", JOptionPane.ERROR_MESSAGE);
 						}
@@ -191,6 +192,11 @@ public class RegComision extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("Cancelar");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						dispose();
+					}
+				});
 				cancelButton.setBackground(new Color(88, 111, 124));
 				cancelButton.setForeground(new Color(255, 255, 255));
 				cancelButton.setFont(new Font("Calibri", Font.PLAIN, 14));

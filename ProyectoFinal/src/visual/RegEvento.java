@@ -370,6 +370,11 @@ public class RegEvento extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("Cancelar");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+					}
+				});
 				cancelButton.setForeground(new Color(255, 255, 255));
 				cancelButton.setBackground(new Color(88, 111, 124));
 				cancelButton.setFont(new Font("Calibri", Font.PLAIN, 14));

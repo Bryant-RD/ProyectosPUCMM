@@ -233,6 +233,11 @@ public class RegTrabajo extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+					}
+				});
 				cancelButton.setForeground(Color.WHITE);
 				cancelButton.setBackground(new Color(88, 111, 124));
 				cancelButton.setFont(new Font("Serif", Font.PLAIN, 14));

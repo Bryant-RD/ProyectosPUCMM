@@ -268,6 +268,8 @@ public class RegistrarPersona extends JDialog {
 			panel_3.add(cbxTemas);
 			
 			txtCodigoProyecto = new JTextField();
+			txtCodigoProyecto.setText("T-" + PUCMM.getInstance().getTrabajo().size());
+			txtCodigoProyecto.setEnabled(false);
 			txtCodigoProyecto.setColumns(10);
 			txtCodigoProyecto.setBounds(66, 32, 158, 20);
 			panel_3.add(txtCodigoProyecto);
@@ -410,7 +412,7 @@ public class RegistrarPersona extends JDialog {
 							txtEscuela.setText("");
 							txtCodigoProyecto.setText("");
 							txtNombreTrabajo.setText("");
-							cbxTemas.setSelectedItem(0);
+							cbxTemas.setSelectedIndex(0);
 							cbxEvento.setSelectedIndex(0);
 							
 						} if(rdbtnJurado.isSelected()) {
@@ -447,6 +449,11 @@ public class RegistrarPersona extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("Cancelar");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+					}
+				});
 				cancelButton.setForeground(new Color(255, 255, 255));
 				cancelButton.setFont(new Font("Calibri", Font.PLAIN, 14));
 				cancelButton.setBackground(new Color(88, 111, 124));
