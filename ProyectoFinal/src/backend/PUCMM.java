@@ -28,6 +28,8 @@ public class PUCMM {
 		recursos = new ArrayList<>();
 		
 		Administrador admin = new Administrador("admin", "admin", "admin", "admin", "admin", "admin");
+		Jurado jur = new Jurado("jurado", "jurado", "jurado", "jurado", "jurado", 1, "jurado", "jurado");
+		personas.add(jur);
 		personas.add(admin);
 		
 		
@@ -250,7 +252,7 @@ public class PUCMM {
 			if (((Administrador) persona).getUsuario().equalsIgnoreCase(usuario)) {
 				aux = persona;
 				if(((Administrador)aux).getPassword().equalsIgnoreCase(password)) {
-					if(aux instanceof Jurado) {
+					if(((Administrador)aux).getRol().equalsIgnoreCase("Jurado")) {
 						logueado = aux;
 						Calificaciones cali = new Calificaciones();
 						cali.setVisible(true);
@@ -261,21 +263,23 @@ public class PUCMM {
 
 					}
 					encontrado =  true;
-//					break;
+					break;
 				}
 			}	
 			
 			if (((Administrador) persona).getUsuario().equalsIgnoreCase(usuario)) {
 				aux = persona;
 				if(((Administrador)aux).getPassword().equalsIgnoreCase(password)) {
-					if(aux instanceof Administrador) {
-
+					if(((Administrador)aux).getRol().equalsIgnoreCase("administrador")) {
+						logueado = aux;
 						test reg = new test();
 						reg.setVisible(true);
-					} 
+					} else {
+						logueado = aux;
+					}
 					
-					logueado = aux;
 					encontrado =  true;
+					break;
 				}
 			}
 			

@@ -16,6 +16,7 @@ public class Jurado extends Administrador{
 		this.anioExp = anioExp;
 		setComisiones(new ArrayList<>());
 		this.disponible = true; //true es disponible y false no disponible
+		rol = "Jurado";
 	}
 	
 	

@@ -212,6 +212,13 @@ public class RegTrabajo extends JDialog {
 								
 								Trabajo trabajo = new Trabajo(txtCodigo.getText(),cbxEvento.getSelectedItem().toString(), txtNombre.getText(), cbxTema.getSelectedItem().toString());
 								PUCMM.getInstance().agregarTrabajo(txtCedula.getText(), trabajo);
+								JOptionPane.showMessageDialog(null, "Trabajo registrado correctamente.");
+								
+								txtCodigo.setText("T-"+PUCMM.getInstance().getTrabajo().size());
+								cbxEvento.setSelectedIndex(0);
+								txtNombre.setText("");
+								cbxTema.setSelectedIndex(0);
+								
 								
 							} else {
 								JOptionPane.showMessageDialog(null, "Participante no encontrado", "Error!", JOptionPane.ERROR_MESSAGE);

@@ -182,8 +182,6 @@ public class Login extends JDialog {
 				public void actionPerformed(ActionEvent e) {
 					if (PUCMM.getInstance().loggin(txtUsuario.getText(), txtPassword.getText())) {
 						dispose();
-//						test reg = new test();
-//						reg.setVisible(true);
 						
 					} else {
 						JOptionPane.showConfirmDialog(null, "Usuario y contraseña no coinciden", "Ups!", JOptionPane.WARNING_MESSAGE);
