@@ -91,7 +91,7 @@ public class ListRecursos extends JDialog {
 			
 			table = new JTable();
 			table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-			String[] headers = {"Nombre del equipo","Tipo","Cantidad"};
+			String[] headers = {"Nombre del equipo","Tipo","Cantidad", "Disponibilidad"};
 			model = new DefaultTableModel();
 			model.setColumnIdentifiers(headers);
 			table.setModel(model);
@@ -113,6 +113,7 @@ public class ListRecursos extends JDialog {
 				JButton cancelButton = new JButton("Cerrar");
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						dispose();
 					}
 				});
 				{
@@ -135,6 +136,7 @@ public class ListRecursos extends JDialog {
 			rows[0] = PUCMM.getInstance().getRecursos().get(i).getNombreEquipo();
 			rows[1] = PUCMM.getInstance().getRecursos().get(i).getTipo();
 			rows[2] = PUCMM.getInstance().getRecursos().get(i).getCantidad();
+			rows[3] = PUCMM.getInstance().getRecursos().get(i).getDisponibilidad();
 			model.addRow(rows);
 		}
 	}

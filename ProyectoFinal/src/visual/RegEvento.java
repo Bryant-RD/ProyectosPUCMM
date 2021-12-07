@@ -338,6 +338,27 @@ public class RegEvento extends JDialog {
 						
 						JOptionPane.showMessageDialog(null, "Evento creado correctamente");
 						
+						txtCodigo.setText("E-"+PUCMM.getInstance().getEventos().size());
+						txtNombre.setText("");
+						txtTema.setText("");
+						txtLocal.setText("");
+						cbxRecurso.setSelectedIndex(0);
+						spnCantidadRecurso.setValue(0);
+						
+						modelRecursos.removeAllElements();
+						
+						cbxTipo.setSelectedIndex(0);
+						Date date = new Date();
+						
+						
+						snpFecha.setModel(new SpinnerDateModel(date, null, null, Calendar.YEAR));
+						JSpinner.DateEditor de1 = new JSpinner.DateEditor(snpFecha,"dd/MM/YYYY");
+						snpFecha.setEditor(de1);
+						
+
+						
+						
+						
 					}
 				});
 				btnCrear.setActionCommand("OK");

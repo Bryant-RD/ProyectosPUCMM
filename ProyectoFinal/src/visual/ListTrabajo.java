@@ -73,7 +73,7 @@ public class ListTrabajo extends JDialog {
 			panel.setLayout(null);
 			{
 				{
-					String headers[] = {"Codigo","Nombre","Tema"};
+					String headers[] = {"Codigo","Nombre","Tema", "Evento"};
 					model = new DefaultTableModel();
 					model.setColumnIdentifiers(headers);
 				}
@@ -180,6 +180,7 @@ public class ListTrabajo extends JDialog {
 			rows[0] = PUCMM.getInstance().getTrabajo().get(i).getCodigo();
 			rows[1] = PUCMM.getInstance().getTrabajo().get(i).getNombre();
 			rows[2] = PUCMM.getInstance().getTrabajo().get(i).getTema();
+			rows[3] = PUCMM.getInstance().getTrabajo().get(i).getEvento();
 			model.addRow(rows);
 		}
 		btnEliminar.setEnabled(false);

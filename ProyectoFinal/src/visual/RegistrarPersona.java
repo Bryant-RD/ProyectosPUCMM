@@ -408,6 +408,7 @@ public class RegistrarPersona extends JDialog {
 							txtCodigoProyecto.setText("");
 							txtNombreTrabajo.setText("");
 							cbxTemas.setSelectedItem(0);
+							cbxEvento.setSelectedIndex(0);
 							
 						} if(rdbtnJurado.isSelected()) {
 							Jurado jurado = new Jurado(txtNombre.getText(), txtCedula.getText(), txtTelefono.getText(), txtCorreo.getText(), txtArea.getText(), Integer.valueOf(snpExp.getValue().toString()), txtUsuarioJurado.getText(), txtPasswordJurado.getText());
