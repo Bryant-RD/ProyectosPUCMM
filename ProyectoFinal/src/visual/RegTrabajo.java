@@ -191,7 +191,7 @@ public class RegTrabajo extends JDialog {
 							PUCMM.getInstance().agregarTrabajo(txtCedula.getText(), trabajo);
 							JOptionPane.showMessageDialog(null, "Trabajo agregado correctamente al evento");
 						} else {
-							JOptionPane.showConfirmDialog(null, "Participante no encontrado", "Error!", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Participante no encontrado", "Error!", JOptionPane.ERROR_MESSAGE);
 						}
 												
 						

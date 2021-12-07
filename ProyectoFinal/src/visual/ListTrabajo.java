@@ -144,7 +144,7 @@ public class ListTrabajo extends JDialog {
 				btnEliminar = new JButton("Eliminar");
 				btnEliminar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						int option = JOptionPane.showConfirmDialog(null, "Desea eliminar el trabajo seleccionado: "+ selected.getCodigo(), "Eliminar trabajo", JOptionPane.YES_NO_OPTION);
+						int option = JOptionPane.showConfirmDialog(null, "Desea eliminar la persona seleccionado: "+selected.getCodigo(), "Eliminar persona", JOptionPane.YES_NO_OPTION);
 						if (option == JOptionPane.YES_OPTION) {
 							PUCMM.getInstance().eliminarTrabajo(selected);
 							loadTable();
