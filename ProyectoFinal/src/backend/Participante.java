@@ -10,14 +10,14 @@ public class Participante extends Persona {
 	private ArrayList <Trabajo> trabajos; 
 	
 	
-	public Participante(String nombre, String cedula, String numero, String email, String matricula, String escuela, String codEvento ,String codigo ,String nombreTrabajo, String tema) {
+	public Participante(String nombre, String cedula, String numero, String email, String matricula, String escuela, String codEvento ,String codigoTrabajo ,String nombreTrabajo, String tema) {
 		super(nombre, cedula, numero, email);
 
 		this.matricula = matricula;
 		this.escuela = escuela;
 		trabajos = new ArrayList<>();
 		
-		Trabajo trabajo = new Trabajo(codEvento ,nombreTrabajo, tema);
+		Trabajo trabajo = new Trabajo(codigoTrabajo, codEvento ,nombreTrabajo, tema);
 		trabajos.add(trabajo);
 		PUCMM.getInstance().registrarTrabajo(trabajo);
 	}

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Trabajo {
 	
-	public static int codigo = 1;
+	private String codigo;
 	private String evento; 
 	private String nombre;
 	private String tema;
@@ -12,21 +12,21 @@ public class Trabajo {
 	private ArrayList<Calificacion> calificaciones;
 	
 	
-	public Trabajo(String evento ,String nombre, String tema) {
+	public Trabajo(String codigo, String evento ,String nombre, String tema) {
 		super();
 		this.evento = evento;
 		this.nombre = nombre;
 		this.tema = tema;
 		this.calificacionFinal = 0;
 		calificaciones = new ArrayList<>();
-		Trabajo.codigo++;
+		this.codigo = codigo;
 	}
 
-	public int getCodigo() {
+	public String getCodigo() {
 		return codigo;
 	}
 	
-	public void setCodigo(int codigo) {
+	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
 	

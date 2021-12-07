@@ -76,9 +76,12 @@ public class PUCMM {
 			((Participante)participante).getTrabajos().add(trabajo);
 			
 			Evento evento = buscarEventoByName(trabajo.getEvento());
-			System.out.print(evento.getNombre());
-			evento.getProyectos().add(trabajo);
-			System.out.print(evento.getProyectos().size());
+			if(evento != null) {
+				evento.getProyectos().add(trabajo);
+				trabajos.add(trabajo);
+			} else {
+				JOptionPane.showMessageDialog(null, "Evento no encontrado", "Error!", JOptionPane.ERROR_MESSAGE);
+			}
 			JOptionPane.showMessageDialog(null, "Trabajo registrado correctamente al evento: " + trabajo.getEvento());
 		} else {
 			JOptionPane.showMessageDialog(null, "Participante no entrado", "Error!", JOptionPane.ERROR_MESSAGE);
