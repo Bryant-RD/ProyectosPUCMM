@@ -10,8 +10,8 @@ public class Participante extends Persona {
 	private ArrayList <Trabajo> trabajos; 
 	
 	
-	public Participante(String nombre, String cedula, String numero, String email, String matricula, String escuela, String codEvento ,String codigoTrabajo ,String nombreTrabajo, String tema) {
-		super(nombre, cedula, numero, email);
+	public Participante(String nombre, String cedula, String numero, String email, String matricula, String escuela, String codEvento ,String codigoTrabajo ,String nombreTrabajo, String tema, String rol) {
+		super(nombre, cedula, numero, email, rol);
 
 		this.matricula = matricula;
 		this.escuela = escuela;

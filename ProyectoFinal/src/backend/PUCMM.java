@@ -27,8 +27,8 @@ public class PUCMM {
 		eventos = new ArrayList<>();
 		recursos = new ArrayList<>();
 		
-		Administrador admin = new Administrador("admin", "admin", "admin", "admin", "admin", "admin");
-		Jurado jur = new Jurado("jurado", "jurado", "jurado", "jurado", "jurado", 1, "jurado", "jurado");
+		Administrador admin = new Administrador("admin", "admin", "admin", "admin", "admin", "admin", "Administrador");
+		Jurado jur = new Jurado("jurado", "jurado", "jurado", "jurado", "jurado", 1, "jurado", "jurado", "Jurado");
 		personas.add(jur);
 		personas.add(admin);
 		

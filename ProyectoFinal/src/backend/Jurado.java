@@ -9,14 +9,13 @@ public class Jurado extends Administrador{
 	private ArrayList<String> comisiones;
 	private boolean disponible;
 
-	public Jurado(String nombre, String cedula, String numero, String email, String area, int anioExp, String usuario, String password) {
-		super(nombre, cedula, numero, email, usuario, password);
+	public Jurado(String nombre, String cedula, String numero, String email, String area, int anioExp, String usuario, String password, String rol) {
+		super(nombre, cedula, numero, email, usuario, password, rol);
 		
 		this.area = area;
 		this.anioExp = anioExp;
 		setComisiones(new ArrayList<>());
 		this.disponible = true; //true es disponible y false no disponible
-		rol = "Jurado";
 	}
 	
 	

@@ -6,13 +6,15 @@ public class Persona {
 	protected String cedula;
 	protected String numero;
 	protected String email;
+	protected String rol;
 	
-	public Persona(String nombre, String cedula, String numero, String email) {
+	public Persona(String nombre, String cedula, String numero, String email, String rol) {
 		super();
 		this.nombre = nombre;
 		this.cedula = cedula;
 		this.numero = numero;
 		this.email = email;
+		this.rol = rol;
 	}
 
 	public String getNombre() {
@@ -47,9 +49,12 @@ public class Persona {
 		this.email = email;
 	}
 
-	public String getPassword() {
-		// TODO Auto-generated method stub
-		return null;
+	public String getRol() {
+		return email;
+	}
+	
+	public void setRol(String email) {
+		this.email = email;
 	}
 	
 }
