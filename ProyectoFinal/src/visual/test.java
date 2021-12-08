@@ -126,7 +126,7 @@ public class test extends JFrame {
 		btnRegPersona.setFont(new Font("Calibri", Font.PLAIN, 15));
 		btnRegPersona.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RegistrarPersona regPerson = new RegistrarPersona();
+				RegistrarPersona regPerson = new RegistrarPersona(null);
 				regPerson.setVisible(true);
 			}
 		});

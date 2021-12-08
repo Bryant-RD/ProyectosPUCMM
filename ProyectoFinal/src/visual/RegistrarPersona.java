@@ -19,6 +19,8 @@ import backend.Evento;
 import backend.Jurado;
 import backend.PUCMM;
 import backend.Participante;
+import backend.Persona;
+import backend.Recursos;
 
 import javax.swing.JRadioButton;
 import javax.swing.JComboBox;
@@ -59,13 +61,14 @@ public class RegistrarPersona extends JDialog {
 	private JPanel JPanelAdministrador;
 	private JRadioButton rdbtnAdministrador;
 	private String[] aEventos;
+	private static Persona updated = null;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
-			RegistrarPersona dialog = new RegistrarPersona();
+			RegistrarPersona dialog = new RegistrarPersona(null);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -76,8 +79,15 @@ public class RegistrarPersona extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public RegistrarPersona() {
-		setTitle("Registar Persona");
+	public RegistrarPersona(Persona personas) {
+		updated = personas;
+		
+		if(updated != null) {
+			setTitle("Modificar Persona");
+		} else {
+			setTitle("Registrar Persona");
+		}
+
 		setBounds(100, 100, 540, 495);
 		setLocationRelativeTo(null);
 		setResizable(false);
@@ -459,6 +469,13 @@ public class RegistrarPersona extends JDialog {
 				cancelButton.setBackground(new Color(88, 111, 124));
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
+			}
+			if(updated != null) {
+				txtNombre.setText(updated.getNombre());
+				txtCorreo.setText(updated.getEmail());
+				txtTelefono.setText(updated.getNumero());
+				
+				btnRegistrar.setText("Actualizar");
 			}
 		}
 	}

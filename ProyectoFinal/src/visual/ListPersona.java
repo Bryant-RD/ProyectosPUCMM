@@ -151,7 +151,7 @@ public class ListPersona extends JDialog {
 				btnModificar.setFont(new Font("Calibri", Font.PLAIN, 14));
 				btnModificar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						RegistrarPersona aux = new RegistrarPersona();
+						RegistrarPersona aux = new RegistrarPersona(selected);
 						aux.setModal(true);
 						aux.setVisible(true);
 					}
