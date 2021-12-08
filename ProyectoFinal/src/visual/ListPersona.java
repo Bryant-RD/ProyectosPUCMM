@@ -15,8 +15,11 @@ import java.awt.event.ActionEvent;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
+import backend.Administrador;
 import backend.PUCMM;
 import backend.Persona;
+import backend.Jurado;
+import backend.Participante;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -105,6 +108,17 @@ public class ListPersona extends JDialog {
 							btnModificar.setEnabled(true);
 							String cedula = (String)(model.getValueAt(index, 0));
 							selected = PUCMM.getInstance().buscarPersonaByCedula(cedula);
+							if (selected.getRol().equalsIgnoreCase("Administrador")) {
+								selected = ((Administrador) selected);
+							} else if(selected.getRol().equalsIgnoreCase("Jurado")) {
+								selected = ((Jurado) selected);
+								
+							} else{
+								selected = ((Participante) selected);
+								
+							}
+								
+								
 							System.out.println(selected.getCedula()+" "+selected.getNombre());
 						}
 					}

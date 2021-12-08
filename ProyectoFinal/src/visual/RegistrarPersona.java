@@ -474,7 +474,16 @@ public class RegistrarPersona extends JDialog {
 				txtNombre.setText(updated.getNombre());
 				txtCorreo.setText(updated.getEmail());
 				txtTelefono.setText(updated.getNumero());
-				
+				if (updated.getRol().equalsIgnoreCase("Administrador")) {
+					// ((Administrador) updated).getUsuario()
+				} else if(updated.getRol().equalsIgnoreCase("Jurado")) {
+					updated = ((Jurado) updated);
+					txtArea.setText(((Jurado) updated).getArea());
+					
+				} else if (updated.getRol().equalsIgnoreCase("Participante")) {
+					txtMatricula.setText(((Participante) updated).getMatricula());
+				}
+
 				btnRegistrar.setText("Actualizar");
 			}
 		}
