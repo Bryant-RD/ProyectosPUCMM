@@ -215,7 +215,7 @@ public class PUCMM {
 		ArrayList<Trabajo> trabajos = new ArrayList<>();
 		
 //		ArrayList<String> comisionesJurado = new ArrayList<>();
-		System.out.print(((Jurado) logueado).getComisiones().size());
+//		System.out.print(((Jurado) logueado).getComisiones().size());
 		
 		for (int i = 0; i < comisiones.size(); i++) {
 			
@@ -249,35 +249,17 @@ public class PUCMM {
 		
 		for (Persona persona: personas) {
 
-			if (((Administrador) persona).getUsuario().equalsIgnoreCase(usuario)) {
-				aux = persona;
-				if(((Administrador)aux).getPassword().equalsIgnoreCase(password)) {
-					if(aux instanceof Jurado) {
-						logueado = aux;
-						Calificaciones cali = new Calificaciones();
-						cali.setVisible(true);
-						
-						
-					} else {
-						logueado = aux;
-
-					}
-					encontrado =  true;
-//					break;
+			if(persona.getRol().equalsIgnoreCase("Administrador")) {
+				if(((Administrador) persona).getUsuario().equalsIgnoreCase(usuario) && ((Administrador) persona).getPassword().equalsIgnoreCase(password)) {
+					test regAdmin = new test();
+					regAdmin.setVisible(true);
+					return encontrado = true;
 				}
-			}	
-			
-			if (((Administrador) persona).getUsuario().equalsIgnoreCase(usuario)) {
-				aux = persona;
-				if(((Administrador)aux).getPassword().equalsIgnoreCase(password)) {
-					if(aux instanceof Administrador) {
-
-						test reg = new test();
-						reg.setVisible(true);
-					} 
-					
-					logueado = aux;
-					encontrado =  true;
+			} else if(persona.getRol().equalsIgnoreCase("Jurado")) {
+				if(((Jurado)persona).getUsuario().equalsIgnoreCase(usuario) && ((Jurado) persona).getPassword().equalsIgnoreCase(password)) {
+					Calificaciones cali = new Calificaciones();
+					cali.setVisible(true);
+					encontrado = true;
 				}
 			}
 			

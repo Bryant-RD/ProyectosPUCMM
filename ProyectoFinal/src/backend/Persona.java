@@ -50,11 +50,11 @@ public class Persona {
 	}
 
 	public String getRol() {
-		return email;
+		return rol;
 	}
 	
-	public void setRol(String email) {
-		this.email = email;
+	public void setRol(String rol) {
+		this.rol = rol;
 	}
 	
 }
