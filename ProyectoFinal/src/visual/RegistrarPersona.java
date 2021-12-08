@@ -305,6 +305,7 @@ public class RegistrarPersona extends JDialog {
 
 			}
 			
+			
 			cbxEvento.setModel(new DefaultComboBoxModel(aEventos));
 			
 			cbxEvento.setBounds(306, 85, 158, 20);
@@ -475,7 +476,9 @@ public class RegistrarPersona extends JDialog {
 				txtCorreo.setText(updated.getEmail());
 				txtTelefono.setText(updated.getNumero());
 				if (updated.getRol().equalsIgnoreCase("Administrador")) {
-					// ((Administrador) updated).getUsuario()
+					 txtUsuario.setText(((Administrador) updated).getUsuario());
+					 txtPassword.setText(((Administrador) updated).getPassword());
+					 
 				} else if(updated.getRol().equalsIgnoreCase("Jurado")) {
 					updated = ((Jurado) updated);
 					txtArea.setText(((Jurado) updated).getArea());

@@ -19,6 +19,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.ListSelectionModel;
 
 public class Calificaciones extends JDialog {
 
@@ -47,6 +49,9 @@ public class Calificaciones extends JDialog {
 	 */
 	public Calificaciones() {
 		setBounds(100, 100, 903, 725);
+		setLocationRelativeTo(null);
+		setResizable(false);
+//		setModal(true);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -75,10 +80,12 @@ public class Calificaciones extends JDialog {
 			panel_1.setLayout(null);
 			
 			JScrollPane scrollPane = new JScrollPane();
-			scrollPane.setBounds(0, 0, 868, 607);
+			scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+			scrollPane.setBounds(0, 0, 868, 593);
 			panel_1.add(scrollPane);
 			
 			table = new JTable();
+			table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			model = new DefaultTableModel();
 			String headers[] = {"Codigo", "propietario" ,"Nombre","Tema", "calificaicon", "Total"};
 			model.setColumnIdentifiers(headers);
