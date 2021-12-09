@@ -46,8 +46,9 @@ public class Login extends JDialog {
 	private Dimension dim;
 	private JTextField txtUsuario;
 	private JButton btnLoggin;
-	private JTextField txtPassword;
+	//private JTextField txtPassword;
 	private JPasswordField passwordField;
+	private JPasswordField txtPassword;
 
 	/**
 	 * Launch the application.
@@ -106,11 +107,20 @@ public class Login extends JDialog {
 			panel.add(pnlUser);
 			pnlUser.setLayout(null);
 			
+			JLabel lblIconUser = new JLabel("");
+			lblIconUser.setHorizontalAlignment(SwingConstants.CENTER);
+			lblIconUser.setBounds(204, 0, 46, 48);
+			pnlUser.add(lblIconUser);
+			lblIconUser.setIcon(new ImageIcon(img_user));
+			
 			txtUsuario = new JTextField();
+			txtUsuario.setBounds(12, 13, 180, 21);
+			pnlUser.add(txtUsuario);
+			txtUsuario.setBackground(SystemColor.text);
 			txtUsuario.addFocusListener(new FocusAdapter() {
 				@Override
 				public void focusGained(FocusEvent arg0) {
-					if(txtUsuario.getText().equals("Usuario")) {
+					if(txtUsuario.getText().equals("")) {
 						txtUsuario.setText("");
 					}
 					else {
@@ -120,51 +130,23 @@ public class Login extends JDialog {
 				@Override
 				public void focusLost(FocusEvent e) {
 					if(txtUsuario.getText().equals(""))
-						txtUsuario.setText("Usuario");
+						txtUsuario.setText("");
 				}
 			});
 			txtUsuario.setFont(new Font("Calibri", Font.PLAIN, 14));
-			txtUsuario.setText("Usuario");
-			txtUsuario.setBounds(12, 13, 180, 21);
-			pnlUser.add(txtUsuario);
 			txtUsuario.setColumns(10);
 			txtUsuario.setBorder(null);
 			
-			JLabel lblIconUser = new JLabel("");
-			lblIconUser.setHorizontalAlignment(SwingConstants.CENTER);
-			lblIconUser.setBounds(204, 0, 46, 48);
-			pnlUser.add(lblIconUser);
-			lblIconUser.setIcon(new ImageIcon(img_user));
+			JLabel lblUsuario = new JLabel("Usuario");
+			lblUsuario.setFont(new Font("Calibri", Font.PLAIN, 14));
+			lblUsuario.setBounds(212, 193, 56, 16);
+			panel.add(lblUsuario);
 			
 			JPanel pnlPassword = new JPanel();
 			pnlPassword.setBackground(Color.WHITE);
 			pnlPassword.setBounds(212, 300, 250, 48);
 			panel.add(pnlPassword);
 			pnlPassword.setLayout(null);
-			
-			txtPassword = new JTextField();
-			txtPassword.setText("Password");
-			txtPassword.addFocusListener(new FocusAdapter() {
-				@Override
-				public void focusGained(FocusEvent arg0) {
-					if(txtPassword.getText().equals("Password")) {
-						txtPassword.setText("");
-					}
-					else {
-						txtPassword.selectAll();
-					}
-				}
-				@Override
-				public void focusLost(FocusEvent e) {
-					if(txtPassword.getText().equals(""))
-						txtPassword.setText("Password");
-				}
-			});
-			txtPassword.setFont(new Font("Calibri", Font.PLAIN, 14));
-			txtPassword.setColumns(10);
-			txtPassword.setBorder(null);
-			txtPassword.setBounds(12, 13, 180, 21);
-			pnlPassword.add(txtPassword);
 			
 			JLabel lblIconPassword = new JLabel("");
 			lblIconPassword.setHorizontalAlignment(SwingConstants.CENTER);
@@ -220,6 +202,66 @@ public class Login extends JDialog {
 			lblX.setHorizontalAlignment(SwingConstants.CENTER);
 			lblX.setBounds(645, 0, 20, 20);
 			panel.add(lblX);
+			
+			txtPassword = new JPasswordField();
+			txtPassword.addFocusListener(new FocusAdapter() {
+				@Override
+				public void focusGained(FocusEvent e) {
+					if(txtPassword.equals("Password")) {
+						txtPassword.setEchoChar('●');
+						txtPassword.setText("");
+					}
+					else {
+						txtPassword.selectAll();
+					}
+				}
+				@Override
+				public void focusLost(FocusEvent e) {
+					if(txtPassword.equals("")) {
+						txtPassword.setText("Password");
+						txtPassword.setEchoChar((char)0);
+
+					}
+				}
+			});
+			txtPassword.setBorder(null);
+			txtPassword.setFont(new Font("Calibri", Font.PLAIN, 14));
+			txtPassword.setText("");
+			txtPassword.setBounds(12, 12, 180, 22);
+			pnlPassword.add(txtPassword);
+			txtPassword.setColumns(10);
+			
+			JLabel lblContrasea = new JLabel("Contraseña");
+			lblContrasea.setFont(new Font("Calibri", Font.PLAIN, 14));
+			lblContrasea.setBounds(212, 277, 71, 16);
+			panel.add(lblContrasea);
+			
+			/*
+			txtPassword = new JTextField();
+			txtPassword.setBackground(SystemColor.inactiveCaptionBorder);
+			txtPassword.setBounds(212, 277, 180, 21);
+			panel.add(txtPassword);
+			txtPassword.setText("Contraseña");
+			txtPassword.addFocusListener(new FocusAdapter() {
+				@Override
+				public void focusGained(FocusEvent arg0) {
+					if(txtPassword.getText().equals("Password")) {
+						txtPassword.setText("");
+					}
+					else {
+						txtPassword.selectAll();
+					}
+				}
+				@Override
+				public void focusLost(FocusEvent e) {
+					if(txtPassword.getText().equals(""))
+						txtPassword.setText("Password");
+				}
+			});
+			txtPassword.setFont(new Font("Calibri", Font.PLAIN, 14));
+			txtPassword.setColumns(10);
+			txtPassword.setBorder(null);
+			*/
 			
 			
 		}
