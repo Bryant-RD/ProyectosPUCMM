@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class Jurado extends Administrador implements Serializable{
 	
+	private static final long serialVersionUID = 6121647374382664065L;
 	private String area;
 	private int anioExp;
 	private ArrayList<String> comisiones;

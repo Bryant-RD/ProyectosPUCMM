@@ -80,6 +80,7 @@ public class test extends JFrame {
 	 * Create the frame.
 	 */
 	public test() {
+		
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosed(WindowEvent arg0) {

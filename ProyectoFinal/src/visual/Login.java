@@ -35,6 +35,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -84,7 +85,6 @@ public class Login extends JDialog {
 	 * Create the dialog.
 	 */
 	public Login() {
-		
 		setBounds(100, 100, 669, 566);
 		/*
 		dim = getToolkit().getScreenSize();
@@ -253,5 +253,17 @@ public class Login extends JDialog {
 			lblContrasea.setBounds(212, 277, 71, 16);
 			panel.add(lblContrasea);							
 		}	
+		cargarDatos();
+	}
+	public void cargarDatos() {
+		try {
+			ObjectInputStream entrada = new ObjectInputStream(new FileInputStream("src\\bd\\bd.dat"));
+			PUCMM aux = (PUCMM) entrada.readObject();
+			PUCMM.pucmm = aux;
+			entrada.close();
+		} catch (IOException | ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

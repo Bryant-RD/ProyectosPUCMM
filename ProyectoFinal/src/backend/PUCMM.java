@@ -15,6 +15,7 @@ import visual.test;
 
 
 public class PUCMM implements Serializable{
+	private static final long serialVersionUID = 6536826537694832321L;
 
 	private ArrayList<Persona> personas;
 	private ArrayList<Trabajo> trabajos;
@@ -25,6 +26,7 @@ public class PUCMM implements Serializable{
 	public static Administrador logueado = null;
 	
 	public PUCMM() {
+		
 		personas = new ArrayList<>();
 		trabajos = new ArrayList<>();
 		comisiones = new ArrayList<>();
@@ -35,8 +37,6 @@ public class PUCMM implements Serializable{
 		Jurado jur = new Jurado("jurado", "jurado", "jurado", "jurado", "jurado", 1, "jurado", "jurado", "Jurado");
 		personas.add(jur);
 		personas.add(admin);
-		
-		
 		
 	}
 	
@@ -49,15 +49,7 @@ public class PUCMM implements Serializable{
 	}
 	
 	
-	public void loadData() {
-		try {
-			ObjectInputStream entrada = new ObjectInputStream(new FileInputStream("src\\bd\\bd.dat"));
-			pucmm = (PUCMM) entrada.readObject();
-		} catch (IOException | ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+	
 	
 	public static PUCMM pucmm() {
 		if(pucmm == null) {
