@@ -62,6 +62,7 @@ public class RegistrarPersona extends JDialog {
 	private JRadioButton rdbtnAdministrador;
 	private String[] aEventos;
 	private static Persona updated = null;
+	private JPanel panel_3;
 
 	/**
 	 * Launch the application.
@@ -235,7 +236,7 @@ public class RegistrarPersona extends JDialog {
 			txtEscuela.setBounds(326, 30, 158, 20);
 			JPanelParticipante.add(txtEscuela);
 			
-			JPanel panel_3 = new JPanel();
+			panel_3 = new JPanel();
 			panel_3.setBackground(new Color(244, 244, 249));
 			panel_3.setBorder(new TitledBorder(null, "Proyecto", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			panel_3.setBounds(10, 72, 474, 114);
@@ -493,14 +494,15 @@ public class RegistrarPersona extends JDialog {
 					rdbtnParticipante.setSelected(false);
 					JPanelParticipante.setVisible(false);
 					txtArea.setText(((Jurado) updated).getArea());
-					txtUsuarioJurado.setText(((Administrador) updated).getUsuario());
-					txtPasswordJurado.setText(((Administrador) updated).getPassword());
-					//snpExp.setValue());
+					txtUsuarioJurado.setText(((Jurado) updated).getUsuario());
+					txtPasswordJurado.setText(((Jurado) updated).getPassword());
+					snpExp.setValue(((Jurado) updated).getAnioExp());
 					
 				} else if (updated.getRol().equalsIgnoreCase("Participante")) {
 					txtMatricula.setText(((Participante) updated).getMatricula());
 					txtEscuela.setText(((Participante) updated).getEscuela());
-					JPanelParticipante.getComponent(1).setEnabled(false);
+					panel_3.setEnabled(false);
+					
 				}
 
 				btnRegistrar.setText("Actualizar");

@@ -47,6 +47,7 @@ public class Login extends JDialog {
 	private JTextField txtUsuario;
 	private JButton btnLoggin;
 	private JTextField txtPassword;
+	private JPasswordField passwordField;
 
 	/**
 	 * Launch the application.
@@ -219,6 +220,7 @@ public class Login extends JDialog {
 			lblX.setHorizontalAlignment(SwingConstants.CENTER);
 			lblX.setBounds(645, 0, 20, 20);
 			panel.add(lblX);
+			
 			
 		}
 	
