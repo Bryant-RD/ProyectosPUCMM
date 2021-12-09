@@ -73,6 +73,7 @@ public class test extends JFrame {
 		setLocationRelativeTo(null);
 		setResizable(false);
 		
+		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		

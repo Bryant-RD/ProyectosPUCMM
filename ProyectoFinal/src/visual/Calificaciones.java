@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
@@ -22,7 +23,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.ListSelectionModel;
 
-public class Calificaciones extends JDialog {
+public class Calificaciones extends JFrame {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txtCodigo;
@@ -120,8 +121,8 @@ public class Calificaciones extends JDialog {
 	}
 	private void loadTable() {
 		
-		ArrayList<Trabajo> trabajos =PUCMM.getInstance().trabajosLogueado();
-		System.out.print(trabajos.size());
+		ArrayList<Trabajo> trabajos = PUCMM.getInstance().trabajosLogueado();
+		
 		
 		model.setRowCount(0);
 		rows = new Object[model.getColumnCount()];

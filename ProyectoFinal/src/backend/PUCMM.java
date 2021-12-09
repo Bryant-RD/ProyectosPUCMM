@@ -18,7 +18,7 @@ public class PUCMM {
 	private ArrayList<Evento> eventos;
 	private ArrayList<Recursos> recursos;
 	public static PUCMM pucmm = null;
-	public static Persona logueado = null;
+	public static Administrador logueado = null;
 	
 	public PUCMM() {
 		personas = new ArrayList<>();
@@ -61,7 +61,6 @@ public class PUCMM {
 	public boolean verificarRecurso(String nomRecurso, int cantidad) {
 		
 		Recursos recurso = buscarRecurso(nomRecurso);
-		System.out.print(recurso.getDisponibilidad());
 		if(recurso.getDisponibilidad() > cantidad) {
 			
 			return true;
@@ -71,10 +70,13 @@ public class PUCMM {
 		
 		
 	}
+	/*				AQUI 					*/
 	
 	public void agregarTrabajo(String cedulaPart, Trabajo trabajo) {
 		if(verificarTrabajo(cedulaPart, trabajo)) {
 			Evento evento = buscarEventoByName(trabajo.getEvento());
+			Comision comision = getComisionByName(evento.getComision().getNombre());
+			comision.getTrabajos().add(trabajo);
 			Persona participante = buscarPersonaByCedula(cedulaPart);
 			evento.getProyectos().add(trabajo);
 			trabajos.add(trabajo);
@@ -211,29 +213,24 @@ public class PUCMM {
 		return jurado;
 	}
 	
+	/*				AQUI			*/
+	
 	public ArrayList<Trabajo> trabajosLogueado() {
 		ArrayList<Trabajo> trabajos = new ArrayList<>();
 		
-//		ArrayList<String> comisionesJurado = new ArrayList<>();
-//		System.out.print(((Jurado) logueado).getComisiones().size());
-		
 		for (int i = 0; i < comisiones.size(); i++) {
-			
-//			comisionesJurado.add(((Jurado)logueado).getComisiones().get(i));
-//			
-			Comision actual = comisiones.get(i);
-			if (((Jurado) logueado).getComisiones().get(i).equalsIgnoreCase(actual.getNombre())) {
-				for (int j = 0; j < actual.getTrabajos().size(); j++) {
-					trabajos.add(actual.getTrabajos().get(i));
+			for (int j = 0; j < ((Jurado)logueado).getComisiones().size(); j++) {
+				if(comisiones.get(i).getNombre().equalsIgnoreCase(((Jurado)logueado).getComisiones().get(j))) {
+					System.out.print("Encontreo una comision");
+					System.out.print(comisiones.get(i).getTrabajos().size());
+					
+					for (int h = 0; h < comisiones.get(i).getTrabajos().size(); h++) {
+						trabajos.add(comisiones.get(i).getTrabajos().get(h));
+						System.out.print("\nTrabajo: "+h);
+					}
+					
 				}
 			}
-//			for (int j = 0; j < comisionesJurado.size(); j++) {
-//				if(comisionesJurado.get(j).equalsIgnoreCase(actual.getNombre())) {
-//					for (int j2 = 0; j2 < actual.getTrabajos().size(); j2++) {
-//						trabajos.add(actual.getTrabajos().get(j2));
-//					}
-//				}
-//			}
 		}
 		
 		
@@ -251,12 +248,14 @@ public class PUCMM {
 
 			if(persona.getRol().equalsIgnoreCase("Administrador")) {
 				if(((Administrador) persona).getUsuario().equalsIgnoreCase(usuario) && ((Administrador) persona).getPassword().equalsIgnoreCase(password)) {
+					logueado = (Administrador) persona;
 					test regAdmin = new test();
 					regAdmin.setVisible(true);
 					return encontrado = true;
 				}
 			} else if(persona.getRol().equalsIgnoreCase("Jurado")) {
 				if(((Jurado)persona).getUsuario().equalsIgnoreCase(usuario) && ((Jurado) persona).getPassword().equalsIgnoreCase(password)) {
+					logueado = (Jurado) persona;
 					Calificaciones cali = new Calificaciones();
 					cali.setVisible(true);
 					encontrado = true;
