@@ -52,6 +52,9 @@ public class Calificando extends JDialog {
 	 */
 	public Calificando(Trabajo selected) {
 		setBounds(100, 100, 720, 382);
+		setLocationRelativeTo(null);
+		setResizable(false);
+		setModal(true);
 		setUndecorated(true);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(new Color(176, 224, 230));
@@ -168,7 +171,8 @@ public class Calificando extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("Aceptar");
-				okButton.setBackground(new Color(248, 248, 255));
+				okButton.setFont(new Font("Calibri", Font.PLAIN, 14));
+				okButton.setBackground(new Color(88, 111, 124));
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						PUCMM.getInstance().calificarTrabajo(txtCodigo.getText(), Float.valueOf(txtCalificaion.getText()));
@@ -180,7 +184,8 @@ public class Calificando extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("Cancelar");
-				cancelButton.setBackground(new Color(248, 248, 255));
+				cancelButton.setFont(new Font("Calibri", Font.PLAIN, 14));
+				cancelButton.setBackground(new Color(88, 111, 124));
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();

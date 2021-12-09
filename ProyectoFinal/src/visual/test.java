@@ -78,6 +78,7 @@ public class test extends JFrame {
 		setJMenuBar(menuBar);
 		
 		JMenu mnNewMenu = new JMenu("Cerrar Sesion");
+		mnNewMenu.setForeground(new Color(0, 0, 0));
 		mnNewMenu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -88,7 +89,7 @@ public class test extends JFrame {
 			}
 		});
 		
-		mnNewMenu.setFont(new Font("Serif", Font.PLAIN, 15));
+		mnNewMenu.setFont(new Font("Calibri", Font.PLAIN, 15));
 		menuBar.add(mnNewMenu);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
