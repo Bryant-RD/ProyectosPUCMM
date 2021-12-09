@@ -84,6 +84,7 @@ public class test extends JFrame {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosed(WindowEvent arg0) {
+				FileOutputStream MenuOut;
 				System.out.print("ENTRA");
 				try {
 					System.out.print("ENTRA TRY");
@@ -95,6 +96,7 @@ public class test extends JFrame {
 					
 				} catch(Exception e) {
 					System.out.print(e);
+					e.printStackTrace();
 				}
 			}
 		});
