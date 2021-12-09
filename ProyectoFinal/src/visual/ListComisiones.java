@@ -90,7 +90,7 @@ public class ListComisiones extends JDialog {
 				
 				table = new JTable();
 				model = new DefaultTableModel();
-				String[] headers = {"Nombre", "Presidente", "Area", "Intergantes", "Trabajos"};
+				String[] headers = {"Codigo", "Nombre", "Presidente", "Area", "Intergantes", "Trabajos"};
 				model.setColumnIdentifiers(headers);
 				table.setModel(model);
 				scrollPane.setViewportView(table);
@@ -126,11 +126,12 @@ public class ListComisiones extends JDialog {
 		model.setRowCount(0);
 		rows = new Object[model.getColumnCount()];
 		for (int i = 0; i < PUCMM.getInstance().getComisiones().size(); i++) {
-			rows[0] = PUCMM.getInstance().getComisiones().get(i).getNombre();
-			rows[1] = PUCMM.getInstance().getComisiones().get(i).getPresidente().getNombre();
-			rows[2] = PUCMM.getInstance().getComisiones().get(i).getAreaConocimiento();
-			rows[3] = PUCMM.getInstance().getComisiones().get(i).getJurados().size();
-			rows[4] = PUCMM.getInstance().getComisiones().get(i).getTrabajos().size();
+			rows[0] = PUCMM.getInstance().getComisiones().get(i).getCodigo();
+			rows[1] = PUCMM.getInstance().getComisiones().get(i).getNombre();
+			rows[2] = PUCMM.getInstance().getComisiones().get(i).getPresidente().getNombre();
+			rows[3] = PUCMM.getInstance().getComisiones().get(i).getAreaConocimiento();
+			rows[4] = PUCMM.getInstance().getComisiones().get(i).getJurados().size();
+			rows[5] = PUCMM.getInstance().getComisiones().get(i).getTrabajos().size();
 			model.addRow(rows);
 		}
 	}

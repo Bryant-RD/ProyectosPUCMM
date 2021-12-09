@@ -34,6 +34,7 @@ public class MenuJurado extends JFrame {
 	private DefaultTableModel model;
 	private Object[] rows;
 	private static Trabajo selected = null;
+	private JButton btnCalificar;
 	
 	/**
 	 * Launch the application.
@@ -92,10 +93,11 @@ public class MenuJurado extends JFrame {
 			table.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
-					int row = table.getRowCount();
+					int row = table.getSelectedRow();
 					if(row != -1) {
 						String code = (String) table.getValueAt(row, 0);
 						selected = PUCMM.getInstance().buscarTrabajoByCode(code);
+						btnCalificar.setEnabled(true);
 					}
 				}
 			});
@@ -111,16 +113,17 @@ public class MenuJurado extends JFrame {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("Calificar");
-				okButton.addActionListener(new ActionListener() {
+				btnCalificar = new JButton("Calificar");
+				btnCalificar.setEnabled(false);
+				btnCalificar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						Calificando calificando = new Calificando(selected);
-						
+						calificando.setVisible(true);
 					}
 				});
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
+				btnCalificar.setActionCommand("OK");
+				buttonPane.add(btnCalificar);
+				getRootPane().setDefaultButton(btnCalificar);
 			}
 			{
 				JButton cancelButton = new JButton("Cerrar Sesion");

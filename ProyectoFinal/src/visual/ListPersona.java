@@ -68,7 +68,7 @@ public class ListPersona extends JDialog {
 	public ListPersona() {
 		setFont(new Font("Calibri", Font.PLAIN, 12));
 		setTitle("Listado de persona");
-		setBounds(100, 100, 544, 513);
+		setBounds(100, 100, 564, 514);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setModal(true);
@@ -77,13 +77,13 @@ public class ListPersona extends JDialog {
 		contentPanel.setBackground(SystemColor.inactiveCaptionBorder);
 		contentPanel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
-		contentPanel.setLayout(new BorderLayout(0, 0));
+		contentPanel.setLayout(null);
 		{
 			JPanel panel = new JPanel();
+			panel.setBounds(10, 11, 544, 456);
 			panel.setBackground(new Color(184, 219, 217));
-			panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			panel.setBorder(new EmptyBorder(0, 0, 0, 0));
 			contentPanel.add(panel);
-			panel.setLayout(null);
 			{
 				{
 					String headers[] = {"Cedula","Nombre","Telefono","Email"};
@@ -91,6 +91,7 @@ public class ListPersona extends JDialog {
 					model.setColumnIdentifiers(headers);
 				}
 			}
+			panel.setLayout(null);
 			{
 				JPanel panel_1 = new JPanel();
 				panel_1.setBounds(22, 158, 501, 281);
@@ -132,8 +133,8 @@ public class ListPersona extends JDialog {
 			}
 			{
 				JLabel lblNewLabel = new JLabel("Cedula:");
-				lblNewLabel.setFont(new Font("Calibri", Font.PLAIN, 14));
 				lblNewLabel.setBounds(22, 102, 46, 14);
+				lblNewLabel.setFont(new Font("Calibri", Font.PLAIN, 14));
 				panel.add(lblNewLabel);
 			}
 			{
@@ -144,17 +145,17 @@ public class ListPersona extends JDialog {
 			}
 			{
 				btnBuscar = new JButton("Buscar");
+				btnBuscar.setBounds(288, 98, 89, 23);
 				btnBuscar.setBackground(new Color(244, 244, 249));
 				btnBuscar.setFont(new Font("Calibri", Font.PLAIN, 14));
-				btnBuscar.setBounds(288, 98, 89, 23);
 				panel.add(btnBuscar);
 			}
 			{
 				comboBox = new JComboBox();
+				comboBox.setBounds(415, 101, 105, 20);
 				comboBox.setBackground(new Color(244, 244, 249));
 				comboBox.setFont(new Font("Calibri", Font.PLAIN, 14));
 				comboBox.setModel(new DefaultComboBoxModel(new String[] {"<< Todos >>", "Participantes", "Jurados", "Administradores"}));
-				comboBox.setBounds(415, 101, 105, 20);
 				panel.add(comboBox);
 			}
 			
@@ -181,14 +182,14 @@ public class ListPersona extends JDialog {
 			lblX.setHorizontalAlignment(SwingConstants.CENTER);
 			
 			JLabel lblListadoDePersonas = new JLabel("Listado de Personas");
+			lblListadoDePersonas.setBounds(156, 20, 226, 28);
 			lblListadoDePersonas.setHorizontalAlignment(SwingConstants.CENTER);
 			lblListadoDePersonas.setFont(new Font("Century Gothic", Font.PLAIN, 15));
-			lblListadoDePersonas.setBounds(156, 20, 226, 28);
 			panel.add(lblListadoDePersonas);
 			
 			JPanel panel_1 = new JPanel();
-			panel_1.setBackground(SystemColor.inactiveCaptionBorder);
 			panel_1.setBounds(141, 13, 258, 45);
+			panel_1.setBackground(SystemColor.inactiveCaptionBorder);
 			panel.add(panel_1);
 		}
 		{

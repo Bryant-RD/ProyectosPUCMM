@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Trabajo {
 	
 	private String codigo;
-	private String cedulaPropietario;
+	private String codeComision;
 	private String evento; 
 	private String nombre;
 	private String tema;
@@ -13,10 +13,11 @@ public class Trabajo {
 	private ArrayList<Calificacion> calificaciones;
 	
 	
-	public Trabajo(String codigo, String cedulaPropietario ,String evento ,String nombre, String tema) {
+	public Trabajo(String codigo, String codeComision ,String evento ,String nombre, String tema) {
 		super();
 		this.evento = evento;
 		this.nombre = nombre;
+		this.codeComision = codeComision;
 		this.tema = tema;
 		this.calificacionFinal = 0;
 		calificaciones = new ArrayList<>();
@@ -69,6 +70,14 @@ public class Trabajo {
 
 	public void setEvento(String codEvento) {
 		this.evento = codEvento;
+	}
+
+	public String getCodeComision() {
+		return codeComision;
+	}
+
+	public void setCodeComision(String cedulaPropietario) {
+		this.codeComision = cedulaPropietario;
 	}
 
 }

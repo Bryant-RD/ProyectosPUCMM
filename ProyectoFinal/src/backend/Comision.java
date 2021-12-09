@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Comision {
 
+	private String codigo;
 	private String nombre;
 	private Jurado presidente;
 	private ArrayList<Jurado> jurados = new ArrayList<>();
@@ -12,8 +13,9 @@ public class Comision {
 	
 	
 	
-	public Comision(String nombre, Jurado presidente ,String areaConocimiento, ArrayList<Jurado> jurados) {
+	public Comision(String codigo, String nombre, Jurado presidente ,String areaConocimiento, ArrayList<Jurado> jurados) {
 		
+		this.codigo = codigo;
 		this.nombre = nombre;
 		this.presidente = presidente;
 		this.areaConocimiento = areaConocimiento;
@@ -52,6 +54,16 @@ public class Comision {
 	}
 	public void setAreaConocimiento(String areaConocimiento) {
 		this.areaConocimiento = areaConocimiento;
+	}
+
+
+	public String getCodigo() {
+		return codigo;
+	}
+
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
 	}
 
 	

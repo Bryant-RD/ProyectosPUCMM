@@ -36,6 +36,7 @@ public class RegComision extends JDialog {
 	private JList list;
 	private JTextField txtNombre;
 	private JTextField txtAreaConocimiento;
+	private JTextField txtCodigo;
 
 	/**
 	 * Launch the application.
@@ -71,24 +72,24 @@ public class RegComision extends JDialog {
 			{
 				JLabel lblNewLabel = new JLabel(" Cedula del Presidente:");
 				lblNewLabel.setFont(new Font("Calibri", Font.PLAIN, 14));
-				lblNewLabel.setBounds(14, 200, 137, 14);
+				lblNewLabel.setBounds(18, 244, 137, 14);
 				panel.add(lblNewLabel);
 			}
 			{
 				txtPresidente = new JTextField();
-				txtPresidente.setBounds(159, 197, 259, 20);
+				txtPresidente.setBounds(163, 241, 259, 20);
 				panel.add(txtPresidente);
 				txtPresidente.setColumns(10);
 			}
 			{
 				JLabel lblNewLabel_1 = new JLabel("Cedula del Jurado:");
 				lblNewLabel_1.setFont(new Font("Calibri", Font.PLAIN, 14));
-				lblNewLabel_1.setBounds(45, 250, 106, 14);
+				lblNewLabel_1.setBounds(49, 294, 106, 14);
 				panel.add(lblNewLabel_1);
 			}
 			{
 				txtJurado = new JTextField();
-				txtJurado.setBounds(158, 247, 259, 20);
+				txtJurado.setBounds(162, 291, 259, 20);
 				panel.add(txtJurado);
 				txtJurado.setColumns(10);
 			}
@@ -113,33 +114,33 @@ public class RegComision extends JDialog {
 						}
 					}
 				});
-				btnNewButton.setBounds(436, 246, 89, 23);
+				btnNewButton.setBounds(440, 290, 89, 23);
 				panel.add(btnNewButton);
 			}
 			
 			list = new JList();
 			lstModel = new DefaultListModel();
 			list.setModel(lstModel);
-			list.setBounds(12, 287, 513, 165);
+			list.setBounds(14, 324, 513, 165);
 			panel.add(list);
 			
 			JLabel lblNewLabel_2 = new JLabel("Nombre de la Comision:");
 			lblNewLabel_2.setFont(new Font("Calibri", Font.PLAIN, 14));
-			lblNewLabel_2.setBounds(10, 103, 141, 14);
+			lblNewLabel_2.setBounds(14, 147, 141, 14);
 			panel.add(lblNewLabel_2);
 			
 			JLabel lblNewLabel_3 = new JLabel("Area de Conocimiento:");
 			lblNewLabel_3.setFont(new Font("Calibri", Font.PLAIN, 14));
-			lblNewLabel_3.setBounds(21, 151, 130, 14);
+			lblNewLabel_3.setBounds(25, 195, 130, 14);
 			panel.add(lblNewLabel_3);
 			
 			txtNombre = new JTextField();
-			txtNombre.setBounds(159, 99, 259, 20);
+			txtNombre.setBounds(163, 143, 259, 20);
 			panel.add(txtNombre);
 			txtNombre.setColumns(10);
 			
 			txtAreaConocimiento = new JTextField();
-			txtAreaConocimiento.setBounds(159, 148, 259, 20);
+			txtAreaConocimiento.setBounds(163, 192, 259, 20);
 			panel.add(txtAreaConocimiento);
 			txtAreaConocimiento.setColumns(10);
 			{
@@ -154,6 +155,20 @@ public class RegComision extends JDialog {
 				panel_1.setBackground(new Color(176, 224, 230));
 				panel_1.setBounds(161, 13, 229, 61);
 				panel.add(panel_1);
+			}
+			{
+				txtCodigo = new JTextField();
+				txtCodigo.setEnabled(false);
+				txtCodigo.setColumns(10);
+				txtCodigo.setBounds(162, 106, 259, 20);
+				txtCodigo.setText("C-"+PUCMM.getInstance().getComisiones().size());
+				panel.add(txtCodigo);
+			}
+			{
+				JLabel lblCodigoDeLa = new JLabel("Codigo de la Comision:");
+				lblCodigoDeLa.setFont(new Font("Calibri", Font.PLAIN, 14));
+				lblCodigoDeLa.setBounds(13, 110, 141, 14);
+				panel.add(lblCodigoDeLa);
 			}
 		}
 		{
@@ -173,7 +188,7 @@ public class RegComision extends JDialog {
 						
 						if(presidente != null && PUCMM.getInstance().verificarJurado(presidente) && jurados.size() > 0 && verificarlista(presidente) == 0) {
 							
-							PUCMM.getInstance().crearComision(txtNombre.getText(), presidente, txtAreaConocimiento.getText(), jurados);
+							PUCMM.getInstance().crearComision(txtCodigo.getText(),txtNombre.getText(), presidente, txtAreaConocimiento.getText(), jurados);
 							JOptionPane.showMessageDialog(null, "Comision registrada correctamente.");
 							
 							txtNombre.setText("");

@@ -75,7 +75,7 @@ public class PUCMM {
 	public void agregarTrabajo(String cedulaPart, Trabajo trabajo) {
 		if(verificarTrabajo(cedulaPart, trabajo)) {
 			Evento evento = buscarEventoByName(trabajo.getEvento());
-			Comision comision = getComisionByName(evento.getComision().getNombre());
+			Comision comision = getComisionByCode(evento.getComision().getCodigo());
 			comision.getTrabajos().add(trabajo);
 			Persona participante = buscarPersonaByCedula(cedulaPart);
 			evento.getProyectos().add(trabajo);
@@ -146,12 +146,26 @@ public class PUCMM {
 	}
 	
 	
-	public  Comision getComisionByName(String name) {
+	public  Comision getComisionByCode(String code) {
 		Comision comision = null;
 		boolean encontrado = false;
 		int i = 0;
 		while(!encontrado && i < comisiones.size() ){
-		  if(comisiones.get(i).getNombre().equalsIgnoreCase(name)){
+		  if(comisiones.get(i).getCodigo().equalsIgnoreCase(code)){
+			  encontrado = true;
+			  comision = comisiones.get(i);
+		  }	
+		  i++;
+		}
+		return comision;
+	}
+	
+	public  Comision getComisionByName(String code) {
+		Comision comision = null;
+		boolean encontrado = false;
+		int i = 0;
+		while(!encontrado && i < comisiones.size() ){
+		  if(comisiones.get(i).getNombre().equalsIgnoreCase(code)){
 			  encontrado = true;
 			  comision = comisiones.get(i);
 		  }	
@@ -197,7 +211,7 @@ public class PUCMM {
 	}
 	
 	
-	public Comision crearComision(String nombre, Jurado presidente, String areaConocimiento ,ArrayList<Jurado> jurados) {
+	public Comision crearComision(String codigo, String nombre, Jurado presidente, String areaConocimiento ,ArrayList<Jurado> jurados) {
 		
 		presidente.setDisponible(false);
 		presidente.getComisiones().add(nombre);
@@ -206,7 +220,7 @@ public class PUCMM {
 			jurado.getComisiones().add(nombre);
 		}
 		
-		Comision comision = new Comision(nombre, presidente, areaConocimiento, jurados);
+		Comision comision = new Comision(codigo, nombre, presidente, areaConocimiento, jurados);
 		comisiones.add(comision);
 		
 		return comision;
@@ -311,10 +325,27 @@ public class PUCMM {
 		Calificacion cali = new Calificacion(logueado.getNombre(), calificacion);
 		
 		Trabajo trabajo = buscarTrabajoByCode(codTrabajo);
-//		Participante participante = buscarPersonaByCedula(trabajo.get)
-		
+		Trabajo trabajoEnComision = buscarTrabajoEnComision(trabajo);
+		trabajoEnComision.getCalificaciones().add(cali);
 		trabajo.getCalificaciones().add(cali);
 		
+	}
+	
+	private Trabajo buscarTrabajoEnComision(Trabajo trabajo) {
+		
+		Comision comision = getComisionByCode(trabajo.getCodeComision());
+				
+		Trabajo aux = null;
+		boolean encontrado = false;
+		int i = 0;
+		while(!encontrado && i < comision.getTrabajos().size()) {
+			if (comision.getTrabajos().get(i).getCodigo().equalsIgnoreCase(trabajo.getCodigo())) {
+				aux = comision.getTrabajos().get(i);
+				encontrado = true;
+			}
+			i++;
+		}
+		return aux;
 	}
 	
 	public float calCalificacionFinal(String codeTrabajo) {
