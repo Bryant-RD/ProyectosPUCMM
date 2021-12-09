@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
-import visual.Calificaciones;
+import visual.MenuJurado;
 import visual.test;
 
 
@@ -285,7 +285,7 @@ public class PUCMM {
 			} else if(persona.getRol().equalsIgnoreCase("Jurado")) {
 				if(((Jurado)persona).getUsuario().equalsIgnoreCase(usuario) && ((Jurado) persona).getPassword().equalsIgnoreCase(password)) {
 					logueado = (Jurado) persona;
-					Calificaciones cali = new Calificaciones();
+					MenuJurado cali = new MenuJurado();
 					cali.setVisible(true);
 					encontrado = true;
 				}
@@ -310,7 +310,7 @@ public class PUCMM {
 		
 		Calificacion cali = new Calificacion(logueado.getNombre(), calificacion);
 		
-		Trabajo trabajo = buscarTrabajoByName(codTrabajo);
+		Trabajo trabajo = buscarTrabajoByCode(codTrabajo);
 		
 		trabajo.getCalificaciones().add(cali);
 		
@@ -319,7 +319,7 @@ public class PUCMM {
 	public float calCalificacionFinal(String codeTrabajo) {
 		float cali = 0;
 		
-		Trabajo trabajo = buscarTrabajoByName(codeTrabajo);
+		Trabajo trabajo = buscarTrabajoByCode(codeTrabajo);
 		
 		for (Calificacion calificacion : trabajo.getCalificaciones()) {
 			cali += calificacion.getCalificacion();
@@ -384,27 +384,29 @@ public class PUCMM {
 
 	}
 	
-	public Trabajo buscarTrabajoByName(String nombreTrabajo) {
-			
-			Trabajo aux = null;
-			
-			for (Trabajo trabajo: trabajos) {
-				if (trabajo.getNombre().equalsIgnoreCase(nombreTrabajo)) {
-					aux = trabajo;
-				}
-			}
-			if(aux != null) {
-				return aux;
-			} else {
-	//			JOptionPane.showMessageDialog(null, "Trabajo.", "Error!", JOptionPane.ERROR_MESSAGE);
-				return null;
-			}
-		}
+
 	
 	public boolean eliminarTrabajo(Trabajo selected) {
 		return trabajos.remove(selected);
 
 	}
+	
+	
+	public Trabajo buscarTrabajoByCode(String code) {
+		Trabajo aux = null;
+		boolean encontrado = false;
+		int i = 0;
+		while(!encontrado && i < trabajos.size()) {
+			if (trabajos.get(i).getCodigo().equalsIgnoreCase(code)) {
+				aux = trabajos.get(i);
+				encontrado = true;
+			}
+			i++;
+		}
+		return aux;
+	}
+	
+	
 	
 	// Buscar evento
 	

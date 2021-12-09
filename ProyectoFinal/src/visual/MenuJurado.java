@@ -22,8 +22,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.ListSelectionModel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
-public class Calificaciones extends JFrame {
+public class MenuJurado extends JFrame {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txtCodigo;
@@ -31,13 +33,14 @@ public class Calificaciones extends JFrame {
 	private JTable table;
 	private DefaultTableModel model;
 	private Object[] rows;
+	private static Trabajo selected = null;
 	
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
-			Calificaciones dialog = new Calificaciones();
+			MenuJurado dialog = new MenuJurado();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -48,7 +51,7 @@ public class Calificaciones extends JFrame {
 	/**
 	 * Create the dialog.
 	 */
-	public Calificaciones() {
+	public MenuJurado() {
 		setBounds(100, 100, 903, 725);
 		setLocationRelativeTo(null);
 		setResizable(false);
@@ -86,6 +89,16 @@ public class Calificaciones extends JFrame {
 			panel_1.add(scrollPane);
 			
 			table = new JTable();
+			table.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					int row = table.getRowCount();
+					if(row != -1) {
+						String code = (String) table.getValueAt(row, 0);
+						selected = PUCMM.getInstance().buscarTrabajoByCode(code);
+					}
+				}
+			});
 			table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			model = new DefaultTableModel();
 			String headers[] = {"Codigo", "propietario" ,"Nombre","Tema", "calificaicon", "Total"};
@@ -99,6 +112,12 @@ public class Calificaciones extends JFrame {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("Calificar");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						Calificando calificando = new Calificando(selected);
+						
+					}
+				});
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);

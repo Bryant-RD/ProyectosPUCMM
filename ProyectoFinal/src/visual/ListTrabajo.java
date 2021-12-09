@@ -103,7 +103,7 @@ public class ListTrabajo extends JDialog {
 							btnEliminar.setEnabled(true);
 							btnModificar.setEnabled(true);
 							String nombre = (String)(model.getValueAt(index, 0));
-							selected = PUCMM.getInstance().buscarTrabajoByName(nombre);
+							selected = PUCMM.getInstance().buscarTrabajoByCode(nombre);
 							System.out.println(selected.getCodigo()+" "+selected.getNombre());
 						}
 					}
