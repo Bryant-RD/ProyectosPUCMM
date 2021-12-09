@@ -16,6 +16,7 @@ import backend.PUCMM;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
@@ -32,6 +33,7 @@ import javax.swing.JSpinner;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Font;
+import java.awt.SystemColor;
 
 public class ListEventos extends JDialog {
 
@@ -58,6 +60,7 @@ public class ListEventos extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		setLocationRelativeTo(null);
+		setUndecorated(true);
 		
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
@@ -70,10 +73,32 @@ public class ListEventos extends JDialog {
 			label.setBounds(6, 51, 102, 328);
 			panel.add(label);
 			
+			JLabel lblX = new JLabel("X");
+			lblX.setBounds(753, 0, 18, 20);
+			panel.add(lblX);
+			
+			lblX.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					dispose();
+				
+				}
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					lblX.setForeground(Color.RED);
+				}
+				public void mouseExited(MouseEvent e) {
+					lblX.setForeground(Color.BLACK);
+				}
+			});
+			lblX.setForeground(Color.BLACK);
+			lblX.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
+			lblX.setHorizontalAlignment(SwingConstants.CENTER);
+			
 			JScrollPane scrollPane = new JScrollPane();
 			scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 			scrollPane.setBackground(new Color(190,209,201));
-			scrollPane.setBounds(35, 75, 679, 328);
+			scrollPane.setBounds(35, 75, 704, 377);
 			panel.add(scrollPane);
 			{
 				table = new JTable();
@@ -98,12 +123,13 @@ public class ListEventos extends JDialog {
 				
 				JLabel lblTipo = new JLabel("Tema:");
 				lblTipo.setFont(new Font("Calibri", Font.PLAIN, 14));
-				lblTipo.setBounds(35, 31, 43, 16);
+				lblTipo.setBounds(35, 40, 43, 16);
 				panel.add(lblTipo);
+				cbxTipo.setBackground(SystemColor.inactiveCaptionBorder);
 				cbxTipo.setFont(new Font("Calibri", Font.PLAIN, 14));
 				
 				cbxTipo.setModel(new DefaultComboBoxModel(new String[] {"Todos", "Fisica", "Quimica", "Medicina", "Administracion", "Informatica"}));
-				cbxTipo.setBounds(79, 26, 140, 26);
+				cbxTipo.setBounds(79, 35, 140, 26);
 				panel.add(cbxTipo);
 				
 				JButton btnBuscar = new JButton("Buscar");
@@ -115,7 +141,7 @@ public class ListEventos extends JDialog {
 
 					}
 				});
-				btnBuscar.setBounds(242, 25, 90, 28);
+				btnBuscar.setBounds(242, 34, 90, 28);
 				panel.add(btnBuscar);
 			}
 			

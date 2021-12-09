@@ -26,6 +26,7 @@ import javax.swing.JTable;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingConstants;
 import javax.swing.ListSelectionModel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -33,6 +34,7 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.SystemColor;
 
 public class ListPersona extends JDialog {
 
@@ -66,11 +68,13 @@ public class ListPersona extends JDialog {
 	public ListPersona() {
 		setFont(new Font("Calibri", Font.PLAIN, 12));
 		setTitle("Listado de persona");
-		setBounds(100, 100, 510, 357);
+		setBounds(100, 100, 544, 513);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setModal(true);
+		setUndecorated(true);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(SystemColor.inactiveCaptionBorder);
 		contentPanel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BorderLayout(0, 0));
@@ -89,11 +93,11 @@ public class ListPersona extends JDialog {
 			}
 			{
 				JPanel panel_1 = new JPanel();
-				panel_1.setBounds(10, 40, 470, 229);
+				panel_1.setBounds(22, 158, 501, 281);
 				panel.add(panel_1);
 				panel_1.setLayout(null);
 				JScrollPane scrollPane = new JScrollPane();
-				scrollPane.setBounds(0, 0, 470, 229);
+				scrollPane.setBounds(0, 0, 501, 281);
 				panel_1.add(scrollPane);
 				scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 				table = new JTable();
@@ -129,12 +133,12 @@ public class ListPersona extends JDialog {
 			{
 				JLabel lblNewLabel = new JLabel("Cedula:");
 				lblNewLabel.setFont(new Font("Calibri", Font.PLAIN, 14));
-				lblNewLabel.setBounds(10, 15, 46, 14);
+				lblNewLabel.setBounds(22, 102, 46, 14);
 				panel.add(lblNewLabel);
 			}
 			{
 				txtBuscar = new JTextField();
-				txtBuscar.setBounds(66, 12, 200, 20);
+				txtBuscar.setBounds(78, 99, 200, 20);
 				panel.add(txtBuscar);
 				txtBuscar.setColumns(10);
 			}
@@ -142,7 +146,7 @@ public class ListPersona extends JDialog {
 				btnBuscar = new JButton("Buscar");
 				btnBuscar.setBackground(new Color(244, 244, 249));
 				btnBuscar.setFont(new Font("Calibri", Font.PLAIN, 14));
-				btnBuscar.setBounds(276, 11, 89, 23);
+				btnBuscar.setBounds(288, 98, 89, 23);
 				panel.add(btnBuscar);
 			}
 			{
@@ -150,9 +154,42 @@ public class ListPersona extends JDialog {
 				comboBox.setBackground(new Color(244, 244, 249));
 				comboBox.setFont(new Font("Calibri", Font.PLAIN, 14));
 				comboBox.setModel(new DefaultComboBoxModel(new String[] {"<< Todos >>", "Participantes", "Jurados", "Administradores"}));
-				comboBox.setBounds(375, 12, 105, 20);
+				comboBox.setBounds(415, 101, 105, 20);
 				panel.add(comboBox);
 			}
+			
+			JLabel lblX = new JLabel("X");
+			lblX.setBounds(522, 0, 18, 20);
+			panel.add(lblX);
+			
+			lblX.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					dispose();
+				
+				}
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					lblX.setForeground(Color.RED);
+				}
+				public void mouseExited(MouseEvent e) {
+					lblX.setForeground(Color.BLACK);
+				}
+			});
+			lblX.setForeground(Color.BLACK);
+			lblX.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
+			lblX.setHorizontalAlignment(SwingConstants.CENTER);
+			
+			JLabel lblListadoDePersonas = new JLabel("Listado de Personas");
+			lblListadoDePersonas.setHorizontalAlignment(SwingConstants.CENTER);
+			lblListadoDePersonas.setFont(new Font("Century Gothic", Font.PLAIN, 15));
+			lblListadoDePersonas.setBounds(156, 20, 226, 28);
+			panel.add(lblListadoDePersonas);
+			
+			JPanel panel_1 = new JPanel();
+			panel_1.setBackground(SystemColor.inactiveCaptionBorder);
+			panel_1.setBounds(141, 13, 258, 45);
+			panel.add(panel_1);
 		}
 		{
 			JPanel buttonPane = new JPanel();
@@ -194,7 +231,7 @@ public class ListPersona extends JDialog {
 				getRootPane().setDefaultButton(btnEliminar);
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
+				JButton cancelButton = new JButton("Cancelar");
 				cancelButton.setBackground(new Color(244, 244, 249));
 				cancelButton.setFont(new Font("Calibri", Font.PLAIN, 14));
 				cancelButton.addActionListener(new ActionListener() {
@@ -222,5 +259,4 @@ public class ListPersona extends JDialog {
 		btnEliminar.setEnabled(false);
 		btnModificar.setEnabled(false);
 	}
-
 }
