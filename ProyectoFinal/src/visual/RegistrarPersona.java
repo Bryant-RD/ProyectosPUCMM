@@ -475,16 +475,32 @@ public class RegistrarPersona extends JDialog {
 				txtNombre.setText(updated.getNombre());
 				txtCorreo.setText(updated.getEmail());
 				txtTelefono.setText(updated.getNumero());
+				txtCedula.setText(updated.getCedula());
+				
 				if (updated.getRol().equalsIgnoreCase("Administrador")) {
+					rdbtnAdministrador.setSelected(true);
+					JPanelAdministrador.setVisible(true);
+					rdbtnJurado.setSelected(false);
+					JPanelJurado.setVisible(false);
+					rdbtnParticipante.setSelected(false);
+					JPanelParticipante.setVisible(false);
 					 txtUsuario.setText(((Administrador) updated).getUsuario());
 					 txtPassword.setText(((Administrador) updated).getPassword());
 					 
 				} else if(updated.getRol().equalsIgnoreCase("Jurado")) {
-					updated = ((Jurado) updated);
+					rdbtnJurado.setSelected(true);
+					JPanelJurado.setVisible(true);
+					rdbtnParticipante.setSelected(false);
+					JPanelParticipante.setVisible(false);
 					txtArea.setText(((Jurado) updated).getArea());
+					txtUsuarioJurado.setText(((Administrador) updated).getUsuario());
+					txtPasswordJurado.setText(((Administrador) updated).getPassword());
+					//snpExp.setValue());
 					
 				} else if (updated.getRol().equalsIgnoreCase("Participante")) {
 					txtMatricula.setText(((Participante) updated).getMatricula());
+					txtEscuela.setText(((Participante) updated).getEscuela());
+					JPanelParticipante.getComponent(1).setEnabled(false);
 				}
 
 				btnRegistrar.setText("Actualizar");
