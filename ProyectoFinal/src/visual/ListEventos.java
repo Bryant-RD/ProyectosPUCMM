@@ -46,7 +46,7 @@ public class ListEventos extends JDialog {
 	private JButton btnReporte;
 	private JComboBox cbxTipo = new JComboBox();
 
-
+	/*COMENTARIO*/
 	
 	public ListEventos() {
 		setTitle("Lista de Eventos");

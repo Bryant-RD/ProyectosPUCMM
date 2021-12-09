@@ -198,7 +198,7 @@ public class RegTrabajo extends JDialog {
 						
 						if(update != null) {
 							
-							Trabajo trNew = new Trabajo(txtCodigo.getText(), cbxEvento.getSelectedItem().toString(), txtNombre.getText(), cbxTema.getSelectedItem().toString());
+							Trabajo trNew = new Trabajo(txtCodigo.getText(), txtCedula.getText() ,cbxEvento.getSelectedItem().toString(), txtNombre.getText(), cbxTema.getSelectedItem().toString());
 							
 							int n = JOptionPane.showConfirmDialog(null, "Estas seguro de que quieres modificar este Trabajo?", "Confirmacion", JOptionPane.YES_NO_OPTION);
 							if(n == JOptionPane.YES_OPTION) {
@@ -210,7 +210,7 @@ public class RegTrabajo extends JDialog {
 							
 							if(persona != null && persona instanceof Participante) {
 								
-								Trabajo trabajo = new Trabajo(txtCodigo.getText(),cbxEvento.getSelectedItem().toString(), txtNombre.getText(), cbxTema.getSelectedItem().toString());
+								Trabajo trabajo = new Trabajo(txtCodigo.getText(), txtCedula.getText() ,cbxEvento.getSelectedItem().toString(), txtNombre.getText(), cbxTema.getSelectedItem().toString());
 								PUCMM.getInstance().agregarTrabajo(txtCedula.getText(), trabajo);
 								JOptionPane.showMessageDialog(null, "Trabajo registrado correctamente.");
 								

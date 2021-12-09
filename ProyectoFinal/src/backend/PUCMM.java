@@ -311,6 +311,7 @@ public class PUCMM {
 		Calificacion cali = new Calificacion(logueado.getNombre(), calificacion);
 		
 		Trabajo trabajo = buscarTrabajoByCode(codTrabajo);
+//		Participante participante = buscarPersonaByCedula(trabajo.get)
 		
 		trabajo.getCalificaciones().add(cali);
 		

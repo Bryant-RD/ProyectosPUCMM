@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Trabajo {
 	
 	private String codigo;
+	private String cedulaPropietario;
 	private String evento; 
 	private String nombre;
 	private String tema;
@@ -12,7 +13,7 @@ public class Trabajo {
 	private ArrayList<Calificacion> calificaciones;
 	
 	
-	public Trabajo(String codigo, String evento ,String nombre, String tema) {
+	public Trabajo(String codigo, String cedulaPropietario ,String evento ,String nombre, String tema) {
 		super();
 		this.evento = evento;
 		this.nombre = nombre;
