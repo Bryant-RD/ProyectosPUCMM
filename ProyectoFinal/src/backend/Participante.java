@@ -21,6 +21,13 @@ public class Participante extends Persona {
 		trabajos.add(trabajo);
 		PUCMM.getInstance().registrarTrabajo(trabajo);
 	}
+	
+	public Participante(String nombre, String cedula, String numero, String email, String matricula, String escuela, String rol) {
+		super(nombre, cedula, numero, email, rol);
+
+		this.matricula = matricula;
+		this.escuela = escuela;
+	}
 
 	public String getMatricula() {
 		return matricula;

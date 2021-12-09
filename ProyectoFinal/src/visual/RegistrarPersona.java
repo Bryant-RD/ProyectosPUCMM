@@ -414,38 +414,74 @@ public class RegistrarPersona extends JDialog {
 					public void actionPerformed(ActionEvent e) {
 						
 						if(rdbtnParticipante.isSelected()) {
-//							String codEvent = PUCMM.getInstance().buscarEventoByName(cbxEvento.getSelectedItem().toString()).getCodigo();
+							if(updated != null) {
+								Participante nuevo = new Participante(txtNombre.getText(), txtCedula.getText(), txtTelefono.getText(), txtCorreo.getText(), txtMatricula.getText(), txtEscuela.getText(), "Participante");
+								
+								
+								int n = JOptionPane.showConfirmDialog(null, "Estas seguro de que quieres modificar este participante?", "Confirmacion", JOptionPane.YES_NO_OPTION);
+								if(n == JOptionPane.YES_OPTION) {
+									PUCMM.getInstance().editarParticipante(((Participante)updated), nuevo);
+									dispose();
+								}
+																
+							} else {
+								Participante participante = new Participante(txtNombre.getText(), txtCedula.getText(), txtTelefono.getText(), txtCorreo.getText(), txtMatricula.getText(), txtEscuela.getText(), cbxEvento.getSelectedItem().toString(), txtCodigoProyecto.getText(), txtNombreTrabajo.getText(), cbxTemas.getSelectedItem().toString(), "Participante");
+								PUCMM.getInstance().RegistrarPersona(participante);
+								JOptionPane.showMessageDialog(null, "Participante registrado correctamente", "Operacion exitosa", JOptionPane.INFORMATION_MESSAGE);
+								
+								txtMatricula.setText("");
+								txtEscuela.setText("");
+								txtCodigoProyecto.setText("");
+								txtNombreTrabajo.setText("");
+								cbxTemas.setSelectedIndex(0);
+								cbxEvento.setSelectedIndex(0);
+							}
 							
-							Participante participante = new Participante(txtNombre.getText(), txtCedula.getText(), txtTelefono.getText(), txtCorreo.getText(), txtMatricula.getText(), txtEscuela.getText(), cbxEvento.getSelectedItem().toString(), txtCodigoProyecto.getText(), txtNombreTrabajo.getText(), cbxTemas.getSelectedItem().toString(), "Participante");
-							PUCMM.getInstance().RegistrarPersona(participante);
-							JOptionPane.showMessageDialog(null, "Participante registrado correctamente", "Operacion exitosa", JOptionPane.INFORMATION_MESSAGE);
-							
-							txtMatricula.setText("");
-							txtEscuela.setText("");
-							txtCodigoProyecto.setText("");
-							txtNombreTrabajo.setText("");
-							cbxTemas.setSelectedIndex(0);
-							cbxEvento.setSelectedIndex(0);
 							
 						} if(rdbtnJurado.isSelected()) {
-							Jurado jurado = new Jurado(txtNombre.getText(), txtCedula.getText(), txtTelefono.getText(), txtCorreo.getText(), txtArea.getText(), Integer.valueOf(snpExp.getValue().toString()), txtUsuarioJurado.getText(), txtPasswordJurado.getText(), "Jurado");
-							PUCMM.getInstance().RegistrarPersona(jurado);
-							JOptionPane.showMessageDialog(null, "Jurado registrado correctamente", "Operacion exitosa", JOptionPane.INFORMATION_MESSAGE);
-							
-					
-							txtArea.setText("");
-							snpExp.setValue(0);
-							txtUsuarioJurado.setText("");
-							txtPasswordJurado.setText("");
+							if(updated != null) {
+								
+								Jurado newJurado = new Jurado(txtNombre.getText(), txtCedula.getText(), txtTelefono.getText(), txtCorreo.getText(), txtArea.getText(), Integer.valueOf(snpExp.getValue().toString()), txtUsuarioJurado.getText(), txtPasswordJurado.getText(), "Jurado");
+								
+								int n = JOptionPane.showConfirmDialog(null, "Estas seguro de que quieres modificar este Jurado?", "Confirmacion", JOptionPane.YES_NO_OPTION);
+								if(n == JOptionPane.YES_OPTION) {
+									PUCMM.getInstance().editarJurado(((Jurado)updated), newJurado);
+									dispose();
+								}
+								
+							} else {
+								Jurado jurado = new Jurado(txtNombre.getText(), txtCedula.getText(), txtTelefono.getText(), txtCorreo.getText(), txtArea.getText(), Integer.valueOf(snpExp.getValue().toString()), txtUsuarioJurado.getText(), txtPasswordJurado.getText(), "Jurado");
+								PUCMM.getInstance().RegistrarPersona(jurado);
+								JOptionPane.showMessageDialog(null, "Jurado registrado correctamente", "Operacion exitosa", JOptionPane.INFORMATION_MESSAGE);
+								
+						
+								txtArea.setText("");
+								snpExp.setValue(0);
+								txtUsuarioJurado.setText("");
+								txtPasswordJurado.setText("");
+							}
+
 							
 							
 						} if(rdbtnAdministrador.isSelected()) {
-							Administrador admin = new Administrador(txtNombre.getText(), txtCedula.getText(), txtTelefono.getText(), txtCorreo.getText(), txtUsuario.getText(), txtPassword.getText(), "Administrador");
-							JOptionPane.showMessageDialog(null, "Administrador registrado correctamente", "Operacion exitosa", JOptionPane.INFORMATION_MESSAGE);
+							if(updated != null) {
+								Administrador newAdmin = new Administrador(txtNombre.getText(), txtCedula.getText(), txtTelefono.getText(), txtCorreo.getText(), txtUsuario.getText(), txtPassword.getText(), "Administrador");
+								
+								int n = JOptionPane.showConfirmDialog(null, "Estas seguro de que quieres modificar este Administrador?", "Confirmacion", JOptionPane.YES_NO_OPTION);
+								if(n == JOptionPane.YES_OPTION) {
+									PUCMM.getInstance().editarAdministrador(((Administrador)updated), newAdmin);
+									dispose();
+								}
+								
+							} else {
+								Administrador admin = new Administrador(txtNombre.getText(), txtCedula.getText(), txtTelefono.getText(), txtCorreo.getText(), txtUsuario.getText(), txtPassword.getText(), "Administrador");
+								JOptionPane.showMessageDialog(null, "Administrador registrado correctamente", "Operacion exitosa", JOptionPane.INFORMATION_MESSAGE);
 							
-							PUCMM.getInstance().RegistrarPersona(admin);
-							txtUsuario.setText("");
-							txtPassword.setText("");
+								PUCMM.getInstance().RegistrarPersona(admin);
+								txtUsuario.setText("");
+								txtPassword.setText("");
+							}
+
 						}
 						
 						txtNombre.setText("");

@@ -117,6 +117,35 @@ public class PUCMM {
 		viejo.setTema(nuevo.getTema());
 	}
 	
+	public void editarParticipante(Participante viejo, Participante nuevo) {
+		viejo.setNombre(nuevo.getNombre());
+		viejo.setEmail(nuevo.getEmail());
+		viejo.setNumero(nuevo.getNumero());
+		viejo.setEscuela(nuevo.getEscuela());
+		viejo.setMatricula(nuevo.getMatricula());
+		
+	}
+	
+	public void editarJurado(Jurado viejo, Jurado nuevo) {
+		viejo.setNombre(nuevo.getNombre());
+		viejo.setEmail(nuevo.getEmail());
+		viejo.setNumero(nuevo.getNumero());
+		viejo.setUsuario(nuevo.getUsuario());
+		viejo.setPassword(nuevo.getPassword());
+		viejo.setArea(nuevo.getArea());
+		viejo.setAnioExp(nuevo.getAnioExp());
+
+	}
+	
+	public void editarAdministrador(Administrador viejo, Administrador nuevo) {
+		viejo.setNombre(nuevo.getNombre());
+		viejo.setEmail(nuevo.getEmail());
+		viejo.setNumero(nuevo.getNumero());
+		viejo.setUsuario(nuevo.getUsuario());
+		viejo.setPassword(nuevo.getPassword());
+	}
+	
+	
 	public  Comision getComisionByName(String name) {
 		Comision comision = null;
 		boolean encontrado = false;
