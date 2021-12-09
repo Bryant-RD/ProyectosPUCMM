@@ -388,11 +388,11 @@ public class PUCMM {
 			if (eventos.get(i).getNombre().equalsIgnoreCase(nombre)) {
 				aux = eventos.get(i);
 				encontrado = true;
+				}
+				i++;
 			}
-			i++;
+			return aux;
 		}
-		return aux;
-	}
 	
 	public Persona buscarPersonaByCedula(String cedulaPersona) {
 		
