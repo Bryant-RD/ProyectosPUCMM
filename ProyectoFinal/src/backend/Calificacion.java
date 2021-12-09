@@ -1,6 +1,8 @@
 package backend;
 
-public class Calificacion {
+import java.io.Serializable;
+
+public class Calificacion implements Serializable{
 	
 	
 	private String nomJurado;

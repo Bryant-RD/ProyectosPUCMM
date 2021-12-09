@@ -425,8 +425,8 @@ public class RegistrarPersona extends JDialog {
 								}
 																
 							} else {
-								// String codComision = PUCMM.getInstance().buscarEventoByName(cbxEvento.getSelectedItem().toString()).getCodigo();
-								Participante participante = new Participante(txtNombre.getText(), txtCedula.getText(), txtTelefono.getText(), txtCorreo.getText(), txtMatricula.getText(), txtEscuela.getText(), cbxEvento.getSelectedItem().toString(), txtCodigoProyecto.getText(), txtNombreTrabajo.getText(), cbxTemas.getSelectedItem().toString(), "Participante", "jol");
+								String codComision = PUCMM.getInstance().buscarEventoByName(cbxEvento.getSelectedItem().toString()).getComision().getCodigo();
+								Participante participante = new Participante(txtNombre.getText(), txtCedula.getText(), txtTelefono.getText(), txtCorreo.getText(), txtMatricula.getText(), txtEscuela.getText(), cbxEvento.getSelectedItem().toString(), txtCodigoProyecto.getText(), txtNombreTrabajo.getText(), cbxTemas.getSelectedItem().toString(), "Participante", codComision);
 								PUCMM.getInstance().RegistrarPersona(participante);
 								JOptionPane.showMessageDialog(null, "Participante registrado correctamente", "Operacion exitosa", JOptionPane.INFORMATION_MESSAGE);
 								

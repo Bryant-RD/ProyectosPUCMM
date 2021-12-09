@@ -1,6 +1,8 @@
 package backend;
 
-public class Recursos {
+import java.io.Serializable;
+
+public class Recursos implements Serializable{
 	
 	private int cantidad;
 	private int disponibilidad;

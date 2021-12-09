@@ -1,6 +1,8 @@
 package backend;
 
-public class Administrador extends Persona{
+import java.io.Serializable;
+
+public class Administrador extends Persona implements Serializable{
 	
 	private String usuario;
 	private String password;

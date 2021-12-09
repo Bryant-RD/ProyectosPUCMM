@@ -26,14 +26,26 @@ import javax.swing.border.LineBorder;
 import java.awt.Color;
 import java.awt.Dialog;
 import java.awt.Dimension;
+import java.awt.Event;
+import java.awt.EventQueue;
 import java.awt.Font;
 import javax.swing.JPasswordField;
 import javax.swing.SwingConstants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+import java.net.UnknownHostException;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.SystemColor;
+import java.awt.TextArea;
+import java.awt.TextField;
 
 public class Login extends JDialog {
 	
@@ -49,6 +61,9 @@ public class Login extends JDialog {
 	//private JTextField txtPassword;
 	private JPasswordField passwordField;
 	private JPasswordField txtPassword;
+	static Socket socket = null;
+	static ObjectInputStream entradaSocket;
+	static ObjectOutputStream SalidaSocket;
 
 	/**
 	 * Launch the application.
@@ -69,6 +84,7 @@ public class Login extends JDialog {
 	 * Create the dialog.
 	 */
 	public Login() {
+		
 		setBounds(100, 100, 669, 566);
 		/*
 		dim = getToolkit().getScreenSize();
@@ -186,6 +202,7 @@ public class Login extends JDialog {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
 					if(JOptionPane.showConfirmDialog(null, "Esta seguro de que quieres cerrar la aplicacion?","Confirmacion", JOptionPane.YES_NO_OPTION) == 0) {
+	
 						dispose();
 					}
 				}
@@ -234,37 +251,7 @@ public class Login extends JDialog {
 			JLabel lblContrasea = new JLabel("Contraseña");
 			lblContrasea.setFont(new Font("Calibri", Font.PLAIN, 14));
 			lblContrasea.setBounds(212, 277, 71, 16);
-			panel.add(lblContrasea);
-			
-			/*
-			txtPassword = new JTextField();
-			txtPassword.setBackground(SystemColor.inactiveCaptionBorder);
-			txtPassword.setBounds(212, 277, 180, 21);
-			panel.add(txtPassword);
-			txtPassword.setText("Contraseña");
-			txtPassword.addFocusListener(new FocusAdapter() {
-				@Override
-				public void focusGained(FocusEvent arg0) {
-					if(txtPassword.getText().equals("Password")) {
-						txtPassword.setText("");
-					}
-					else {
-						txtPassword.selectAll();
-					}
-				}
-				@Override
-				public void focusLost(FocusEvent e) {
-					if(txtPassword.getText().equals(""))
-						txtPassword.setText("Password");
-				}
-			});
-			txtPassword.setFont(new Font("Calibri", Font.PLAIN, 14));
-			txtPassword.setColumns(10);
-			txtPassword.setBorder(null);
-			*/
-			
-			
-		}
-	
+			panel.add(lblContrasea);							
+		}	
 	}
 }

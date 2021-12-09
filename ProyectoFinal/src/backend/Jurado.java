@@ -1,8 +1,9 @@
 package backend;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Jurado extends Administrador{
+public class Jurado extends Administrador implements Serializable{
 	
 	private String area;
 	private int anioExp;

@@ -1,8 +1,9 @@
 package backend;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Trabajo {
+public class Trabajo implements Serializable{
 	
 	private String codigo;
 	private String codeComision;

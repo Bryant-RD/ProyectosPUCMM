@@ -1,5 +1,9 @@
 package backend;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
@@ -10,7 +14,7 @@ import visual.test;
 
 
 
-public class PUCMM {
+public class PUCMM implements Serializable{
 
 	private ArrayList<Persona> personas;
 	private ArrayList<Trabajo> trabajos;
@@ -42,6 +46,17 @@ public class PUCMM {
 			pucmm = new PUCMM();
 		}
 		return pucmm;
+	}
+	
+	
+	public void loadData() {
+		try {
+			ObjectInputStream entrada = new ObjectInputStream(new FileInputStream("src\\bd\\bd.dat"));
+			pucmm = (PUCMM) entrada.readObject();
+		} catch (IOException | ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public static PUCMM pucmm() {

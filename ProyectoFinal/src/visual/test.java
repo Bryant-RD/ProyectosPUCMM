@@ -20,12 +20,23 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Event;
 
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.UIManager;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.DataOutput;
+import java.io.DataOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class test extends JFrame {
 
@@ -44,6 +55,10 @@ public class test extends JFrame {
 	private JPanel panelMenu;
 	private JLabel lblRegistrar;
 	private JLabel lblListar;
+	static Socket socket = null;
+	static ObjectInputStream entradaSocket;
+	static ObjectOutputStream SalidaSocket;
+	private JMenu btnRespaldo;
 
 	/**
 	 * Launch the application.
@@ -65,6 +80,23 @@ public class test extends JFrame {
 	 * Create the frame.
 	 */
 	public test() {
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosed(WindowEvent arg0) {
+				System.out.print("ENTRA");
+				try {
+					System.out.print("ENTRA TRY");
+					ObjectOutputStream salidaFile = new ObjectOutputStream(new FileOutputStream("src\\bd\\bd.dat"));
+					PUCMM instancia = PUCMM.getInstance();
+					salidaFile.writeObject(instancia);
+					salidaFile.close();
+									
+					
+				} catch(Exception e) {
+					System.out.print(e);
+				}
+			}
+		});
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 772, 577);
 		
@@ -91,6 +123,38 @@ public class test extends JFrame {
 		
 		mnNewMenu.setFont(new Font("Calibri", Font.PLAIN, 15));
 		menuBar.add(mnNewMenu);
+		
+		btnRespaldo = new JMenu("New menu");
+		btnRespaldo.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+				try {
+					
+					ObjectOutputStream salidaFile = new ObjectOutputStream(new FileOutputStream("src\\bd\\bd.dat"));
+					PUCMM instancia = PUCMM.getInstance();
+					salidaFile.writeObject(instancia);
+					salidaFile.close();
+					
+					Socket socket = new Socket("127.0.0.1", 7000);
+					FileInputStream readFileToRespaldo = new FileInputStream("src\\bd\\bd.dat");
+					DataOutputStream writeSocket = new DataOutputStream(socket.getOutputStream());
+					int bytess = 0;
+					
+					while ((bytess = readFileToRespaldo.read()) != -1) {
+						writeSocket.write(bytess);
+						
+					}
+					readFileToRespaldo.close();
+					writeSocket.flush();
+					
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+		menuBar.add(btnRespaldo);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -273,4 +337,27 @@ public class test extends JFrame {
 		lblListar.setBounds(1274, 289, 144, 27);
 		panel.add(lblListar);
 	}
+	  public boolean handleEvent(Event e)
+	  {
+		    if ((e.target == this) && (e.id == Event.WINDOW_DESTROY))
+		    {
+		      if (socket != null)
+		      {
+			try
+			{
+				System.out.print("BOTON");
+				SalidaSocket = new ObjectOutputStream(socket.getOutputStream());
+				PUCMM instancia = PUCMM.getInstance();
+				SalidaSocket.writeObject(instancia);
+				socket.close();
+			}
+			catch (IOException ioe)
+			{
+			  System.out.println("Error: "+ioe);
+			}
+			this.dispose();
+		      }
+		    }
+		    return true;
+	  }
 }

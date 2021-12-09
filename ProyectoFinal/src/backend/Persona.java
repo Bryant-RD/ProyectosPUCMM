@@ -1,6 +1,8 @@
 package backend;
 
-public class Persona {  
+import java.io.Serializable;
+
+public class Persona implements Serializable{  
 	
 	protected String nombre;
 	protected String cedula;
