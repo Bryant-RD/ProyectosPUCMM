@@ -33,6 +33,7 @@ import javax.swing.UIManager;
 import java.awt.Color;
 import javax.swing.JSpinner;
 import java.awt.Font;
+import java.awt.SystemColor;
 
 public class RegistrarPersona extends JDialog {
 
@@ -63,6 +64,8 @@ public class RegistrarPersona extends JDialog {
 	private String[] aEventos;
 	private static Persona updated = null;
 	private JPanel panel_3;
+	private JPanel panel_4;
+	private JLabel lblRegistrarPersona;
 
 	/**
 	 * Launch the application.
@@ -89,7 +92,7 @@ public class RegistrarPersona extends JDialog {
 			setTitle("Registrar Persona");
 		}
 
-		setBounds(100, 100, 540, 495);
+		setBounds(100, 100, 591, 572);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setModal(true);
@@ -108,7 +111,7 @@ public class RegistrarPersona extends JDialog {
 			JPanel panel_1 = new JPanel();
 			panel_1.setBackground(new Color(244, 244, 249));
 			panel_1.setBorder(new TitledBorder(null, "Datos Generales", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-			panel_1.setBounds(10, 11, 494, 103);
+			panel_1.setBounds(45, 98, 494, 103);
 			panel.add(panel_1);
 			panel_1.setLayout(null);
 			
@@ -155,7 +158,7 @@ public class RegistrarPersona extends JDialog {
 			JPanel panel_2 = new JPanel();
 			panel_2.setBackground(new Color(244, 244, 249));
 			panel_2.setBorder(new TitledBorder(null, "Tipo", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-			panel_2.setBounds(10, 125, 494, 68);
+			panel_2.setBounds(45, 212, 494, 68);
 			panel.add(panel_2);
 			panel_2.setLayout(null);
 			
@@ -212,7 +215,7 @@ public class RegistrarPersona extends JDialog {
 			JPanelParticipante = new JPanel();
 			JPanelParticipante.setBackground(new Color(244, 244, 249));
 			JPanelParticipante.setBorder(new TitledBorder(null, "Participante", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-			JPanelParticipante.setBounds(10, 204, 494, 201);
+			JPanelParticipante.setBounds(45, 291, 494, 201);
 			panel.add(JPanelParticipante);
 			JPanelParticipante.setLayout(null);
 			
@@ -313,30 +316,36 @@ public class RegistrarPersona extends JDialog {
 			panel_3.add(cbxEvento);
 			
 			JPanelJurado = new JPanel();
+			JPanelJurado.setBackground(SystemColor.inactiveCaptionBorder);
 			JPanelJurado.setVisible(false);
 			JPanelJurado.setLayout(null);
 			JPanelJurado.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Jurado", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-			JPanelJurado.setBounds(10, 204, 494, 103);
+			JPanelJurado.setBounds(45, 291, 494, 103);
 			panel.add(JPanelJurado);
 			
 			JLabel lblArea = new JLabel("Area");
+			lblArea.setFont(new Font("Calibri", Font.PLAIN, 14));
 			lblArea.setBounds(10, 33, 46, 14);
 			JPanelJurado.add(lblArea);
 			
 			JLabel lblAosExperiencia = new JLabel("A\u00F1os Experiencia");
+			lblAosExperiencia.setFont(new Font("Calibri", Font.PLAIN, 14));
 			lblAosExperiencia.setBounds(270, 33, 108, 14);
 			JPanelJurado.add(lblAosExperiencia);
 			
 			txtArea = new JTextField();
+			txtArea.setFont(new Font("Calibri", Font.PLAIN, 14));
 			txtArea.setColumns(10);
 			txtArea.setBounds(66, 30, 158, 20);
 			JPanelJurado.add(txtArea);
 			
 			snpExp = new JSpinner();
+			snpExp.setFont(new Font("Calibri", Font.PLAIN, 14));
 			snpExp.setBounds(388, 30, 96, 20);
 			JPanelJurado.add(snpExp);
 			
 			JLabel lblNewLabel_6 = new JLabel("Usuario");
+			lblNewLabel_6.setFont(new Font("Calibri", Font.PLAIN, 14));
 			lblNewLabel_6.setBounds(10, 72, 46, 14);
 			JPanelJurado.add(lblNewLabel_6);
 			
@@ -350,34 +359,44 @@ public class RegistrarPersona extends JDialog {
 			txtPasswordJurado.setBounds(326, 69, 158, 20);
 			JPanelJurado.add(txtPasswordJurado);
 			
-			JLabel lblNewLabel_7 = new JLabel("contrase\u00F1a");
+			JLabel lblNewLabel_7 = new JLabel("Contrase\u00F1a");
+			lblNewLabel_7.setFont(new Font("Calibri", Font.PLAIN, 14));
 			lblNewLabel_7.setBounds(251, 72, 65, 14);
 			JPanelJurado.add(lblNewLabel_7);
 			
 			JPanelAdministrador = new JPanel();
+			JPanelAdministrador.setBackground(SystemColor.inactiveCaptionBorder);
 			JPanelAdministrador.setVisible(false);
 			JPanelAdministrador.setLayout(null);
 			JPanelAdministrador.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Jurado", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-			JPanelAdministrador.setBounds(10, 204, 494, 61);
+			JPanelAdministrador.setBounds(45, 291, 494, 61);
 			panel.add(JPanelAdministrador);
 			
 			JLabel label_6 = new JLabel("Usuario");
+			label_6.setBackground(SystemColor.inactiveCaptionBorder);
+			label_6.setFont(new Font("Calibri", Font.PLAIN, 14));
 			label_6.setBounds(10, 28, 46, 14);
 			JPanelAdministrador.add(label_6);
 			
 			txtUsuario = new JTextField();
+			txtUsuario.setBackground(SystemColor.inactiveCaptionBorder);
+			txtUsuario.setFont(new Font("Calibri", Font.PLAIN, 14));
 			txtUsuario.setColumns(10);
 			txtUsuario.setBounds(66, 25, 158, 20);
 			JPanelAdministrador.add(txtUsuario);
 			
 			txtPassword = new JTextField();
+			txtPassword.setBackground(SystemColor.inactiveCaptionBorder);
+			txtPassword.setFont(new Font("Calibri", Font.PLAIN, 14));
 			txtPassword.setColumns(10);
 			txtPassword.setBounds(326, 25, 158, 20);
 			JPanelAdministrador.add(txtPassword);
 			
-			JLabel label_7 = new JLabel("contrase\u00F1a");
-			label_7.setBounds(251, 28, 65, 14);
-			JPanelAdministrador.add(label_7);
+			JLabel lblContrasea = new JLabel("Contrase\u00F1a");
+			lblContrasea.setBackground(SystemColor.inactiveCaptionBorder);
+			lblContrasea.setFont(new Font("Calibri", Font.PLAIN, 14));
+			lblContrasea.setBounds(251, 28, 65, 14);
+			JPanelAdministrador.add(lblContrasea);
 			
 			JLabel lblX = new JLabel("X");
 			lblX.addMouseListener(new MouseAdapter() {
@@ -397,8 +416,19 @@ public class RegistrarPersona extends JDialog {
 			lblX.setForeground(Color.BLACK);
 			lblX.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
 			lblX.setHorizontalAlignment(SwingConstants.CENTER);
-			lblX.setBounds(510, 0, 20, 20);
+			lblX.setBounds(560, 1, 20, 20);
 			panel.add(lblX);
+			
+			lblRegistrarPersona = new JLabel("Registrar Persona");
+			lblRegistrarPersona.setHorizontalAlignment(SwingConstants.CENTER);
+			lblRegistrarPersona.setFont(new Font("Century Gothic", Font.PLAIN, 15));
+			lblRegistrarPersona.setBounds(181, 20, 226, 28);
+			panel.add(lblRegistrarPersona);
+			
+			panel_4 = new JPanel();
+			panel_4.setBackground(new Color(176, 224, 230));
+			panel_4.setBounds(166, 13, 258, 45);
+			panel.add(panel_4);
 		}
 		{
 			JPanel buttonPane = new JPanel();

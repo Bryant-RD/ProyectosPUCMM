@@ -52,7 +52,7 @@ public class ListEventos extends JDialog {
 	
 	public ListEventos() {
 		setTitle("Lista de Eventos");
-		setBounds(100, 100, 781, 537);
+		setBounds(100, 100, 823, 581);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setModal(true);
@@ -74,7 +74,7 @@ public class ListEventos extends JDialog {
 			panel.add(label);
 			
 			JLabel lblX = new JLabel("X");
-			lblX.setBounds(753, 0, 18, 20);
+			lblX.setBounds(795, 0, 18, 20);
 			panel.add(lblX);
 			
 			lblX.addMouseListener(new MouseAdapter() {
@@ -98,7 +98,7 @@ public class ListEventos extends JDialog {
 			JScrollPane scrollPane = new JScrollPane();
 			scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 			scrollPane.setBackground(new Color(190,209,201));
-			scrollPane.setBounds(35, 75, 704, 377);
+			scrollPane.setBounds(53, 130, 704, 377);
 			panel.add(scrollPane);
 			{
 				table = new JTable();
@@ -123,13 +123,13 @@ public class ListEventos extends JDialog {
 				
 				JLabel lblTipo = new JLabel("Tema:");
 				lblTipo.setFont(new Font("Calibri", Font.PLAIN, 14));
-				lblTipo.setBounds(35, 40, 43, 16);
+				lblTipo.setBounds(53, 95, 43, 16);
 				panel.add(lblTipo);
 				cbxTipo.setBackground(SystemColor.inactiveCaptionBorder);
 				cbxTipo.setFont(new Font("Calibri", Font.PLAIN, 14));
 				
 				cbxTipo.setModel(new DefaultComboBoxModel(new String[] {"Todos", "Fisica", "Quimica", "Medicina", "Administracion", "Informatica"}));
-				cbxTipo.setBounds(79, 35, 140, 26);
+				cbxTipo.setBounds(97, 90, 140, 26);
 				panel.add(cbxTipo);
 				
 				JButton btnBuscar = new JButton("Buscar");
@@ -141,9 +141,20 @@ public class ListEventos extends JDialog {
 
 					}
 				});
-				btnBuscar.setBounds(242, 34, 90, 28);
+				btnBuscar.setBounds(260, 89, 90, 28);
 				panel.add(btnBuscar);
 			}
+			
+			JLabel lblListadoDeEventos = new JLabel("Listado de Eventos");
+			lblListadoDeEventos.setHorizontalAlignment(SwingConstants.CENTER);
+			lblListadoDeEventos.setFont(new Font("Century Gothic", Font.PLAIN, 15));
+			lblListadoDeEventos.setBounds(316, 20, 226, 28);
+			panel.add(lblListadoDeEventos);
+			
+			JPanel panel_1 = new JPanel();
+			panel_1.setBackground(SystemColor.inactiveCaptionBorder);
+			panel_1.setBounds(301, 13, 258, 45);
+			panel.add(panel_1);
 			
 			
 		}

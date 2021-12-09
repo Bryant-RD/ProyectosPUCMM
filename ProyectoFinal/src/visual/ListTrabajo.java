@@ -30,6 +30,8 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Font;
 import java.awt.Color;
+import javax.swing.SwingConstants;
+import java.awt.SystemColor;
 
 public class ListTrabajo extends JDialog {
 
@@ -62,10 +64,11 @@ public class ListTrabajo extends JDialog {
 	 */
 	public ListTrabajo() {
 		setTitle("Listado de Trabajos");
-		setBounds(100, 100, 510, 357);
+		setBounds(100, 100, 572, 406);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setModal(true);
+		setUndecorated(true);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -76,6 +79,30 @@ public class ListTrabajo extends JDialog {
 			panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			contentPanel.add(panel);
 			panel.setLayout(null);
+			
+			JLabel lblX = new JLabel("X");
+			lblX.setBounds(550, 0, 18, 20);
+			panel.add(lblX);
+			
+			lblX.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					dispose();
+				
+				}
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					lblX.setForeground(Color.RED);
+				}
+				public void mouseExited(MouseEvent e) {
+					lblX.setForeground(Color.BLACK);
+				}
+			});
+			lblX.setForeground(Color.BLACK);
+			lblX.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
+			lblX.setHorizontalAlignment(SwingConstants.CENTER);
+			
+			
 			{
 				{
 					String headers[] = {"Codigo","Nombre","Tema", "Evento"};
@@ -85,7 +112,7 @@ public class ListTrabajo extends JDialog {
 			}
 			{
 				JPanel panel_1 = new JPanel();
-				panel_1.setBounds(10, 40, 470, 229);
+				panel_1.setBounds(46, 112, 470, 229);
 				panel.add(panel_1);
 				panel_1.setLayout(null);
 				JScrollPane scrollPane = new JScrollPane();
@@ -114,12 +141,12 @@ public class ListTrabajo extends JDialog {
 			{
 				JLabel lblNewLabel = new JLabel("Codigo:");
 				lblNewLabel.setFont(new Font("Calibri", Font.PLAIN, 14));
-				lblNewLabel.setBounds(10, 15, 46, 14);
+				lblNewLabel.setBounds(46, 80, 46, 14);
 				panel.add(lblNewLabel);
 			}
 			{
 				txtBuscar = new JTextField();
-				txtBuscar.setBounds(66, 12, 200, 20);
+				txtBuscar.setBounds(102, 77, 200, 20);
 				panel.add(txtBuscar);
 				txtBuscar.setColumns(10);
 			}
@@ -127,8 +154,21 @@ public class ListTrabajo extends JDialog {
 				btnBuscar = new JButton("Buscar");
 				btnBuscar.setBackground(new Color(244, 244, 249));
 				btnBuscar.setFont(new Font("Calibri", Font.PLAIN, 14));
-				btnBuscar.setBounds(276, 11, 89, 23);
+				btnBuscar.setBounds(312, 76, 89, 23);
 				panel.add(btnBuscar);
+			}
+			{
+				JLabel lblListadoDeTrabajos = new JLabel("Listado de Trabajos");
+				lblListadoDeTrabajos.setHorizontalAlignment(SwingConstants.CENTER);
+				lblListadoDeTrabajos.setFont(new Font("Century Gothic", Font.PLAIN, 15));
+				lblListadoDeTrabajos.setBounds(179, 15, 226, 28);
+				panel.add(lblListadoDeTrabajos);
+			}
+			{
+				JPanel panel_1 = new JPanel();
+				panel_1.setBackground(SystemColor.inactiveCaptionBorder);
+				panel_1.setBounds(164, 8, 258, 45);
+				panel.add(panel_1);
 			}
 			
 		}

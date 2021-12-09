@@ -19,6 +19,8 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
@@ -60,7 +62,9 @@ public class RegComision extends JDialog {
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setModal(true);
+		setUndecorated(true);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(new Color(176, 224, 230));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BorderLayout(0, 0));
@@ -69,6 +73,30 @@ public class RegComision extends JDialog {
 			panel.setBackground(new Color(244, 244, 249));
 			contentPanel.add(panel, BorderLayout.CENTER);
 			panel.setLayout(null);
+			
+			JLabel lblX = new JLabel("X");
+			lblX.setBounds(541, 0, 18, 20);
+			panel.add(lblX);
+			
+			lblX.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					dispose();
+				
+				}
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					lblX.setForeground(Color.RED);
+				}
+				public void mouseExited(MouseEvent e) {
+					lblX.setForeground(Color.BLACK);
+				}
+			});
+			lblX.setForeground(Color.BLACK);
+			lblX.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
+			lblX.setHorizontalAlignment(SwingConstants.CENTER);
+			
+			
 			{
 				JLabel lblNewLabel = new JLabel(" Cedula del Presidente:");
 				lblNewLabel.setFont(new Font("Calibri", Font.PLAIN, 14));
@@ -147,13 +175,13 @@ public class RegComision extends JDialog {
 				JLabel lblTitle = new JLabel("Registro de Comisiones");
 				lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
 				lblTitle.setFont(new Font("Century Gothic", Font.PLAIN, 16));
-				lblTitle.setBounds(174, 22, 204, 37);
+				lblTitle.setBounds(194, 22, 204, 37);
 				panel.add(lblTitle);
 			}
 			{
 				JPanel panel_1 = new JPanel();
 				panel_1.setBackground(new Color(176, 224, 230));
-				panel_1.setBounds(161, 13, 229, 61);
+				panel_1.setBounds(181, 13, 229, 61);
 				panel.add(panel_1);
 			}
 			{

@@ -66,17 +66,11 @@ public class RegRecursos extends JDialog {
 		setModal(true);
 		
 		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setBackground(new Color(244, 244, 249));
+		contentPanel.setBackground(new Color(176, 224, 230));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		setUndecorated(true);
-		{
-			JLabel lblNombreObj = new JLabel("Nombre del Objeto:");
-			lblNombreObj.setFont(new Font("Calibri", Font.PLAIN, 15));
-			lblNombreObj.setBounds(9, 99, 124, 16);
-			contentPanel.add(lblNombreObj);
-		}
 		
 		txtNombre = new JTextField();
 		txtNombre.setBounds(154, 95, 180, 22);
@@ -85,12 +79,12 @@ public class RegRecursos extends JDialog {
 		
 		JLabel lblCantidad = new JLabel("Cantidad:");
 		lblCantidad.setFont(new Font("Calibri", Font.PLAIN, 15));
-		lblCantidad.setBounds(66, 208, 67, 16);
+		lblCantidad.setBounds(74, 208, 67, 16);
 		contentPanel.add(lblCantidad);
 		
 		JLabel lblTipo = new JLabel("Tipo de Objeto:");
 		lblTipo.setFont(new Font("Calibri", Font.PLAIN, 15));
-		lblTipo.setBounds(37, 153, 96, 16);
+		lblTipo.setBounds(45, 153, 96, 16);
 		contentPanel.add(lblTipo);
 		{
 			spnCantidad = new JSpinner();
@@ -106,7 +100,7 @@ public class RegRecursos extends JDialog {
 		}
 		{
 			JPanel buttonPane = new JPanel();
-			buttonPane.setBackground(new Color(244, 244, 249));
+			buttonPane.setBackground(new Color(248, 248, 255));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
@@ -165,28 +159,6 @@ public class RegRecursos extends JDialog {
 			}
 		}
 		
-		
-		JLabel lblX = new JLabel("X");
-		lblX.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				dispose();
-				
-			}
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				lblX.setForeground(Color.RED);
-			}
-			public void mouseExited(MouseEvent e) {
-				lblX.setForeground(Color.BLACK);
-			}
-		});
-		lblX.setForeground(Color.BLACK);
-		lblX.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
-		lblX.setHorizontalAlignment(SwingConstants.CENTER);
-		lblX.setBounds(405, 0, 20, 20);
-		contentPanel.add(lblX);
-		
 		JLabel lblTitle = new JLabel("Registro de Recursos");
 		lblTitle.setBounds(133, 30, 158, 21);
 		contentPanel.add(lblTitle);
@@ -199,6 +171,41 @@ public class RegRecursos extends JDialog {
 			panel.setBackground(new Color(176, 224, 230));
 			panel.setBounds(99, 22, 228, 39);
 			contentPanel.add(panel);
+		}
+		{
+			JPanel panel = new JPanel();
+			panel.setBackground(new Color(248, 248, 255));
+			panel.setBounds(6, 6, 410, 253);
+			contentPanel.add(panel);
+			panel.setLayout(null);
+			
+			
+			JLabel lblX = new JLabel("X");
+			lblX.setBounds(392, 0, 20, 20);
+			panel.add(lblX);
+			lblX.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					dispose();
+					
+				}
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					lblX.setForeground(Color.RED);
+				}
+				public void mouseExited(MouseEvent e) {
+					lblX.setForeground(Color.BLACK);
+				}
+			});
+			lblX.setForeground(Color.BLACK);
+			lblX.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
+			lblX.setHorizontalAlignment(SwingConstants.CENTER);
+			{
+				JLabel lblNombreObj = new JLabel("Nombre del Objeto:");
+				lblNombreObj.setBounds(11, 94, 124, 16);
+				panel.add(lblNombreObj);
+				lblNombreObj.setFont(new Font("Calibri", Font.PLAIN, 15));
+			}
 		}
 		if(updated != null) {
 			txtNombre.setText(updated.getNombreEquipo());

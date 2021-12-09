@@ -182,13 +182,13 @@ public class ListPersona extends JDialog {
 			lblX.setHorizontalAlignment(SwingConstants.CENTER);
 			
 			JLabel lblListadoDePersonas = new JLabel("Listado de Personas");
-			lblListadoDePersonas.setBounds(156, 20, 226, 28);
+			lblListadoDePersonas.setBounds(163, 20, 226, 28);
 			lblListadoDePersonas.setHorizontalAlignment(SwingConstants.CENTER);
 			lblListadoDePersonas.setFont(new Font("Century Gothic", Font.PLAIN, 15));
 			panel.add(lblListadoDePersonas);
 			
 			JPanel panel_1 = new JPanel();
-			panel_1.setBounds(141, 13, 258, 45);
+			panel_1.setBounds(148, 13, 258, 45);
 			panel_1.setBackground(SystemColor.inactiveCaptionBorder);
 			panel.add(panel_1);
 		}

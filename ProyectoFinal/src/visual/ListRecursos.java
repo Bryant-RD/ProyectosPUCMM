@@ -58,7 +58,7 @@ public class ListRecursos extends JDialog {
 	 */
 	public ListRecursos() {
 		setTitle("Listado de Recursos");
-		setBounds(100, 100, 696, 623);
+		setBounds(100, 100, 780, 679);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setModal(true);
@@ -69,62 +69,20 @@ public class ListRecursos extends JDialog {
 		contentPanel.setLayout(null);
 		setUndecorated(true);
 		{
-			JPanel panel = new JPanel();
-			panel.setBackground(new Color(184, 219, 217));
-			panel.setBounds(12, 13, 661, 77);
-			panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Filtros", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-			contentPanel.add(panel);
-			panel.setLayout(null);
-			
-			{
-				JLabel lblTipoDeRecurso = new JLabel("Tipo de Recurso:");
-				lblTipoDeRecurso.setFont(new Font("Calibri", Font.PLAIN, 14));
-				lblTipoDeRecurso.setBounds(16, 23, 107, 16);
-				lblTipoDeRecurso.setVerticalAlignment(SwingConstants.TOP);
-				panel.add(lblTipoDeRecurso);
-			}
-			
-			JComboBox comboBox = new JComboBox();
-			comboBox.setBackground(SystemColor.inactiveCaptionBorder);
-			comboBox.setFont(new Font("Calibri", Font.PLAIN, 14));
-			comboBox.setModel(new DefaultComboBoxModel(new String[] {"<<Seleccione>>", "Visual", "Audio", "Mobiliario"}));
-			comboBox.setBounds(16, 41, 200, 23);
-			panel.add(comboBox);
-		}
-		{
-			JPanel panel = new JPanel();
-			panel.setBounds(9, 100, 672, 470);
-			panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-			contentPanel.add(panel);
-			panel.setLayout(new BorderLayout(0, 0));
-			
-			JScrollPane scrollPane = new JScrollPane();
-			scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-			panel.add(scrollPane, BorderLayout.CENTER);
-			
-			table = new JTable();
-			table.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent arg0) {
-					int row = table.getSelectedRow();
-					if(row != -1) {
-						String name = (String) table.getValueAt(row, 0);
-						selected = PUCMM.getInstance().buscarRecurso(name);
-						btnUpdate.setEnabled(true);
-					}
-				}
-			});
-			table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			String[] headers = {"Nombre del equipo","Tipo","Cantidad", "Disponibilidad"};
 			model = new DefaultTableModel();
 			model.setColumnIdentifiers(headers);
-			table.setModel(model);
-			scrollPane.setViewportView(table);
 		}
 		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(184, 219, 217));
+		panel.setBounds(12, 13, 756, 613);
+		contentPanel.add(panel);
+		panel.setLayout(null);
+		
 		JLabel lblX = new JLabel("X");
-		lblX.setBounds(678, 0, 18, 20);
-		contentPanel.add(lblX);
+		lblX.setBounds(738, 0, 18, 20);
+		panel.add(lblX);
 		
 		lblX.addMouseListener(new MouseAdapter() {
 			@Override
@@ -143,6 +101,65 @@ public class ListRecursos extends JDialog {
 		lblX.setForeground(Color.BLACK);
 		lblX.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
 		lblX.setHorizontalAlignment(SwingConstants.CENTER);
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(50, 130, 659, 470);
+		panel.add(panel_1);
+		panel_1.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1.setLayout(new BorderLayout(0, 0));
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		panel_1.add(scrollPane, BorderLayout.CENTER);
+		
+		table = new JTable();
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				int row = table.getSelectedRow();
+				if(row != -1) {
+					String name = (String) table.getValueAt(row, 0);
+					selected = PUCMM.getInstance().buscarRecurso(name);
+					btnUpdate.setEnabled(true);
+				}
+			}
+		});
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.setModel(model);
+		scrollPane.setViewportView(table);
+		{
+			JPanel panel_2 = new JPanel();
+			panel_2.setBounds(50, 68, 203, 49);
+			panel.add(panel_2);
+			panel_2.setBackground(new Color(184, 219, 217));
+			panel_2.setBorder(null);
+			panel_2.setLayout(null);
+			
+			{
+				JLabel lblTipoDeRecurso = new JLabel("Tipo de Recurso:");
+				lblTipoDeRecurso.setFont(new Font("Calibri", Font.PLAIN, 14));
+				lblTipoDeRecurso.setBounds(0, 0, 107, 16);
+				lblTipoDeRecurso.setVerticalAlignment(SwingConstants.TOP);
+				panel_2.add(lblTipoDeRecurso);
+			}
+			
+			JComboBox comboBox = new JComboBox();
+			comboBox.setBackground(SystemColor.inactiveCaptionBorder);
+			comboBox.setFont(new Font("Calibri", Font.PLAIN, 14));
+			comboBox.setModel(new DefaultComboBoxModel(new String[] {"<<Seleccione>>", "Visual", "Audio", "Mobiliario"}));
+			comboBox.setBounds(0, 21, 200, 23);
+			panel_2.add(comboBox);
+		}
+		
+		JLabel lblListadoDeRecursos = new JLabel("Listado de Recursos");
+		lblListadoDeRecursos.setHorizontalAlignment(SwingConstants.CENTER);
+		lblListadoDeRecursos.setFont(new Font("Century Gothic", Font.PLAIN, 15));
+		lblListadoDeRecursos.setBounds(283, 20, 226, 28);
+		panel.add(lblListadoDeRecursos);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(SystemColor.inactiveCaptionBorder);
+		panel_2.setBounds(268, 13, 258, 45);
+		panel.add(panel_2);
 		
 	
 		{

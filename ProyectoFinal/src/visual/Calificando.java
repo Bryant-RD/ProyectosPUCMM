@@ -14,7 +14,13 @@ import backend.Trabajo;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
+import java.awt.SystemColor;
+import javax.swing.SwingConstants;
+import java.awt.Color;
 
 public class Calificando extends JDialog {
 
@@ -45,85 +51,124 @@ public class Calificando extends JDialog {
 	 * @param selected 
 	 */
 	public Calificando(Trabajo selected) {
-		setBounds(100, 100, 710, 351);
+		setBounds(100, 100, 720, 382);
+		setUndecorated(true);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(new Color(176, 224, 230));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
 			JPanel panel = new JPanel();
+			panel.setBackground(new Color(248, 248, 255));
 			contentPanel.add(panel, BorderLayout.CENTER);
 			panel.setLayout(null);
 			
-			JLabel lblNewLabel = new JLabel("Calificaion de Trabajo");
-			lblNewLabel.setBounds(257, 11, 184, 57);
-			panel.add(lblNewLabel);
+			JLabel lblX = new JLabel("X");
+			lblX.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					dispose();
+					
+				}
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					lblX.setForeground(Color.RED);
+				}
+				public void mouseExited(MouseEvent e) {
+					lblX.setForeground(Color.BLACK);
+				}
+			});
+			lblX.setForeground(Color.BLACK);
+			lblX.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
+			lblX.setHorizontalAlignment(SwingConstants.CENTER);
+			lblX.setBounds(690, 0, 20, 20);
+			panel.add(lblX);
 			
-			JLabel lblNewLabel_1 = new JLabel("Codigo");
-			lblNewLabel_1.setBounds(10, 82, 46, 14);
+			JLabel lblNewLabel_1 = new JLabel("Codigo:");
+			lblNewLabel_1.setBounds(33, 114, 46, 14);
+			lblNewLabel_1.setFont(new Font("Calibri", Font.PLAIN, 14));
 			panel.add(lblNewLabel_1);
 			
-			txtPropietario = new JLabel("Propietario");
-			txtPropietario.setBounds(10, 136, 76, 14);
+			txtPropietario = new JLabel("Propietario:");
+			txtPropietario.setBounds(12, 169, 67, 14);
+			txtPropietario.setFont(new Font("Calibri", Font.PLAIN, 14));
 			panel.add(txtPropietario);
 			
-			JLabel lblNewLabel_3 = new JLabel("Nombre Proyecto");
-			lblNewLabel_3.setBounds(357, 82, 117, 14);
+			JLabel lblNewLabel_3 = new JLabel("Nombre Proyecto:");
+			lblNewLabel_3.setBounds(346, 114, 103, 14);
+			lblNewLabel_3.setFont(new Font("Calibri", Font.PLAIN, 14));
 			panel.add(lblNewLabel_3);
 			
-			JLabel lblNewLabel_4 = new JLabel("Tema");
-			lblNewLabel_4.setBounds(357, 136, 46, 14);
+			JLabel lblNewLabel_4 = new JLabel("Tema:");
+			lblNewLabel_4.setBounds(413, 169, 36, 14);
+			lblNewLabel_4.setFont(new Font("Calibri", Font.PLAIN, 14));
 			panel.add(lblNewLabel_4);
 			
-			JLabel lblNewLabel_5 = new JLabel("Evento");
-			lblNewLabel_5.setBounds(10, 197, 46, 14);
+			JLabel lblNewLabel_5 = new JLabel("Evento:");
+			lblNewLabel_5.setBounds(33, 226, 46, 14);
+			lblNewLabel_5.setFont(new Font("Calibri", Font.PLAIN, 14));
 			panel.add(lblNewLabel_5);
 			
-			JLabel lblNewLabel_6 = new JLabel("Calificacion");
-			lblNewLabel_6.setBounds(357, 197, 76, 14);
+			JLabel lblNewLabel_6 = new JLabel("Calificacion:");
+			lblNewLabel_6.setBounds(382, 226, 67, 14);
+			lblNewLabel_6.setFont(new Font("Calibri", Font.PLAIN, 14));
 			panel.add(lblNewLabel_6);
 			
 			txtCodigo = new JTextField();
+			txtCodigo.setBounds(94, 111, 184, 20);
 			txtCodigo.setEnabled(false);
-			txtCodigo.setBounds(66, 79, 184, 20);
 			panel.add(txtCodigo);
 			txtCodigo.setColumns(10);
 			
 			textField_1 = new JTextField();
+			textField_1.setBounds(94, 166, 184, 20);
 			textField_1.setEnabled(false);
 			textField_1.setColumns(10);
-			textField_1.setBounds(66, 133, 184, 20);
 			panel.add(textField_1);
 			
 			txtEvento = new JTextField();
+			txtEvento.setBounds(94, 223, 184, 20);
 			txtEvento.setEnabled(false);
 			txtEvento.setColumns(10);
-			txtEvento.setBounds(66, 194, 184, 20);
 			panel.add(txtEvento);
 			
 			txtNombre = new JTextField();
+			txtNombre.setBounds(464, 111, 184, 20);
 			txtNombre.setEnabled(false);
 			txtNombre.setColumns(10);
-			txtNombre.setBounds(464, 79, 184, 20);
 			panel.add(txtNombre);
 			
 			txtTema = new JTextField();
+			txtTema.setBounds(464, 166, 184, 20);
 			txtTema.setEnabled(false);
 			txtTema.setColumns(10);
-			txtTema.setBounds(464, 133, 184, 20);
 			panel.add(txtTema);
 			
 			txtCalificaion = new JTextField();
+			txtCalificaion.setBounds(464, 223, 184, 20);
 			txtCalificaion.setColumns(10);
-			txtCalificaion.setBounds(464, 194, 184, 20);
 			panel.add(txtCalificaion);
+			
+			JPanel panel_1 = new JPanel();
+			panel_1.setLayout(null);
+			panel_1.setBackground(new Color(176, 224, 230));
+			panel_1.setBounds(226, 13, 258, 45);
+			panel.add(panel_1);
+			
+			JLabel lblCalificacionDeTrabajos = new JLabel("Calificacion de Trabajos");
+			lblCalificacionDeTrabajos.setFont(new Font("Century Gothic", Font.PLAIN, 16));
+			lblCalificacionDeTrabajos.setBounds(38, 12, 191, 21);
+			panel_1.add(lblCalificacionDeTrabajos);
 		}
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(new Color(248, 248, 255));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("Aceptar");
+				okButton.setBackground(new Color(248, 248, 255));
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						PUCMM.getInstance().calificarTrabajo(txtCodigo.getText(), Float.valueOf(txtCalificaion.getText()));
@@ -135,6 +180,7 @@ public class Calificando extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("Cancelar");
+				cancelButton.setBackground(new Color(248, 248, 255));
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();
